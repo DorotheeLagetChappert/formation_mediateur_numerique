@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CP1 — Pack Activités — Fiches de Jeux de Rôle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B3A6B;--navy-light:#EBF2FB;
+  --amber:#D4812B;--amber-light:#FEF6EC;
+  --green:#1A7A4A;--green-light:#E8F8F0;
+  --red:#C0392B;--red-light:#FDEDEC;
+  --purple:#6C3483;--purple-light:#F5EEF8;
+  --teal:#0E6655;--teal-light:#E8F8F5;
+  --text:#1C2833;--text-mid:#566573;
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.5cm}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg)}
+
+/* COVER */
+.cover{background:var(--purple);display:flex;flex-direction:column;padding:8vh 15vw;page-break-after:always}
+.cover h2{font-family:'Playfair Display',serif;font-size:44pt;color:white;line-height:1.05;margin:1.5rem 0 1rem}
+.cover-h1{background:rgba(255,255,255,0.2);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover p{font-size:12pt;color:rgba(255,255,255,0.75);font-weight:300;line-height:1.6;max-width:13cm;margin-bottom:3rem}
+.cover-tag{background:rgba(255,255,255,0.2);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block}
+.cover-items{display:flex;flex-direction:column;gap:0.8rem;margin-top:auto}
+.cover-item{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt}
+.cover-item strong{color:rgba(255,255,255,0.9)}
+
+/* PAGES */
+.page{background:white;padding:1.4cm;page-break-after:always}
+
+/* SECTION HEADER */
+.sec-header{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:2px solid var(--border)}
+.sec-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700;color:white;flex-shrink:0}
+.sec-title{font-family:'Playfair Display',serif;font-size:18pt;color:var(--navy)}
+.sec-sub{font-size:9pt;color:var(--text-mid)}
+
+/* PROFIL CARDS */
+.profils-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0.5rem 0}
+.profil-card{border-radius:12px;padding:1.2rem;border:2px solid}
+.profil-num{font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.4rem;opacity:0.7}
+.profil-name{font-family:'Playfair Display',serif;font-size:15pt;margin-bottom:0.8rem}
+.profil-tag{display:inline-block;font-size:7.5pt;font-weight:600;padding:3px 10px;border-radius:10px;margin-bottom:0.6rem}
+.profil-section{font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-top:0.6rem;margin-bottom:0.2rem;opacity:0.6}
+.profil-card p{font-size:9pt;line-height:1.5;margin-bottom:0.3rem}
+
+/* COLOR VARIANTS FOR PROFILS */
+.p-senior{background:#EEF2F7;border-color:#A9C4E1} .p-senior .profil-name{color:#1B3A6B} .p-senior .profil-tag{background:#D6E9F8;color:#1B3A6B}
+.p-anxieux{background:#F0FAF5;border-color:#7ECFA4} .p-anxieux .profil-name{color:#1A7A4A} .p-anxieux .profil-tag{background:#C3E6D5;color:#1A7A4A}
+.p-agressif{background:#FEF0EF;border-color:#F1948A} .p-agressif .profil-name{color:#C0392B} .p-agressif .profil-tag{background:#FADADD;color:#C0392B}
+.p-presse{background:#FEF6EC;border-color:#F5C57A} .p-presse .profil-name{color:#D4812B} .p-presse .profil-tag{background:#FDEBD0;color:#D4812B}
+.p-detresse{background:#F5EEF8;border-color:#C39BD3} .p-detresse .profil-name{color:#6C3483} .p-detresse .profil-tag{background:#E8DAEF;color:#6C3483}
+.p-allophone{background:#E8F8F5;border-color:#76D7C4} .p-allophone .profil-name{color:#0E6655} .p-allophone .profil-tag{background:#A9DFBF;color:#0E6655}
+.p-jeune{background:#EEF2F7;border-color:#A9C4E1} .p-jeune .profil-name{color:#1B3A6B} .p-jeune .profil-tag{background:#D6E9F8;color:#1B3A6B}
+.p-hors{background:#FEF0EF;border-color:#F1948A} .p-hors .profil-name{color:#C0392B} .p-hors .profil-tag{background:#FADADD;color:#C0392B}
+
+/* GRILLE OBSERVATION */
+.obs-grid{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.obs-grid th{background:var(--navy);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.obs-grid td{padding:10px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
+.obs-grid tr:nth-child(even) td{background:var(--bg)}
+.score-cell{text-align:center;font-size:8.5pt}
+
+/* CAS PRATIQUES */
+.cas-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin:0.5rem 0}
+.cas-card{border:1px solid var(--border);border-radius:8px;padding:0.9rem 1rem;background:white}
+.cas-num{font-size:7.5pt;font-weight:700;color:var(--text-mid);margin-bottom:0.3rem}
+.cas-text{font-size:9.5pt;line-height:1.45;margin-bottom:0.7rem}
+.cas-answer{display:flex;gap:6px;margin-top:0.4rem}
+.cas-btn{border:1.5px solid var(--border);border-radius:6px;padding:4px 14px;font-size:8.5pt;font-weight:600;cursor:pointer;background:white}
+.cas-btn-yes{border-color:var(--green);color:var(--green)}
+.cas-btn-no{border-color:var(--red);color:var(--red)}
+.cas-btn-maybe{border-color:var(--amber);color:var(--amber)}
+
+/* BOXES */
+.box{border-radius:8px;padding:1rem 1.2rem;margin:0.8rem 0}
+.box-info{background:var(--navy-light);border-left:4px solid var(--navy)}
+.box-tip{background:var(--amber-light);border-left:4px solid var(--amber)}
+.box-good{background:var(--green-light);border-left:4px solid var(--green)}
+.box h4{font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.4rem}
+.box-info h4{color:var(--navy)} .box-tip h4{color:var(--amber)} .box-good h4{color:var(--green)}
+.box p,.box li{font-size:9.5pt;margin-bottom:3px}
+.box ul{padding-left:1.1rem}
+
+@media print{
+  body{background:white}
+  .page{padding:0;box-shadow:none}
+  .cover,.obs-grid th,.p-senior,.p-anxieux,.p-agressif,.p-presse,.p-detresse,.p-allophone,.p-jeune,.p-hors{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1 class="cover-h1"><a href="../index.html">Formation médiateur numérique</a></h1>
+  <div class="cover-tag">Pack Activités · CP1</div>
+  <h2>Jeux de rôle &amp; Exercices</h2>
+  <p>8 fiches-profils pour les simulations d'accueil · 12 cas pratiques "dans mon périmètre ?" · Grille d'observation</p>
+  <div class="cover-items">
+    <div class="cover-item"><strong>Activité 1</strong> — "Est-ce dans mon périmètre ?" — 12 cas pratiques — 45 min</div>
+    <div class="cover-item"><strong>Activité 2</strong> — Jeu de rôle : accueil de publics variés — 8 profils — 1h</div>
+    <div class="cover-item"><strong>Activité 3</strong> — Observation des pairs avec grille officielle — 30 min</div>
+  </div>
+</div>
+
+<!-- ═══ ACTIVITÉ 1 : CAS PRATIQUES ═══ -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--amber)">1</div>
+    <div>
+      <div class="sec-title">Est-ce dans mon périmètre ?</div>
+      <div class="sec-sub">12 cas pratiques · Individuel puis collectif · 45 minutes</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Mode d'emploi</h4>
+    <ul>
+      <li>Phase 1 (10 min) : prendre connaissance des cas.</li>
+      <li>Phase 2 (10 min) : discussion en binômes sur les divergences.</li>
+      <li>Phase 3 (15 min) : tour de table en grand groupe — argumenter les cas difficiles.</li>
+      <li>Phase 4 (10 min) : révéler les bonnes réponses et expliquer les nuances.</li>
+      <li><strong>Bonus :</strong> demander pour chaque cas "hors périmètre" : "Que dites-vous exactement à la personne ?"</li>
+    </ul>
+  </div>
+
+  <p style="font-size:9pt;color:var(--text-mid);margin-bottom:0.7rem">Pour chaque situation, rechercher si cela correspond à : <strong style="color:var(--green)">DANS mon périmètre</strong> / <strong style="color:var(--red)">HORS périmètre</strong> / <strong style="color:var(--amber)">ZONE GRISE</strong></p>
+
+  <div class="cas-grid">
+    <div class="cas-card">
+      <div class="cas-num">Cas 01</div>
+      <p class="cas-text">Une dame de 72 ans veut que vous remplissiez sa déclaration de revenus à sa place car elle ne sait pas le faire.</p>
+      <div class="cas-answer">
+        <div class="cas-btn cas-btn-yes">✓ Dans</div>
+        <div class="cas-btn cas-btn-no">✗ Hors</div>
+        <div class="cas-btn cas-btn-maybe">? Grise</div>
+      </div>
+    </div>
+    <div class="cas-card">
+      <div class="cas-num">Cas 02</div>
+      <p class="cas-text">Un homme de 55 ans veut apprendre à envoyer des photos par email à ses enfants.</p>
+      <div class="cas-answer">
+        <div class="cas-btn cas-btn-yes">✓ Dans</div>
+        <div class="cas-btn cas-btn-no">✗ Hors</div>
+        <div class="cas-btn cas-btn-maybe">? Grise</div>
+      </div>
+    </div>
+    <div class="cas-card">
+      <div class="cas-num">Cas 03</div>
+      <p class="cas-text">Une personne dit que son ordinateur ne s'allume plus et demande si vous pouvez "regarder ça".</p>
+      <div class="cas-answer">
+        <div class="cas-btn cas-btn-yes">✓ Dans</div>
+        <div class="cas-btn cas-btn-no">✗ Hors</div>
+        <div class="cas-btn cas-btn-maybe">? Grise</div>
+      </div>
+    </div>
+    <div class="cas-card">
+      <div class="cas-num">Cas 04</div>
+      <p class="cas-text">Un jeune de 19 ans veut apprendre à utiliser France Travail pour chercher un emploi.</p>
+      <div class="cas-answer">
+        <div class="cas-btn cas-btn-yes">✓ Dans</div>
+        <div class="cas-btn cas-btn-no">✗ Hors</div>
+        <div class="cas-btn cas-btn-maybe">? Grise</div>
+      </div>
+    </div>
+    <div class="cas-card">
+      <div class="cas-num">Cas 05</div>
+      <p class="cas-text">Une femme demande si elle peut avoir le RSA et combien ce serait pour elle.</p>
+      <div class="cas-answer">
+        <div class="cas-btn cas-btn-yes">✓ Dans</div>
+        <div class="cas-btn cas-btn-no">✗ Hors</div>
+        <div class="cas-btn cas-btn-maybe">? Grise</div>
+      </div>
+    </div>
+    <div class="cas-card">
+      <div class="cas-num">Cas 06</div>
+      <p class="cas-text">Un senior veut apprendre à faire des appels vidéo avec ses petits-enfants via WhatsApp.</p>
+      <div class="cas-answer">
+        <div class="cas-btn cas-btn-yes">✓ Dans</div>
+        <div class="cas-btn cas-btn-no">✗ Hors</div>
+        <div class="cas-btn cas-btn-maybe">? Grise</div>
+      </div>
+    </div>
+    <div class="cas-card">
+      <div class="cas-num">Cas 07</div>
+      <p class="cas-text">Une personne dit qu'on lui a piraté son compte bancaire et demande votre aide pour "récupérer l'argent".</p>
+      <div class="cas-answer">
+        <div class="cas-btn cas-btn-yes">✓ Dans</div>
+        <div class="cas-btn cas-btn-no">✗ Hors</div>
+        <div class="cas-btn cas-btn-maybe">? Grise</div>
+      </div>
+    </div>
+    <div class="cas-card">
+      <div class="cas-num">Cas 08</div>
+      <p class="cas-text">Un homme veut qu'on lui explique comment reconnaître les faux emails (phishing) car il reçoit beaucoup d'arnaques.</p>
+      <div class="cas-answer">
+        <div class="cas-btn cas-btn-yes">✓ Dans</div>
+        <div class="cas-btn cas-btn-no">✗ Hors</div>
+        <div class="cas-btn cas-btn-maybe">? Grise</div>
+      </div>
+    </div>
+    <div class="cas-card">
+      <div class="cas-num">Cas 09</div>
+      <p class="cas-text">Une dame veut que vous lui trouviez un logement car elle est à la rue depuis 2 semaines.</p>
+      <div class="cas-answer">
+        <div class="cas-btn cas-btn-yes">✓ Dans</div>
+        <div class="cas-btn cas-btn-no">✗ Hors</div>
+        <div class="cas-btn cas-btn-maybe">? Grise</div>
+      </div>
+    </div>
+    <div class="cas-card">
+      <div class="cas-num">Cas 10</div>
+      <p class="cas-text">Un parent veut apprendre à mettre le contrôle parental sur la tablette de ses enfants.</p>
+      <div class="cas-answer">
+        <div class="cas-btn cas-btn-yes">✓ Dans</div>
+        <div class="cas-btn cas-btn-no">✗ Hors</div>
+        <div class="cas-btn cas-btn-maybe">? Grise</div>
+      </div>
+    </div>
+    <div class="cas-card">
+      <div class="cas-num">Cas 11</div>
+      <p class="cas-text">Une personne a reçu une amende qu'elle pense injuste et veut que vous l'aidiez à faire un recours juridique.</p>
+      <div class="cas-answer">
+        <div class="cas-btn cas-btn-yes">✓ Dans</div>
+        <div class="cas-btn cas-btn-no">✗ Hors</div>
+        <div class="cas-btn cas-btn-maybe">? Grise</div>
+      </div>
+    </div>
+    <div class="cas-card">
+      <div class="cas-num">Cas 12</div>
+      <p class="cas-text">Un homme de 80 ans veut s'inscrire à votre atelier mais n'a pas de téléphone ni d'email. Il vient directement.</p>
+      <div class="cas-answer">
+        <div class="cas-btn cas-btn-yes">✓ Dans</div>
+        <div class="cas-btn cas-btn-no">✗ Hors</div>
+        <div class="cas-btn cas-btn-maybe">? Grise</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ACTIVITÉ 2 : FICHES PROFILS ═══ -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--navy)">2</div>
+    <div>
+      <div class="sec-title">Fiches-profils pour le jeu de rôle</div>
+      <div class="sec-sub">Un profil par "public" · Ne pas montrer au "médiateur"</div>
+    </div>
+  </div>
+  <div class="box box-info">
+    <h4>ℹ️ Instructions</h4>
+    <p>La personne qui joue le "Public" choisit l'une des cartes ci-dessous. La personne qui joue le "Médiateur" ne voit pas la carte. Le "Public" s'imprègne de son profil en 2 minutes et joue le rôle naturellement. Durée de chaque simulation : 10 minutes.</p>
+  </div>
+
+  <div class="profils-grid">
+    <div class="profil-card p-senior">
+      <div class="profil-num">Profil 01 · Public</div>
+      <div class="profil-name">Marcelle, 78 ans</div>
+      <span class="profil-tag">Senior anxieuse · Niveau 0</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Retraitée, vit seule. Sa fille lui a dit "va à l'espace numérique, ils vont t'aider". Elle ne sait pas ce qu'est internet. Elle a un vieux téléphone mais ne l'utilise qu'en appels.</p>
+      <div class="profil-section">Sa demande exprimée</div>
+      <p>"Je veux apprendre l'ordinateur pour voir mes petits-enfants à l'écran."</p>
+      <div class="profil-section">Son vrai besoin</div>
+      <p>Apprendre à faire des appels vidéo. Aussi : renouveler sa carte Vitale échue, ce qu'elle ne mentionne pas d'emblée.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Parle doucement, hésite, répète les questions. Se dit "honteux de pas savoir faire ça". Sourit facilement si on est bienveillant.</p>
+    </div>
+
+    <div class="profil-card p-agressif">
+      <div class="profil-num">Profil 02 · Public</div>
+      <div class="profil-name">Karim, 42 ans</div>
+      <span class="profil-tag">Frustré · Urgent</span>
+      <div class="profil-section">Sa situation</div>
+      <p>En recherche d'emploi depuis 6 mois. Son espace France Travail est bloqué depuis 3 semaines. Il a appelé 4 fois et personne n'a résolu le problème. Il a raté des offres à cause de ça.</p>
+      <div class="profil-section">Sa demande</div>
+      <p>Qu'on débloque son compte France Travail MAINTENANT.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Entre dans l'espace irrité. "Ça fait des semaines que j'attends !" Difficile à calmer les 2 premières minutes. Mais si on l'écoute vraiment, il se détend et collabore.</p>
+    </div>
+
+    <div class="profil-card p-anxieux">
+      <div class="profil-num">Profil 03 · Public</div>
+      <div class="profil-name">Patricia, 55 ans</div>
+      <span class="profil-tag">Très anxieuse · Peur de "casser"</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Femme de ménage. Son employeur lui demande maintenant de transmettre des documents par email. Elle n'a jamais ouvert une boîte mail. Elle a très peur d'appuyer sur le mauvais bouton.</p>
+      <div class="profil-section">Sa demande</div>
+      <p>"Je voudrais juste savoir envoyer un document par email."</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Parle à voix basse. Demande confirmation avant chaque action. Dit souvent "c'est moi qui suis nulle". Se bloque facilement si on la bouscule.</p>
+    </div>
+
+    <div class="profil-card p-detresse">
+      <div class="profil-num">Profil 04 · Public</div>
+      <div class="profil-name">Fatou, 35 ans</div>
+      <span class="profil-tag">Urgence · Détresse</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Mère de 3 enfants. Ses allocations CAF ont été suspendues sans explication. Elle doit faire une déclaration de ressources avant vendredi (dans 2 jours) ou elle perd tout. Elle n'a pas de compte CAF.fr.</p>
+      <div class="profil-section">Sa demande</div>
+      <p>"Aidez-moi s'il vous plaît, j'ai pas internet chez moi et mes enfants..."</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Très stressée, peut avoir les larmes aux yeux. Sait utiliser un smartphone basiquement. La priorité absolue est la démarche CAF urgente.</p>
+    </div>
+
+    <div class="profil-card p-allophone">
+      <div class="profil-num">Profil 05 · Public</div>
+      <div class="profil-name">Mme Chen, 60 ans</div>
+      <span class="profil-tag">Allophone · Peu de français</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Arrivée en France il y a 2 ans pour rejoindre sa fille. Parle très peu français. A un smartphone mais tout est configuré en mandarin. A besoin d'aide pour renouveler son titre de séjour en ligne.</p>
+      <div class="profil-section">Sa demande</div>
+      <p>"Bonjour. Internet... titre séjour... je comprends pas." (+ gestes)</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>S'exprime par gestes et mots isolés. Montre des documents papier. Sourit beaucoup. Comprend mieux si on parle lentement et montre du doigt.</p>
+    </div>
+
+    <div class="profil-card p-presse">
+      <div class="profil-num">Profil 06 · Public</div>
+      <div class="profil-name">Thomas, 30 ans</div>
+      <span class="profil-tag">Pressé · Niveau moyen</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Salarié, vient pendant sa pause déjeuner. Sait utiliser internet mais bloque sur la création d'un compte professionnel Ameli. A 30 minutes maximum.</p>
+      <div class="profil-section">Sa demande</div>
+      <p>"J'ai pas beaucoup de temps. Mon employeur a besoin que je télécharge mon attestation Ameli."</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Regarde sa montre souvent. Veut aller vite. Sera satisfait si on est efficace et qu'on l'aide rapidement. S'impatiente si le médiateur est trop lent.</p>
+    </div>
+
+    <div class="profil-card p-jeune">
+      <div class="profil-num">Profil 07 · Public</div>
+      <div class="profil-name">Dylan, 19 ans</div>
+      <span class="profil-tag">Jeune · Insertion</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Sorti du lycée sans diplôme. Cherche un emploi. Sait utiliser les réseaux sociaux et TikTok, mais ne sait pas rédiger un CV ni utiliser les plateformes d'emploi professionnelles.</p>
+      <div class="profil-section">Sa demande</div>
+      <p>"Je sais pas comment m'inscrire sur les sites pour trouver du boulot."</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Détendu, un peu désintéressé au départ. Répond par monosyllabes. Mais si on l'engage sur ce qui l'intéresse (son projet), il s'anime et devient coopératif.</p>
+    </div>
+
+    <div class="profil-card p-hors">
+      <div class="profil-num">Profil 08 · Public</div>
+      <div class="profil-name">M. Bernard, 65 ans</div>
+      <span class="profil-tag">Hors périmètre partiel · Test</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Retraité. Vient pour deux choses : 1) apprendre à utiliser les impots.gouv.fr (dans le périmètre). 2) Contester une décision fiscale qu'il pense injuste et vous demander conseil (hors périmètre).</p>
+      <div class="profil-section">Sa demande</div>
+      <p>"J'ai reçu un redressement fiscal que je comprends pas. Je veux d'abord voir comment accéder à mon espace impôts, et ensuite j'ai besoin de vos conseils pour contester."</p>
+      <div class="profil-section">Objectif pédagogique</div>
+      <p>Le médiateur doit dissocier les deux demandes : accompagner la navigation (oui) et orienter vers un avocat ou l'aide juridictionnelle pour la contestation (non, mais avec les mots justes).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ACTIVITÉ 3 : GRILLE OBSERVATION ═══ -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--teal)">3</div>
+    <div>
+      <div class="sec-title">Grille d'observation</div>
+      <div class="sec-sub">Pour le rôle d'Observateur pendant le jeu de rôle · Basée sur les critères officiels du jury</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:0.8rem">
+    <div>
+      <p style="font-size:9pt;font-weight:600;margin-bottom:3px">Nom du "Médiateur" observé :</p>
+      <div style="border-bottom:1px solid var(--border);height:24px"></div>
+    </div>
+    <div>
+      <p style="font-size:9pt;font-weight:600;margin-bottom:3px">Profil de public joué :</p>
+      <div style="border-bottom:1px solid var(--border);height:24px"></div>
+    </div>
+  </div>
+
+  <table class="obs-grid">
+    <thead>
+      <tr>
+        <th style="width:45%">Ce que j'observe</th>
+        <th class="score-cell" style="width:15%">1 — À travailler</th>
+        <th class="score-cell" style="width:15%">2 — Satisfaisant</th>
+        <th class="score-cell" style="width:15%">3 — Excellent</th>
+        <th style="width:10%">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="5" style="background:var(--navy-light);font-weight:600;font-size:8.5pt;color:var(--navy);padding:6px 12px">POSTURE ET COMMUNICATION NON-VERBALE</td>
+      </tr>
+      <tr><td>Posture ouverte, regard accueillant, sourire</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Approche vers la personne (ne l'attend pas)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Débit lent et clair, ton bienveillant</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Respect de la distance de confort</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr>
+        <td colspan="5" style="background:var(--navy-light);font-weight:600;font-size:8.5pt;color:var(--navy);padding:6px 12px">ÉCOUTE ET COMMUNICATION VERBALE</td>
+      </tr>
+      <tr><td>Laisse la personne finir de parler (ne coupe pas)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Utilise des questions ouvertes ("Racontez-moi…")</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Reformule la demande pour valider</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Valide les émotions sans condescendance</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Langage simple, pas de jargon technique</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr>
+        <td colspan="5" style="background:var(--navy-light);font-weight:600;font-size:8.5pt;color:var(--navy);padding:6px 12px">GESTION DE LA DEMANDE</td>
+      </tr>
+      <tr><td>Présente clairement la mission et ses limites</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Identifie le vrai besoin derrière la demande exprimée</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Propose une suite adaptée (RDV, atelier, orientation)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Si hors périmètre : oriente avec les mots justes</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr>
+        <td colspan="5" style="background:var(--navy-light);font-weight:600;font-size:8.5pt;color:var(--navy);padding:6px 12px">GESTION DES SITUATIONS DIFFICILES (si applicable)</td>
+      </tr>
+      <tr><td>Ne dit pas "calmez-vous" à une personne agitée</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Gère son propre stress et reste professionnel</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:1rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--green);margin-bottom:0.4rem">✓ 2 points forts que j'ai observés :</p>
+      <div style="border:1px solid var(--green-border);border-radius:8px;padding:0.8rem;background:var(--green-light);min-height:60px"></div>
+    </div>
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--amber);margin-bottom:0.4rem">→ 1 axe d'amélioration :</p>
+      <div style="border:1px solid var(--amber-mid);border-radius:8px;padding:0.8rem;background:var(--amber-light);min-height:60px"></div>
+    </div>
+  </div>
+  <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../index.html">🔙 Retour à l'accueil</a></button>
+</div>
+
+</body>
+</html>

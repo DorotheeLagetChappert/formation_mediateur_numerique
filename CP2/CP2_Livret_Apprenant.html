@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CP2 — Livret Apprenant — Médiateur Numérique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0B6E4F;--teal-mid:#1A8A63;--teal-light:#E3F5EE;--teal-border:#7ECFA4;
+  --coral:#B03A2E;--coral-light:#FDEDEC;--coral-border:#F1948A;
+  --amber:#C47B1E;--amber-light:#FEF6EC;--amber-mid:#F5C57A;
+  --navy:#1B3A6B;--navy-light:#EBF2FB;
+  --blue:#1F618D;--blue-light:#EBF5FB;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.5cm 1.4cm}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg);line-height:1.55}
+
+.cover{background:var(--coral);min-height:29.7cm;display:flex;flex-direction:column;justify-content:flex-end;padding:2.5cm;page-break-after:always;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-100px;right:-100px;width:380px;height:380px;border-radius:50%;background:rgba(0,0,0,0.1)}
+.cover::after{content:'';position:absolute;bottom:100px;left:50px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.06)}
+.cover-tag{background:var(--teal);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block;margin-bottom:1.5rem}
+.cover h1{font-family:'Playfair Display',serif;font-size:38pt;color:white;line-height:1.05;margin-bottom:0.8rem}
+.cover h2{font-size:12pt;color:rgba(255,255,255,0.8);font-weight:300;line-height:1.6;max-width:12cm;margin-bottom:2rem}
+.cover-pills{display:flex;flex-wrap:wrap;gap:0.8rem}
+.cover-pill{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:white;padding:7px 16px;border-radius:20px;font-size:9pt}
+
+.page{background:white;padding:1.6cm 1.5cm;page-break-after:always}
+.page:last-child{page-break-after:auto}
+
+.fiche-header{margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:3px solid var(--teal)}
+.fiche-num{font-size:8pt;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:0.3rem}
+.fiche-title{font-family:'Playfair Display',serif;font-size:22pt;color:var(--navy)}
+.fiche-sub{font-size:10pt;color:var(--text-mid);font-weight:300;margin-top:0.3rem}
+
+h2{font-family:'Playfair Display',serif;font-size:15pt;color:var(--teal);margin:1.3rem 0 0.5rem;padding-left:0.8rem;border-left:4px solid var(--teal)}
+h3{font-size:10.5pt;color:var(--navy);font-weight:600;margin:0.9rem 0 0.3rem}
+p{font-size:9.5pt;margin-bottom:0.5rem;line-height:1.55}
+ul{padding-left:1.2rem;margin-bottom:0.6rem}
+li{font-size:9.5pt;margin-bottom:3px;line-height:1.5}
+
+.box{border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-key{background:var(--teal);color:white;border-radius:10px;padding:1.1rem 1.4rem}
+.box-key h3{color:rgba(255,255,255,0.65);font-size:8.5pt;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.6rem}
+.box-key p,.box-key li{color:white;font-size:9.5pt;margin-bottom:4px}
+.box-key ul{padding-left:1.1rem}
+.box-amber{background:var(--amber-light);border:1px solid var(--amber-mid);border-radius:8px;padding:0.9rem 1.1rem}
+.box-teal{background:var(--teal-light);border:1px solid var(--teal-border);border-radius:8px;padding:0.9rem 1.1rem}
+.box-navy{background:var(--navy-light);border:1px solid #B3CDE8;border-radius:8px;padding:0.9rem 1.1rem}
+.box-coral{background:var(--coral-light);border:1px solid var(--coral-border);border-radius:8px;padding:0.9rem 1.1rem}
+
+/* TRIANGLE VISUEL */
+.triangle-vis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin:0.8rem 0}
+.tv-card{border-radius:10px;padding:0.9rem;text-align:center}
+.tv-d{background:#EBF5FB;border:2px solid #7FB3D3}
+.tv-b{background:var(--teal-light);border:2px solid var(--teal-border)}
+.tv-e{background:var(--amber-light);border:2px solid var(--amber-mid)}
+.tv-card .big{font-family:'Playfair Display',serif;font-size:28pt;line-height:1}
+.tv-d .big{color:#1F618D} .tv-b .big{color:var(--teal)} .tv-e .big{color:var(--amber)}
+.tv-card .label{font-size:9.5pt;font-weight:700;margin:0.3rem 0 0.2rem}
+.tv-d .label{color:#1F618D} .tv-b .label{color:var(--teal)} .tv-e .label{color:var(--amber)}
+.tv-card .desc{font-size:8pt;color:var(--text-mid);line-height:1.4}
+
+/* PHRASES CLÉS */
+.phrase-block{margin:0.7rem 0}
+.phrase-label-yes{color:var(--teal);font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:0.2rem}
+.phrase-label-no{color:var(--coral);font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:0.2rem}
+.phrase-text{padding:0.7rem 1rem;border-radius:6px;font-size:9.5pt;font-style:italic;border-left:3px solid}
+.phrase-text-yes{background:var(--teal-light);border-color:var(--teal)}
+.phrase-text-no{background:var(--coral-light);border-color:var(--coral)}
+
+/* FREINS GRID */
+.freins-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin:0.8rem 0}
+.frein-cat-card{border-radius:8px;padding:0.9rem 1rem}
+.fc-emot{background:#FEF6EC;border-left:4px solid var(--amber)}
+.fc-cogn{background:var(--navy-light);border-left:4px solid var(--navy)}
+.fc-mat{background:var(--teal-light);border-left:4px solid var(--teal)}
+.fc-phys{background:var(--coral-light);border-left:4px solid var(--coral)}
+.frein-cat-card h4{font-size:9pt;font-weight:700;margin-bottom:0.4rem}
+.fc-emot h4{color:var(--amber)} .fc-cogn h4{color:var(--navy)} .fc-mat h4{color:var(--teal)} .fc-phys h4{color:var(--coral)}
+.frein-cat-card ul{padding-left:1rem;list-style:none}
+.frein-cat-card li::before{content:"▸ ";opacity:0.6}
+.frein-cat-card li{font-size:8.5pt;margin-bottom:2px}
+
+/* DIGCOMP VISUAL */
+.dc-mini{display:flex;flex-direction:column;gap:6px;margin:0.7rem 0}
+.dc-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:6px;background:var(--bg)}
+.dc-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10pt;font-weight:700;flex-shrink:0;color:white}
+.dc-1{background:#2471A3} .dc-2{background:var(--teal)} .dc-3{background:var(--amber)} .dc-4{background:var(--coral)} .dc-5{background:#6C3483}
+.dc-name{font-weight:600;font-size:9.5pt;flex:1}
+.dc-desc{font-size:8.5pt;color:var(--text-mid)}
+
+/* GRILLE */
+.grid{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.grid th{background:var(--teal);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.grid td{padding:8px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
+.grid tr:nth-child(even) td{background:var(--bg)}
+
+/* AUTO-ÉVAL */
+.auto-eval{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.auto-eval th{background:var(--teal);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px}
+.auto-eval td{padding:8px 12px;font-size:9pt;border-bottom:1px solid var(--border)}
+.auto-eval tr:nth-child(even) td{background:var(--teal-light)}
+.check-cell{text-align:center;width:60px}
+
+/* JOURNAL */
+.journal-entry{border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem;margin:0.8rem 0;background:white}
+.journal-entry h4{font-size:9.5pt;font-weight:600;color:var(--teal);margin-bottom:0.6rem}
+.journal-line{border-bottom:1px dashed var(--border);height:22px;margin-bottom:4px}
+.journal-label{font-size:8pt;color:var(--text-light);margin-bottom:5px}
+
+/* MON GUIDE */
+.guide-section{border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.5rem 0}
+.guide-section h4{font-size:9pt;font-weight:700;color:var(--teal);margin-bottom:0.5rem}
+.guide-q{background:var(--teal-light);border-radius:6px;padding:6px 10px;font-size:9pt;font-style:italic;margin-bottom:4px}
+
+@media print{
+  body{background:white;font-size:9pt}
+  .page{padding:0;box-shadow:none}
+  .cover,.box-key,.grid th,.auto-eval th,.tv-d,.tv-b,.tv-e,.fc-emot,.fc-cogn,.fc-mat,.fc-phys{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">Livret Apprenant</div>
+  <h1>CP2<br>Diagnostic<br>&amp; besoin</h1>
+  <h2>Recueillir les besoins · Poser un diagnostic partagé · Proposer des accompagnements adaptés</h2>
+  <div class="cover-pills">
+    <div class="cover-pill">🔺 Triangle D/B/E</div>
+    <div class="cover-pill">🧠 6 fiches mémos</div>
+    <div class="cover-pill">✍️ Guide d'entretien à construire</div>
+    <div class="cover-pill">📁 Préparation dossier partie 1</div>
+  </div>
+</div>
+
+<!-- FICHE 1 : TRIANGLE D/B/E -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 1</span>
+    <div class="fiche-title">Demande, Besoin, Envie</div>
+    <div class="fiche-sub">Le triangle fondateur de tout diagnostic</div>
+  </div>
+
+  <div class="triangle-vis">
+    <div class="tv-card tv-d">
+      <div class="big">D</div>
+      <div class="label">Demande</div>
+      <div class="desc">Ce que la personne formule — sa requête exprimée, souvent vague ou imprécise</div>
+    </div>
+    <div class="tv-card tv-b">
+      <div class="big">B</div>
+      <div class="label">Besoin</div>
+      <div class="desc">La nécessité réelle — ce qu'elle doit faire, souvent plus urgent que ce qu'elle dit</div>
+    </div>
+    <div class="tv-card tv-e">
+      <div class="big">E</div>
+      <div class="label">Envie</div>
+      <div class="desc">La motivation intrinsèque — le levier qui donnera de l'énergie à l'apprentissage</div>
+    </div>
+  </div>
+
+  <div class="box-key">
+    <h3>La règle d'or</h3>
+    <p>Un bon accompagnement <strong>répond au besoin urgent</strong> ET <strong>s'appuie sur l'envie</strong> comme source de motivation. Ne jamais se contenter de la demande exprimée.</p>
+  </div>
+
+  <h2>4 exemples complets</h2>
+  <table class="grid">
+    <thead><tr><th>Demande exprimée</th><th>Besoin réel</th><th>Envie (levier)</th></tr></thead>
+    <tbody>
+      <tr><td>"Je veux apprendre internet"</td><td>Renouveler ses droits CAF sous 15 jours</td><td>Voir ses petits-enfants via WhatsApp</td></tr>
+      <tr><td>"J'arrive pas à m'inscrire sur un site"</td><td>Créer un espace France Travail pour s'actualiser</td><td>Trouver une formation en cybersécurité</td></tr>
+      <tr><td>"Mon téléphone marche pas bien"</td><td>Espace de stockage plein + email professionnel</td><td>Envoyer des photos de cuisine à ses amies</td></tr>
+      <tr><td>"Je veux être sur internet pour mon entreprise"</td><td>Créer sa fiche Google My Business</td><td>Mettre en avant ses réalisations avec des photos</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📝 Mon exercice — Identifie D/B/E</h3>
+  <div class="box-amber">
+    <p style="font-size:9pt;margin-bottom:0.6rem">Pour chaque situation, écris la Demande, le Besoin probable, et l'Envie possible :</p>
+    <p><strong>Situation :</strong> "Mme Ahmed, 68 ans, me dit qu'elle veut apprendre à utiliser son téléphone. En discutant, on apprend qu'elle a une convocation à la CAF dans 10 jours et qu'elle ne sait pas comment s'y préparer en ligne. Elle adore cuisiner et s'intéresse aux recettes."</p>
+    <table class="grid" style="margin-top:0.6rem">
+      <tr><td style="width:33%;font-weight:600">Demande :</td><td style="height:30px"></td></tr>
+      <tr><td style="font-weight:600">Besoin :</td><td style="height:30px"></td></tr>
+      <tr><td style="font-weight:600">Envie :</td><td style="height:30px"></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- FICHE 2 : GUIDE D'ENTRETIEN -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 2</span>
+    <div class="fiche-title">Mon guide d'entretien</div>
+    <div class="fiche-sub">Les 5 zones à explorer · Les questions essentielles</div>
+  </div>
+
+  <div class="box-key">
+    <h3>Pourquoi un guide d'entretien ?</h3>
+    <p>Un entretien de diagnostic sans structure est une conversation qui "part dans tous les sens". Le guide d'entretien est mon filet de sécurité : il assure que j'explore toutes les zones importantes, sans imposer un déroulé rigide. Je peux m'en écarter si nécessaire, mais je l'utilise pour ne rien oublier.</p>
+  </div>
+
+  <h2>Les 5 zones à explorer</h2>
+
+  <div class="guide-section">
+    <h4>Zone 1 — Contexte de vie</h4>
+    <div class="guide-q">"Vous travaillez en ce moment ? Vous avez du temps en semaine ?"</div>
+    <div class="guide-q">"Vous habitez la ville ou plutôt à la campagne ?"</div>
+    <p style="font-size:8.5pt;color:var(--text-mid)">→ Comprendre les contraintes de temps, de déplacement, de disponibilité</p>
+  </div>
+
+  <div class="guide-section">
+    <h4>Zone 2 — Usage numérique actuel</h4>
+    <div class="guide-q">"Vous avez un smartphone ou un ordinateur chez vous ?"</div>
+    <div class="guide-q">"Qu'est-ce que vous faites avec en ce moment ? Vous appelez, vous envoyez des messages ?"</div>
+    <p style="font-size:8.5pt;color:var(--text-mid)">→ Évaluer le niveau réel sans poser de questions "tests" qui intimident</p>
+  </div>
+
+  <div class="guide-section">
+    <h4>Zone 3 — Besoins urgents</h4>
+    <div class="guide-q">"Est-ce qu'il y a quelque chose d'important que vous devez faire en ligne bientôt ?"</div>
+    <div class="guide-q">"Vous avez des démarches en cours avec la CAF, l'assurance maladie, ou autre ?"</div>
+    <p style="font-size:8.5pt;color:var(--text-mid)">→ Détecter les urgences qui doivent primer sur tout le reste</p>
+  </div>
+
+  <div class="guide-section">
+    <h4>Zone 4 — Freins</h4>
+    <div class="guide-q">"Est-ce qu'il y a quelque chose qui vous freine ou vous rend hésitant ?"</div>
+    <div class="guide-q">"Vous avez déjà essayé de faire des choses sur internet avant ? Qu'est-ce qui s'est passé ?"</div>
+    <p style="font-size:8.5pt;color:var(--text-mid)">→ Identifier les peurs, mauvaises expériences, difficultés physiques ou cognitives</p>
+  </div>
+
+  <div class="guide-section">
+    <h4>Zone 5 — Motivations et ressources</h4>
+    <div class="guide-q">"Si vous appreniez à mieux utiliser internet, qu'est-ce que vous feriez en premier ?"</div>
+    <div class="guide-q">"Est-ce qu'il y a quelqu'un dans votre entourage qui pourrait vous aider à pratiquer ?"</div>
+    <p style="font-size:8.5pt;color:var(--text-mid)">→ Trouver l'envie qui va motiver + identifier les aidants numériques potentiels</p>
+  </div>
+
+  <h2>Les questions techniques (à ne pas oublier)</h2>
+  <ul>
+    <li>"Vous avez une connexion internet chez vous ?" → détermine si la pratique à domicile est possible</li>
+    <li>"Vous avez une adresse email ?" → beaucoup de personnes n'en ont pas, c'est souvent le premier blocage</li>
+    <li>"Vous avez un compte sur ce site-là ?" → vérifie si des comptes existent déjà avant de les créer</li>
+  </ul>
+
+  <h3>📝 À faire : Construis ton guide personnalisé</h3>
+  <div class="box-teal">
+    <p>Sur une feuille séparée ou en numérique, rédige ton guide d'entretien complet. Il doit couvrir les 5 zones, contenir entre 10 et 15 questions, et être organisé du général au particulier (entonnoir). Teste-le avec un camarade avant le stage.</p>
+  </div>
+</div>
+
+<!-- FICHE 3 : TECHNIQUES DE QUESTIONNEMENT -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 3</span>
+    <div class="fiche-title">Mes techniques de questionnement</div>
+    <div class="fiche-sub">L'entonnoir · La question miroir · La reformulation · Ce qu'il faut éviter</div>
+  </div>
+
+  <h2>Technique 1 — L'entonnoir</h2>
+  <p>Toujours partir du plus général vers le plus précis. Ne jamais commencer par une question technique — ça ferme la conversation.</p>
+  <div class="phrase-block">
+    <span class="phrase-label-yes">Ordre recommandé :</span>
+    <div class="phrase-text phrase-text-yes">"Qu'est-ce qui vous amène ?" → "Qu'est-ce que vous utilisez déjà ?" → "Est-ce qu'il y a quelque chose d'urgent ?" → "Quel est le frein principal ?" → "Qu'est-ce qui vous motiverait ?"</div>
+  </div>
+
+  <h2>Technique 2 — La question miroir</h2>
+  <p>Répéter le dernier mot avec une intonation montante pour inviter la personne à développer.</p>
+  <div class="phrase-block">
+    <span class="phrase-label-no">Public dit : "C'est compliqué..."</span>
+    <div class="phrase-text phrase-text-no">✗ "Oui c'est vrai que c'est pas toujours facile..." → Ferme la conversation</div>
+  </div>
+  <div class="phrase-block" style="margin-top:0.4rem">
+    <span class="phrase-label-yes">✓ Réponse miroir :</span>
+    <div class="phrase-text phrase-text-yes">"Compliqué comment ?" — dit avec une intonation montante. La personne va développer.</div>
+  </div>
+
+  <h2>Technique 3 — La reformulation de validation</h2>
+  <div class="phrase-block">
+    <span class="phrase-label-yes">Structure :</span>
+    <div class="phrase-text phrase-text-yes">"Si je comprends bien, vous avez besoin de... [besoin], et idéalement vous aimeriez aussi... [envie]. C'est bien ça ?" — La personne confirme ou corrige.</div>
+  </div>
+
+  <h2>Ce qu'il faut absolument éviter</h2>
+  <table class="grid">
+    <thead><tr><th>À éviter</th><th>Pourquoi ?</th><th>À la place</th></tr></thead>
+    <tbody>
+      <tr><td>Proposer des solutions avant d'avoir écouté</td><td>La personne sent qu'on ne l'a pas vraiment entendue</td><td>Explorer les 5 zones avant de proposer quoi que ce soit</td></tr>
+      <tr><td>Questions fermées en cascade</td><td>"Vous avez un PC ?" / "Vous avez internet ?" = interrogatoire</td><td>Questions ouvertes : "Racontez-moi comment vous utilisez internet..."</td></tr>
+      <tr><td>Juger ou minimiser les difficultés</td><td>"C'est simple pourtant" — tuer la confiance en 3 mots</td><td>Normaliser et valoriser ce qu'elle sait déjà</td></tr>
+      <tr><td>Prendre des notes tout le temps</td><td>La personne se sent "fichée" et parle moins librement</td><td>Demander l'accord, prendre des notes discrètes, synthétiser après</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📝 Mon exercice — Les questions ouvertes vs fermées</h3>
+  <div class="box-amber">
+    <p>Transforme ces questions fermées en questions ouvertes :</p>
+    <ul>
+      <li>"Vous avez déjà utilisé un ordinateur ?" → ________________________________________________</li>
+      <li>"Vous savez vous connecter à votre espace CAF ?" → ________________________________________________</li>
+      <li>"Vous avez une adresse email ?" → ________________________________________________</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FICHE 4 : FREINS ET LEVIERS -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 4</span>
+    <div class="fiche-title">Les freins et les leviers</div>
+    <div class="fiche-sub">Ce qui bloque · Ce qui motive · Comment y répondre</div>
+  </div>
+
+  <h2>Les 4 catégories de freins</h2>
+  <div class="freins-grid">
+    <div class="frein-cat-card fc-emot">
+      <h4>Émotionnels</h4>
+      <ul>
+        <li>Peur de "casser" l'appareil</li>
+        <li>Honte d'être "nul(le)"</li>
+        <li>Mauvaise expérience passée</li>
+        <li>Sentiment d'être trop vieux</li>
+        <li>Méfiance envers les données</li>
+      </ul>
+    </div>
+    <div class="frein-cat-card fc-cogn">
+      <h4>Cognitifs</h4>
+      <ul>
+        <li>Difficultés d'apprentissage</li>
+        <li>Fatigabilité mentale</li>
+        <li>Illettrisme partiel</li>
+        <li>Concentration réduite</li>
+      </ul>
+    </div>
+    <div class="frein-cat-card fc-mat">
+      <h4>Matériels</h4>
+      <ul>
+        <li>Pas d'équipement personnel</li>
+        <li>Pas de connexion à domicile</li>
+        <li>Pas de soutien dans l'entourage</li>
+        <li>Contraintes de temps</li>
+      </ul>
+    </div>
+    <div class="frein-cat-card fc-phys">
+      <h4>Physiques</h4>
+      <ul>
+        <li>Troubles visuels</li>
+        <li>Motricité fine réduite</li>
+        <li>Tremblements des mains</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Répondre au frein le plus fréquent : la honte</h2>
+  <div class="phrase-block">
+    <span class="phrase-label-no">✗ Mauvais — minimise :</span>
+    <div class="phrase-text phrase-text-no">"Mais non, c'est simple ! Tout le monde y arrive !" → Invalide le vécu, aggrave la honte</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-label-yes">✓ Juste — normalise et valorise :</span>
+    <div class="phrase-text phrase-text-yes">"Je comprends ce sentiment. Beaucoup de personnes le ressentent. Et pourtant, j'accompagne chaque semaine des gens de votre profil qui progressent. Ce qui compte c'est le rythme, pas la vitesse. Vous utilisez déjà votre téléphone pour appeler — c'est déjà un usage numérique."</div>
+  </div>
+
+  <h2>Les leviers à activer</h2>
+  <table class="grid">
+    <thead><tr><th>Levier</th><th>Comment l'activer</th></tr></thead>
+    <tbody>
+      <tr><td><b>Motivation personnelle</b></td><td>Relier tout apprentissage à une envie concrète (voir la famille, cuisiner, jardiner)</td></tr>
+      <tr><td><b>Petits succès rapides</b></td><td>Commencer par quelque chose de facile pour créer de la confiance</td></tr>
+      <tr><td><b>Aidant numérique</b></td><td>Identifier un proche qui peut accompagner la pratique à domicile</td></tr>
+      <tr><td><b>Partir de l'existant</b></td><td>Valoriser ce qu'elle sait déjà faire avant d'introduire du nouveau</td></tr>
+      <tr><td><b>Urgence administrative</b></td><td>La nécessité crée une motivation forte — utiliser cette énergie</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FICHE 5 : DIGCOMP + PIX -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 5</span>
+    <div class="fiche-title">Évaluer le niveau numérique</div>
+    <div class="fiche-sub">DigComp · PIX · Évaluation informelle</div>
+  </div>
+
+  <h2>DigComp — Les 5 domaines de compétences</h2>
+  <div class="dc-mini">
+    <div class="dc-row">
+      <div class="dc-num dc-1">1</div>
+      <div><span class="dc-name">Information et données</span><span class="dc-desc"> — chercher, filtrer, évaluer des infos en ligne</span></div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-num dc-2">2</div>
+      <div><span class="dc-name">Communication et collaboration</span><span class="dc-desc"> — email, messagerie, réseaux sociaux, partage</span></div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-num dc-3">3</div>
+      <div><span class="dc-name">Création de contenu</span><span class="dc-desc"> — rédiger, créer des images, comprendre les droits</span></div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-num dc-4">4</div>
+      <div><span class="dc-name">Sécurité</span><span class="dc-desc"> — mots de passe, données personnelles, arnaques</span></div>
+    </div>
+    <div class="dc-row">
+      <div class="dc-num dc-5">5</div>
+      <div><span class="dc-name">Résolution de problèmes</span><span class="dc-desc"> — se débrouiller seul, chercher de l'aide, s'auto-former</span></div>
+    </div>
+  </div>
+
+  <h2>PIX — Comment l'utiliser en entretien</h2>
+  <div class="box-teal">
+    <p><strong>Avant :</strong> Présenter PIX comme un jeu, pas un examen. "On va faire un petit parcours pour voir où vous en êtes — il n'y a pas de bonne ou mauvaise réponse."</p>
+    <p style="margin-top:0.4rem"><strong>Pendant :</strong> Être présent et rassurant, ne pas aider sur les réponses.</p>
+    <p style="margin-top:0.4rem"><strong>Après :</strong> Analyser les résultats ensemble. "Vous voyez, vous êtes à l'aise sur la communication — c'est une bonne base. On va travailler les démarches administratives."</p>
+  </div>
+
+  <h2>Évaluation informelle (sans PIX)</h2>
+  <table class="grid">
+    <thead><tr><th>Ce que j'observe ou demande</th><th>Ce que ça révèle</th></tr></thead>
+    <tbody>
+      <tr><td>"Vous faites quoi avec votre téléphone ?"</td><td>Usage courant et niveau de base</td></tr>
+      <tr><td>Comment la personne tient l'appareil, cherche les boutons</td><td>Aisance physique avec le tactile</td></tr>
+      <tr><td>"Vous avez déjà envoyé un email ?"</td><td>Familiarité avec la communication numérique</td></tr>
+      <tr><td>"Trouvez Paramètres sur votre téléphone" (observation)</td><td>Capacité de navigation dans les menus</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box-navy">
+    <p>💡 Pour les publics de niveau 0 ou très anxieux, <strong>ne pas utiliser PIX</strong> — trop complexe, risque de décourager. Préférer l'évaluation informelle par conversation et observation directe.</p>
+  </div>
+</div>
+
+<!-- FICHE 6 : DIAGNOSTIC + JURY -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 6</span>
+    <div class="fiche-title">Diagnostic partagé et préparation au jury</div>
+    <div class="fiche-sub">Co-construire le diagnostic · Proposer l'accompagnement · Répondre au jury</div>
+  </div>
+
+  <h2>La formulation du diagnostic partagé — 3 temps</h2>
+  <div class="box-key">
+    <h3>Structure obligatoire</h3>
+    <p><strong>Temps 1 — Je restitue :</strong> "Je vais vous résumer ce que j'ai compris de votre situation..."</p>
+    <p style="margin-top:0.5rem"><strong>Temps 2 — Je nomme et je vérifie :</strong> "Ce que je comprends, c'est que vous avez besoin de [besoin urgent], et que vous aimeriez aussi [envie]. Est-ce que j'ai bien compris ?"</p>
+    <p style="margin-top:0.5rem"><strong>Temps 3 — Je propose et je demande l'accord :</strong> "Dans ce cas, voici ce que je vous propose : [accompagnement]. Est-ce que ça vous convient ?"</p>
+  </div>
+
+  <div class="phrase-block">
+    <span class="phrase-label-no">✗ Diagnostic unilatéral :</span>
+    <div class="phrase-text phrase-text-no">"Voilà ce que vous allez faire : vous venez mardi pour l'atelier débutant et après on verra." → Pas de co-construction, pas d'accord de la personne → elle ne viendra pas.</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-label-yes">✓ Diagnostic partagé :</span>
+    <div class="phrase-text phrase-text-yes">"Ce que je comprends, c'est que vous devez faire votre déclaration CAF d'ici vendredi — c'est urgent. Et vous aimeriez aussi apprendre WhatsApp pour parler à vos enfants. Je vous propose qu'on commence par la CAF maintenant, et qu'on programme un atelier WhatsApp la semaine prochaine. Ça vous convient ?"</div>
+  </div>
+
+  <h2>Les 5 critères officiels du jury</h2>
+  <table class="auto-eval">
+    <thead><tr><th>Critère de performance</th><th class="check-cell">À travailler</th><th class="check-cell">Acquis</th></tr></thead>
+    <tbody>
+      <tr><td>Le cadre des échanges permet le bon déroulement de l'entretien</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Le questionnement facilite l'expression et clarifie la demande</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Les atouts et les freins sont identifiés au regard de la situation</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>L'évaluation du niveau d'autonomie numérique est fiable</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Le diagnostic est en accord avec la demande et partagé avec la personne</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Mes réponses aux questions du jury</h2>
+  <div class="journal-entry">
+    <h4>"Comment différenciez-vous la demande, le besoin et l'envie ? Donnez un exemple précis."</h4>
+    <div class="journal-label">Mon exemple concret de stage (situation + D + B + E identifiés) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h4>"Quels freins avez-vous rencontrés ? Comment les avez-vous identifiés et traités ?"</h4>
+    <div class="journal-label">Le frein principal + comment je l'ai détecté + ce que j'ai fait :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h4>"La personne n'était pas d'accord avec votre diagnostic. Que faites-vous ?"</h4>
+    <div class="journal-label">Ma réponse :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+</div>
+
+<!-- JOURNAL DE BORD -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Outil stage</span>
+    <div class="fiche-title">Journal de bord — Entretiens de diagnostic</div>
+    <div class="fiche-sub">À remplir après chaque entretien de diagnostic en stage · Base de votre dossier professionnel</div>
+  </div>
+
+  <div class="box-amber">
+    <p><strong>Rappel :</strong> La Partie 1 du dossier professionnel (3–4 pages) demande l'analyse d'un entretien de diagnostic. Sans notes précises prises en stage, cette rédaction sera impossible. Prenez 5–10 minutes après chaque entretien pour documenter.</p>
+  </div>
+
+  <div class="journal-entry">
+    <h4>Entretien de diagnostic n°1</h4>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:0.8rem">
+      <div><div class="journal-label">Date :</div><div class="journal-line"></div></div>
+      <div><div class="journal-label">Lieu / Structure :</div><div class="journal-line"></div></div>
+      <div><div class="journal-label">Individuel / Collectif :</div><div class="journal-line"></div></div>
+    </div>
+    <div class="journal-label">Profil de la personne (âge estimé, contexte, façon de s'exprimer) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Demande exprimée :</div>
+    <div class="journal-line"></div>
+    <div class="journal-label">Besoin réel identifié :</div>
+    <div class="journal-line"></div>
+    <div class="journal-label">Envie / levier de motivation :</div>
+    <div class="journal-line"></div>
+    <div class="journal-label">Freins identifiés :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Niveau numérique estimé (et comment je l'ai évalué) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Diagnostic partagé formulé + accompagnement proposé :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Évolution de ma pratique (ce qui a bien marché, ce que je ferais différemment) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+</div>
+
+</body>
+</html>

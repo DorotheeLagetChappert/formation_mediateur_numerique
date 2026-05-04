@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CP1 — Livret Apprenant — Médiateur Numérique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B3A6B;--navy-mid:#2E5FA3;--navy-light:#EBF2FB;
+  --amber:#D4812B;--amber-light:#FEF6EC;--amber-mid:#F5C57A;
+  --green:#1A7A4A;--green-light:#E8F8F0;--green-border:#7ECFA4;
+  --red:#C0392B;--red-light:#FDEDEC;--red-border:#F1948A;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.5cm 1.4cm}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg);line-height:1.55}
+
+/* COVER */
+.cover{background:var(--amber);display:flex;flex-direction:column;justify-content:flex-end;padding:8vh 15vw;page-break-after:always;position:relative;overflow:hidden}
+.cover-circle{position:absolute;top:-80px;right:-80px;width:350px;height:350px;border-radius:50%;background:rgba(255,255,255,0.12)}
+.cover-circle2{position:absolute;top:80px;right:80px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.08)}
+.cover-h1{background:var(--navy);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover-tag{background:var(--navy);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block;margin-bottom:1.5rem}
+.cover h2{font-family:'Playfair Display',serif;font-size:38pt;color:white;line-height:1.1;margin-bottom:0.8rem}
+.cover h3{font-size:12pt;color:rgba(255,255,255,0.85);font-weight:300;max-width:12cm;line-height:1.6;margin-bottom:2rem}
+.cover-meta{display:flex;flex-wrap:wrap;gap:0.8rem}
+.cover-pill{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:white;padding:7px 16px;border-radius:20px;font-size:9pt;font-weight:500}
+.cover-titleh2{margin: 1.4rem 0 0.6rem;padding-left: 0.8rem;}
+
+/* PAGES */
+.page{background:white;padding:5vh 5vw;page-break-after:always}
+.page:last-child{page-break-after:auto}
+
+/* FICHE MÉMO */
+.fiche-header{border-bottom:3px solid var(--amber);padding-bottom:0.8rem;margin-bottom:1.2rem}
+.fiche-num{font-size:8pt;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:0.3rem}
+.fiche-title{font-family:'Playfair Display',serif;font-size:22pt;color:var(--navy)}
+.fiche-sub{font-size:10pt;color:var(--text-mid);font-weight:300;margin-top:0.3rem}
+
+/* CONTENUS */
+h2{font-family:'Playfair Display',serif;font-size:16pt;color:var(--navy);border-left:4px solid var(--amber)}
+h3{font-size:11pt;color:var(--navy-mid);font-weight:600;margin:1rem 0 0.4rem}
+p{font-size:9.5pt;margin-bottom:0.5rem;line-height:1.55}
+ul{padding-left:1.2rem;margin-bottom:0.7rem}
+li{font-size:9.5pt;margin-bottom:3px;line-height:1.5}
+
+/* BOXES */
+.box{border-radius:8px;padding:1rem 1.2rem;margin:0.8rem 0}
+.box-key{background:var(--navy);color:white;border-radius:10px;padding:1.2rem 1.5rem}
+.box-key h3{color:var(--amber-mid);font-size:9pt;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.6rem;font-weight:600}
+.box-key p,.box-key li{color:white;font-size:9.5pt;margin-bottom:4px}
+.box-key ul{padding-left:1.1rem}
+.box-tip{background:var(--amber-light);border:1px solid var(--amber-mid);border-radius:8px;padding:1rem 1.2rem}
+.box-good{background:var(--green-light);border:1px solid var(--green-border);border-radius:8px;padding:1rem 1.2rem}
+.box-note{background:var(--navy-light);border:1px solid #B3CDE8;border-radius:8px;padding:1rem 1.2rem}
+
+/* PHRASES CLÉS */
+.phrase-block{margin:0.8rem 0}
+.phrase-label{font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.3rem}
+.phrase-yes{color:var(--green);display:block}
+.phrase-no{color:var(--red);display:block}
+.phrase-text{background:var(--bg);border-radius:6px;padding:0.7rem 1rem;font-size:9.5pt;font-style:italic;border-left:3px solid}
+.phrase-yes + .phrase-text{border-color:var(--green)}
+.phrase-no + .phrase-text{border-color:var(--red)}
+
+/* NIVEAUX D'ÉCOUTE VISUELS */
+.ecoute-scale{display:flex;flex-direction:column;gap:8px;margin:0.8rem 0}
+.ecoute-level{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px}
+.ecoute-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11pt;font-weight:700;flex-shrink:0}
+.ecoute-content{flex:1}
+.ecoute-name{font-weight:600;font-size:10pt}
+.ecoute-desc{font-size:8.5pt;color:var(--text-mid)}
+.level-1{background:#FFF5F5;border:1px solid #F1948A} .level-1 .ecoute-num{background:#E74C3C;color:white}
+.level-2{background:#FFF8EC;border:1px solid #F5C57A} .level-2 .ecoute-num{background:#E67E22;color:white}
+.level-3{background:#F0FAF5;border:1px solid #7ECFA4} .level-3 .ecoute-num{background:#2ECC71;color:white}
+.level-4{background:var(--navy-light);border:2px solid var(--navy-mid)} .level-4 .ecoute-name{color:var(--navy)} .level-4 .ecoute-num{background:var(--navy);color:white}
+
+/* GRID TABLE */
+.grid{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.grid th{background:var(--navy);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.grid td{padding:8px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
+.grid tr:nth-child(even) td{background:var(--bg)}
+
+/* AUTOÉVALUATION */
+.auto-eval{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.auto-eval th{background:var(--amber);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px}
+.auto-eval td{padding:8px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
+.auto-eval tr:nth-child(even) td{background:var(--amber-light)}
+.check-cell{text-align:center;width:100px}
+
+/* JOURNAL DE BORD */
+.journal-entry{border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;margin:0.8rem 0;background:white}
+.journal-entry h4{font-size:9.5pt;font-weight:600;color:var(--navy-mid);margin-bottom:0.6rem}
+.journal-line{border-bottom:1px dashed var(--border);height:22px;margin-bottom:4px}
+.journal-label{font-size:8pt;color:var(--text-light);margin-bottom:6px}
+
+/* PRINT */
+@media print{
+  body{background:white;font-size:9pt}
+  .page{padding:0;box-shadow:none}
+  .cover,.box-key,.grid th,.auto-eval th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1 class="cover-h1"><a href="../index.html">Formation médiateur numérique</a></h1>
+  <div class="cover-circle"></div>
+  <div class="cover-circle2"></div>
+  <div class="cover-tag">Livret Apprenant</div>
+  <h2>CP1 : Accueillir les personnes</h2>
+  <h3>Présenter les missions de la médiation numérique<br>Mes fiches mémos, mes outils, ma préparation au jury</h3>
+  <div class="cover-meta">
+    <div class="cover-pill">📋 6 fiches mémos</div>
+    <div class="cover-pill">✍️ Exercices inclus</div>
+    <div class="cover-pill">📁 Guide dossier pro</div>
+    <div class="cover-pill">🎓 Préparation jury</div>
+  </div>
+</div>
+
+<!-- ═══ FICHE 1 : CONTEXTE ═══ -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 1</span>
+    <div class="fiche-title">Le contexte et ma mission</div>
+    <div class="fiche-sub">Pourquoi ce métier existe · Ce que je fais · Ce que je ne fais pas</div>
+  </div>
+
+  <div class="box-key">
+    <h3>Les chiffres à retenir</h3>
+    <ul>
+      <li><strong>13 millions</strong> de Français éloignés du numérique (INSEE 2023)</li>
+      <li><strong>38%</strong> des adultes déclarent manquer de compétences numériques de base</li>
+      <li><strong>56%</strong> des personnes de 75 ans et plus n'utilisent jamais internet</li>
+      <li>Plan <strong>France Numérique 2030</strong> : structuration nationale de l'inclusion numérique</li>
+    </ul>
+  </div>
+
+  <h2 class="cover-titleh2">Ma mission en une phrase</h2>
+  <p>Le médiateur numérique accompagne des personnes vers un <strong>usage autonome</strong> des outils et services numériques. Son objectif n'est pas de faire à la place, mais de transmettre les compétences pour que la personne devienne indépendante.</p>
+
+  <h2 class="cover-titleh2">Ce que je fais vs. ce que je ne fais pas</h2>
+
+  <table class="grid">
+    <thead><tr><th>✅ Dans mon périmètre</th><th>❌ Hors de mon périmètre</th></tr></thead>
+    <tbody>
+      <tr><td>Aider à naviguer sur un site</td><td>Faire la démarche à la place</td></tr>
+      <tr><td>Expliquer comment créer un compte</td><td>Créer le compte pour la personne</td></tr>
+      <tr><td>Enseigner l'usage d'un outil numérique</td><td>Réparer ou configurer un ordinateur</td></tr>
+      <tr><td>Orienter vers les bons acteurs</td><td>Donner des conseils juridiques ou sociaux</td></tr>
+      <tr><td>Enseigner la sécurité numérique</td><td>Décider à la place de la personne</td></tr>
+      <tr><td>Accompagner une démarche en ligne</td><td>Gérer les mots de passe de quelqu'un</td></tr>
+    </tbody>
+  </table>
+
+  <h3>📝 Mon exercice</h3>
+  <div class="box-tip">
+    <p>Pour chaque situation ci-dessous, écris <strong>DANS</strong> ou <strong>HORS</strong> périmètre :</p>
+    <ul>
+      <li>1. Une dame demande que vous remplissiez sa déclaration d'impôts pour elle → ___________</li>
+      <li>2. Un homme veut apprendre à envoyer une photo par email → ___________</li>
+      <li>3. Une personne dit que son ordinateur ne s'allume plus → ___________</li>
+      <li>4. Un jeune veut qu'on lui explique comment utiliser France Travail → ___________</li>
+      <li>5. Une personne demande si elle peut avoir des allocations pour sa situation → ___________</li>
+      <li>6. Un senior veut apprendre à faire des appels vidéo avec sa famille → ___________</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══ FICHE 2 : POSTURE ═══ -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 2</span>
+    <div class="fiche-title">Ma posture d'accueil</div>
+    <div class="fiche-sub">Communication verbale · Non-verbale · Proxémique</div>
+  </div>
+
+  <h2 class="cover-titleh2">La règle des 7-38-55</h2>
+  <p>Dans une communication interpersonnelle :</p>
+
+  <div style="display:flex;gap:1rem;margin:0.8rem 0">
+    <div style="flex:1;background:var(--navy-light);border-radius:10px;padding:1rem;text-align:center;border-top:4px solid #AEB6BF">
+      <div style="font-family:'Playfair Display',serif;font-size:28pt;color:#AEB6BF">7%</div>
+      <div style="font-size:9pt;color:var(--text-mid);margin-top:4px">Le contenu des <strong>mots</strong></div>
+    </div>
+    <div style="flex:1;background:#FEF6EC;border-radius:10px;padding:1rem;text-align:center;border-top:4px solid var(--amber)">
+      <div style="font-family:'Playfair Display',serif;font-size:28pt;color:var(--amber)">38%</div>
+      <div style="font-size:9pt;color:var(--text-mid);margin-top:4px">Le <strong>ton et la voix</strong><br>(débit, volume, intonation)</div>
+    </div>
+    <div style="flex:1;background:var(--navy-light);border-radius:10px;padding:1rem;text-align:center;border-top:4px solid var(--navy)">
+      <div style="font-family:'Playfair Display',serif;font-size:28pt;color:var(--navy)">55%</div>
+      <div style="font-size:9pt;color:var(--text-mid);margin-top:4px">Le <strong>langage corporel</strong><br>(posture, regard, gestes)</div>
+    </div>
+  </div>
+
+  <div class="box-note">
+    <p><strong>Ce que ça veut dire en pratique :</strong> même si je dis les bons mots, si mon ton est impatient ou ma posture fermée, la personne ne se sentira pas à l'aise. Travailler sa voix et son corps EST un acte professionnel.</p>
+  </div>
+
+  <h2 class="cover-titleh2">Check-list de la posture idéale</h2>
+
+  <table class="auto-eval">
+    <thead><tr><th>Ce que je fais</th><th class="check-cell">☐ A travailler</th><th class="check-cell">☐ En cours</th><th class="check-cell">☐ Acquis</th></tr></thead>
+    <tbody>
+      <tr><td>Je vais vers la personne (je ne l'attends pas)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Je souris naturellement au moment du contact</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Mon regard est accueillant (ni fuyant ni fixe)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Ma posture est ouverte (bras non croisés)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Mon débit est lent et ma voix est calme</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Je respecte la distance de confort (1,2m+)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>J'utilise un vocabulaire simple (pas de jargon)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Je ne montre pas mon impatience même si occupé</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="cover-titleh2">Ma formule de bienvenue</h2>
+  <div class="box-good">
+    <p><em>"Bonjour ! Je suis [Prénom], médiateur numérique de [structure]. Asseyez-vous, je suis à vous. Qu'est-ce que je peux faire pour vous ?"</em></p>
+    <p style="margin-top:0.4rem;font-size:8.5pt;color:var(--text-mid)">Simple, chaleureuse, professionnelle. À répéter jusqu'à ce que ça devienne naturel.</p>
+  </div>
+
+  <h3>📝 Mon exercice</h3>
+  <p>Écris <strong>ta propre</strong> formule de bienvenue. Elle doit mentionner ton prénom, ta mission, et inviter la personne à s'exprimer :</p>
+  <div style="border:1px solid var(--border);border-radius:8px;padding:1rem;margin-top:0.5rem;min-height:60px;background:var(--bg)"></div>
+</div>
+
+<!-- ═══ FICHE 3 : ÉCOUTE ACTIVE ═══ -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 3</span>
+    <div class="fiche-title">L'écoute active</div>
+    <div class="fiche-sub">Techniques · Formulations clés · À éviter</div>
+  </div>
+
+  <h2 class="cover-titleh2">Les 4 niveaux d'écoute</h2>
+  <div class="ecoute-scale">
+    <div class="ecoute-level level-1">
+      <div class="ecoute-num">1</div>
+      <div class="ecoute-content">
+        <div class="ecoute-name">Passive</div>
+        <div class="ecoute-desc">J'entends les sons mais mon esprit est ailleurs. Je prépare déjà ma réponse.</div>
+      </div>
+    </div>
+    <div class="ecoute-level level-2">
+      <div class="ecoute-num">2</div>
+      <div class="ecoute-content">
+        <div class="ecoute-name">Sélective</div>
+        <div class="ecoute-desc">Je n'entends que ce qui confirme ce que je pense déjà. Je "sais" avant d'écouter.</div>
+      </div>
+    </div>
+    <div class="ecoute-level level-3">
+      <div class="ecoute-num">3</div>
+      <div class="ecoute-content">
+        <div class="ecoute-name">Empathique</div>
+        <div class="ecoute-desc">Je m'implique émotionnellement. Je ressens avec la personne mais perds parfois ma neutralité.</div>
+      </div>
+    </div>
+    <div class="ecoute-level level-4">
+      <div class="ecoute-num">4</div>
+      <div class="ecoute-content">
+        <div class="ecoute-name" style="color:var(--navy)">Active ← OBJECTIF</div>
+        <div class="ecoute-desc">Je suis pleinement présent, je decode le message, je confirme ma compréhension, je pose des questions.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="cover-titleh2">Mes 3 techniques clés</h2>
+
+  <h3>1. La reformulation</h3>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Ce que je dis :</span>
+    <div class="phrase-text">"Si je comprends bien, vous avez essayé de vous connecter plusieurs fois mais ça ne fonctionne pas, c'est bien ça ?"</div>
+  </div>
+  <p style="font-size:8.5pt;color:var(--text-mid);margin-top:-0.3rem;padding-left:0.5rem">→ Commence par "Si je comprends bien…" ou "Vous me dites que…" — vérifie ma compréhension ET montre que j'ai écouté.</p>
+
+  <h3>2. Les questions ouvertes</h3>
+  <div class="phrase-block">
+    <span class="phrase-no">✗ À éviter :</span>
+    <div class="phrase-text">"Vous avez un compte sur ce site ?" → Réponse oui/non, conversation bloquée</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ À utiliser :</span>
+    <div class="phrase-text">"Racontez-moi ce qui se passe quand vous essayez de vous connecter…"</div>
+  </div>
+  <p style="font-size:8.5pt;color:var(--text-mid);margin-top:-0.3rem;padding-left:0.5rem">→ Questions ouvertes = <strong>Comment, Qu'est-ce qui, Racontez, Décrivez, Qu'est-ce que vous…</strong></p>
+
+  <h3>3. La validation émotionnelle</h3>
+  <div class="phrase-block">
+    <span class="phrase-no">✗ À éviter :</span>
+    <div class="phrase-text">"Ne vous inquiétez pas, c'est simple !" → Minimise la difficulté vécue</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ À utiliser :</span>
+    <div class="phrase-text">"Je comprends que c'est frustrant. Beaucoup de personnes trouvent ça complexe — c'est pour ça que je suis là."</div>
+  </div>
+
+  <h2 class="cover-titleh2">Ce qu'il faut absolument éviter</h2>
+  <ul>
+    <li>❌ <strong>Interrompre</strong> : ne jamais finir les phrases à la place de la personne</li>
+    <li>❌ <strong>Proposer des solutions avant d'avoir compris</strong> : "Ah c'est facile, vous n'avez qu'à…"</li>
+    <li>❌ <strong>Condescendance</strong> : "C'est vraiment simple pourtant…"</li>
+    <li>❌ <strong>Jugement implicite</strong> : le ton compte autant que les mots</li>
+  </ul>
+</div>
+
+<!-- ═══ FICHE 4 : LIMITES ET ORIENTATION ═══ -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 4</span>
+    <div class="fiche-title">Orienter avec bienveillance</div>
+    <div class="fiche-sub">Quand orienter · Les acteurs clés · Les mots justes</div>
+  </div>
+
+  <h2 class="cover-titleh2">Mes acteurs clés à connaître</h2>
+  <table class="grid">
+    <thead><tr><th>Structure</th><th>Quand orienter</th><th>Comment trouver le contact</th></tr></thead>
+    <tbody>
+      <tr><td><strong>CCAS</strong><br><small>Centre Communal d'Action Sociale</small></td><td>Urgence sociale, logement, précarité</td><td>Mairie de la commune</td></tr>
+      <tr><td><strong>Maison France Services</strong></td><td>Plusieurs démarches admin. complexes</td><td>service-public.fr ou mairie</td></tr>
+      <tr><td><strong>Mission Locale</strong></td><td>Jeune (16-25 ans) en insertion</td><td>mission-locale.fr</td></tr>
+      <tr><td><strong>DORA</strong></td><td>Tout type de service de solidarité</td><td>dora.inclusion.beta.gouv.fr</td></tr>
+      <tr><td><strong>CAF</strong></td><td>Problème allocations complexe (pas navigation)</td><td>caf.fr ou 3230</td></tr>
+      <tr><td><strong>Médiathèque</strong></td><td>Personne qui veut pratiquer seule</td><td>Site de la commune</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="cover-titleh2">La formule pour orienter correctement</h2>
+  <div class="box-key">
+    <h3>Structure en 3 temps</h3>
+    <ul>
+      <li><strong>1. Expliquer POURQUOI</strong> : "Ce que vous me décrivez relève davantage d'une assistante sociale que de ma mission..."</li>
+      <li><strong>2. Donner le CONTACT CONCRET</strong> : "Voici le numéro du CCAS de votre commune : XX XX XX XX"</li>
+      <li><strong>3. Proposer un ACCOMPAGNEMENT</strong> : "Est-ce que vous souhaitez qu'on les appelle ensemble maintenant ?"</li>
+    </ul>
+  </div>
+
+  <div class="phrase-block" style="margin-top:0.8rem">
+    <span class="phrase-no">✗ Éviter :</span>
+    <div class="phrase-text">"C'est pas mon problème, allez au CCAS." → Abandonne la personne, froid, inefficace</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Utiliser :</span>
+    <div class="phrase-text">"Ce que vous me décrivez, c'est quelque chose qu'une assistante sociale peut vous aider à résoudre bien mieux que moi. Je vais vous donner le contact du CCAS. Voulez-vous qu'on les appelle ensemble ?"</div>
+  </div>
+
+  <h2 class="cover-titleh2">Ma cartographie locale</h2>
+  <p style="font-size:9pt;color:var(--text-mid);margin-bottom:0.5rem">Complète ce tableau avec les contacts de ton territoire de stage :</p>
+  <table class="grid">
+    <thead><tr><th>Structure</th><th>Nom / Adresse</th><th>Téléphone / Site</th></tr></thead>
+    <tbody>
+      <tr><td>CCAS</td><td style="height:30px"></td><td></td></tr>
+      <tr><td>Maison France Services</td><td style="height:30px"></td><td></td></tr>
+      <tr><td>Mission Locale</td><td style="height:30px"></td><td></td></tr>
+      <tr><td>Médiathèque</td><td style="height:30px"></td><td></td></tr>
+      <tr><td>CAF</td><td style="height:30px"></td><td></td></tr>
+      <tr><td>Autre :</td><td style="height:30px"></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ FICHE 5 : RGPD ═══ -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 5</span>
+    <div class="fiche-title">RGPD et confidentialité</div>
+    <div class="fiche-sub">5 règles essentielles · Ce que je peux et ne peux pas faire</div>
+  </div>
+
+  <div class="box-key">
+    <h3>Les 5 règles RGPD à l'accueil</h3>
+    <ul>
+      <li><strong>1. Finalité</strong> : Je collecte des données seulement pour un objectif précis et défini à l'avance</li>
+      <li><strong>2. Minimisation</strong> : Je ne collecte QUE ce qui est nécessaire (prénom + problème = souvent suffisant)</li>
+      <li><strong>3. Consentement</strong> : La personne doit avoir accepté avant que je note quoi que ce soit</li>
+      <li><strong>4. Sécurité</strong> : Les données stockées sont protégées (pas de post-it visible, écrans verrouillés)</li>
+      <li><strong>5. Droit d'accès</strong> : La personne peut demander à voir, modifier ou supprimer ses données</li>
+    </ul>
+  </div>
+
+  <h2 class="cover-titleh2">Ce que je PEUX faire</h2>
+  <ul>
+    <li>✅ Noter le prénom et la demande avec consentement verbal</li>
+    <li>✅ Tenir un registre d'activité anonymisé (nombre de personnes, types de demandes)</li>
+    <li>✅ Envoyer un email de confirmation si la personne me l'a demandé</li>
+    <li>✅ Conserver des notes de suivi si nécessaire au parcours</li>
+  </ul>
+
+  <h2 class="cover-titleh2">Ce que je NE PEUX PAS faire</h2>
+  <ul>
+    <li>❌ Photocopier une carte d'identité, un relevé de compte, une ordonnance</li>
+    <li>❌ Écrire le numéro de sécurité sociale ou le mot de passe de quelqu'un</li>
+    <li>❌ Laisser un fichier ouvert en quittant mon poste</li>
+    <li>❌ Partager des infos sur un usager avec un collègue sans nécessité</li>
+    <li>❌ Prendre des photos des documents personnels des personnes accompagnées</li>
+  </ul>
+
+  <div class="box-good">
+    <p><strong>Ma formule de consentement :</strong><br><em>"Pour pouvoir vous aider et faire le suivi de votre demande, j'ai besoin de noter votre prénom et votre demande. Ça vous convient ?"</em></p>
+  </div>
+</div>
+
+<!-- ═══ FICHE 6 : JURY + DOSSIER ═══ -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 6</span>
+    <div class="fiche-title">Préparer le jury et mon dossier</div>
+    <div class="fiche-sub">Critères officiciels · Questions types · Guide Partie 1 du dossier</div>
+  </div>
+
+  <h2 class="cover-titleh2">Les 5 critères que le jury évalue pour CP1</h2>
+  <table class="auto-eval">
+    <thead><tr><th>Critère de performance officiel</th><th class="check-cell">☐ À travailler</th><th class="check-cell">☐ Acquis</th></tr></thead>
+    <tbody>
+      <tr><td>L'aménagement de l'espace favorise la confidentialité des échanges</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Le premier contact est établi avec une posture adaptée</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>La présentation de la mission de médiation numérique est claire</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>La demande est analysée et traitée avec pertinence</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>L'accueil traite l'affluence et les situations de conflits de manière adaptée</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="cover-titleh2">Questions types du jury — Prépare tes réponses</h2>
+  <div class="box-tip">
+    <p style="font-size:8.5pt;color:var(--text-mid);margin-bottom:0.6rem">Pour chaque question, note l'exemple concret de ton stage que tu utiliseras :</p>
+  </div>
+  
+  <div class="journal-entry">
+    <h4>Question 1 : "Décrivez une situation d'accueil difficile que vous avez vécue en stage. Comment avez-vous réagi ?"</h4>
+    <div class="journal-label">Ma réponse (situation choisie + ce que j'ai fait + ce que je ferais différemment) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+
+  <div class="journal-entry">
+    <h4>Question 2 : "Expliquez-moi en 2 minutes ce qu'est la médiation numérique, comme si j'étais une personne de 75 ans."</h4>
+    <div class="journal-label">Ma réponse (en langage simple, exemples concrets) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+
+  <div class="journal-entry">
+    <h4>Question 3 : "Une personne demande que vous remplissiez sa déclaration d'impôts pour elle. Que faites-vous ?"</h4>
+    <div class="journal-label">Ma réponse (expliquer la limite + ce que je propose à la place) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+
+  <h2 class="cover-titleh2">Guide — Partie 1 de mon dossier professionnel</h2>
+  <div class="box-note">
+    <p><strong>Ce que je dois rédiger :</strong> L'analyse d'une situation d'accueil ET l'analyse d'un entretien de diagnostic — 3 à 4 pages au total, police Arial 11, interligne 1,15.</p>
+  </div>
+
+  <table class="grid">
+    <thead><tr><th>Élément attendu</th><th>Ce que je note en stage</th><th>☐ Fait</th></tr></thead>
+    <tbody>
+      <tr><td>Contexte de l'accueil</td><td>Date, lieu, type (individuel/collectif), durée</td><td>☐</td></tr>
+      <tr><td>Profil de la personne</td><td>Âge estimé, manière d'exprimer sa demande</td><td>☐</td></tr>
+      <tr><td>Problématique initiale</td><td>Quelle était vraiment la demande derrière la demande ?</td><td>☐</td></tr>
+      <tr><td>Ma conduite de l'accueil</td><td>Ce que j'ai dit, fait, proposé</td><td>☐</td></tr>
+      <tr><td><strong>Évolution de ma pratique ★</strong></td><td>Points forts ✓, difficultés, ce que je ferais autrement</td><td>☐</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:8.5pt;color:var(--amber);margin-top:0.3rem">★ La partie "évolution de ma pratique" est souvent la mieux notée — montrez votre réflexivité !</p>
+</div>
+
+<!-- ═══ JOURNAL DE BORD ═══ -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Outil stage</span>
+    <div class="fiche-title">Mon journal de bord</div>
+    <div class="fiche-sub">À remplir après chaque situation d'accueil significative en stage</div>
+  </div>
+
+  <div class="box-tip">
+    <p>Le journal de bord est le matériau brut de ton dossier professionnel. Sans notes prises en stage, tu seras incapable de rédiger des analyses précises et convaincantes. Prends 5 minutes après chaque situation marquante.</p>
+  </div>
+
+  <div class="journal-entry">
+    <h4>Situation d'accueil n°1</h4>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:0.8rem">
+      <div><div class="journal-label">Date :</div><div class="journal-line"></div></div>
+      <div><div class="journal-label">Lieu :</div><div class="journal-line"></div></div>
+      <div><div class="journal-label">Durée estimée :</div><div class="journal-line"></div></div>
+    </div>
+    <div class="journal-label">Profil de la personne accueillie (âge, façon de s'exprimer, attitude) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Sa demande exprimée / son besoin réel :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Ce que j'ai fait et dit :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Ce qui a bien fonctionné ✓ :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Ce qui était difficile / ce que je ferais différemment :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+
+  <div class="journal-entry" style="margin-top:1rem">
+    <h4>Situation d'accueil n°2</h4>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:0.8rem">
+      <div><div class="journal-label">Date :</div><div class="journal-line"></div></div>
+      <div><div class="journal-label">Lieu :</div><div class="journal-line"></div></div>
+      <div><div class="journal-label">Durée estimée :</div><div class="journal-line"></div></div>
+    </div>
+    <div class="journal-label">Profil de la personne accueillie :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Sa demande / son besoin réel :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Ce que j'ai fait et dit :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Ce qui a bien fonctionné ✓ :</div>
+    <div class="journal-line"></div>
+    <div class="journal-label">Ce qui était difficile / à améliorer :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../index.html">🔙 Retour à l'accueil</a></button>
+</div>
+
+</body>
+</html>

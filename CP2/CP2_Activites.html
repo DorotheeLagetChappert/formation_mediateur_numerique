@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CP2 — Pack Activités — Diagnostic &amp; Entretien</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0B6E4F;--teal-mid:#1A8A63;--teal-light:#E3F5EE;--teal-border:#7ECFA4;
+  --coral:#B03A2E;--coral-light:#FDEDEC;--coral-border:#F1948A;
+  --amber:#C47B1E;--amber-light:#FEF6EC;--amber-mid:#F5C57A;
+  --navy:#1B3A6B;--navy-light:#EBF2FB;
+  --blue:#1F618D;--blue-light:#EBF5FB;
+  --purple:#6C3483;--purple-light:#F5EEF8;
+  --orange:#A04000;--orange-light:#FDEBD0;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.5cm}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg)}
+
+.cover{background:#2C3E50;min-height:29.7cm;display:flex;flex-direction:column;padding:3cm 2.5cm;page-break-after:always}
+.cover h1{font-family:'Playfair Display',serif;font-size:44pt;color:white;line-height:1.05;margin:1.5rem 0 1rem}
+.cover p{font-size:12pt;color:rgba(255,255,255,0.7);font-weight:300;line-height:1.6;max-width:13cm;margin-bottom:3rem}
+.cover-tag{background:var(--teal);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block}
+.cover-items{display:flex;flex-direction:column;gap:0.8rem;margin-top:auto}
+.cover-item{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt}
+.cover-item strong{color:rgba(255,255,255,0.9)}
+
+.page{background:white;padding:1.4cm;page-break-after:always}
+
+.sec-header{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:2px solid var(--border)}
+.sec-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700;color:white;flex-shrink:0}
+.sec-title{font-family:'Playfair Display',serif;font-size:18pt;color:var(--navy)}
+.sec-sub{font-size:9pt;color:var(--text-mid)}
+
+/* DBE SITUATIONS */
+.dbe-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin:0.5rem 0}
+.dbe-card{border:1px solid var(--border);border-radius:8px;padding:0.9rem 1rem;background:white}
+.dbe-num{font-size:7.5pt;font-weight:700;color:var(--text-mid);margin-bottom:0.3rem}
+.dbe-text{font-size:9pt;line-height:1.45;margin-bottom:0.7rem;font-weight:600}
+.dbe-inputs{display:flex;flex-direction:column;gap:4px}
+.dbe-input-row{display:flex;align-items:center;gap:6px}
+.dbe-input-label{font-size:8pt;font-weight:700;white-space:nowrap;width:50px}
+.dbe-d{color:#1F618D} .dbe-b{color:var(--teal)} .dbe-e{color:var(--amber)}
+.dbe-line{flex:1;border-bottom:1px solid var(--border);height:18px}
+
+/* PROFIL CARDS */
+.profils-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0.5rem 0}
+.profil-card{border-radius:12px;padding:1.1rem 1.2rem;border:2px solid}
+.profil-num{font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.4rem;opacity:0.65}
+.profil-name{font-family:'Playfair Display',serif;font-size:14pt;margin-bottom:0.5rem}
+.profil-tag{display:inline-block;font-size:7pt;font-weight:700;padding:3px 10px;border-radius:10px;margin-bottom:0.7rem;text-transform:uppercase;letter-spacing:0.5px}
+.profil-section{font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-top:0.5rem;margin-bottom:0.2rem;opacity:0.55}
+.profil-card p{font-size:8.5pt;line-height:1.45;margin-bottom:0.2rem}
+
+/* Color variants */
+.p-retraitee{background:#EEF7F1;border-color:#7ECFA4} .p-retraitee .profil-name{color:var(--teal)} .p-retraitee .profil-tag{background:var(--teal-light);color:var(--teal)}
+.p-insertion{background:#EEF2F7;border-color:#7FB3D3} .p-insertion .profil-name{color:var(--navy)} .p-insertion .profil-tag{background:var(--navy-light);color:var(--navy)}
+.p-emploi{background:#FEF6EC;border-color:var(--amber-mid)} .p-emploi .profil-name{color:var(--amber)} .p-emploi .profil-tag{background:var(--amber-light);color:var(--amber)}
+.p-parent{background:#FEF0EF;border-color:var(--coral-border)} .p-parent .profil-name{color:var(--coral)} .p-parent .profil-tag{background:var(--coral-light);color:var(--coral)}
+.p-handi{background:var(--purple-light);border-color:#C39BD3} .p-handi .profil-name{color:var(--purple)} .p-handi .profil-tag{background:#E8DAEF;color:var(--purple)}
+.p-artisan{background:#F9ECE0;border-color:#E59866} .p-artisan .profil-name{color:var(--orange)} .p-artisan .profil-tag{background:var(--orange-light);color:var(--orange)}
+.p-aidant{background:#EEF7F1;border-color:#7ECFA4} .p-aidant .profil-name{color:var(--teal)} .p-aidant .profil-tag{background:var(--teal-light);color:var(--teal)}
+.p-etudiant{background:var(--navy-light);border-color:#7FB3D3} .p-etudiant .profil-name{color:var(--navy)} .p-etudiant .profil-tag{background:#D6E9F8;color:var(--navy)}
+
+/* GRILLE */
+.obs-grid{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.obs-grid th{background:var(--teal);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.obs-grid td{padding:9px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
+.obs-grid tr:nth-child(even) td{background:var(--bg)}
+.score-cell{text-align:center;font-size:8.5pt;width:80px}
+
+.box{border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-tip{background:var(--amber-light);border-left:4px solid var(--amber)}
+.box-good{background:var(--teal-light);border-left:4px solid var(--teal)}
+.box h4{font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.4rem}
+.box-tip h4{color:var(--amber)} .box-good h4{color:var(--teal)}
+.box p,.box li{font-size:9.5pt;margin-bottom:3px}
+.box ul{padding-left:1.1rem}
+
+@media print{
+  body{background:white}
+  .page{padding:0}
+  .cover,.obs-grid th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .p-retraitee,.p-insertion,.p-emploi,.p-parent,.p-handi,.p-artisan,.p-aidant,.p-etudiant{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">Pack Activités · CP2</div>
+  <h1>Diagnostic<br>&amp; entretien</h1>
+  <p>8 situations pour identifier Demande/Besoin/Envie · 8 fiches-profils pour simulations d'entretien · Grille d'observation officielle · Corrigés formateur</p>
+  <div class="cover-items">
+    <div class="cover-item"><strong>Activité 1</strong> — Identifier D/B/E dans 8 situations — 40 min</div>
+    <div class="cover-item"><strong>Activité 2</strong> — Simulation d'entretien de diagnostic — 8 profils — 2h</div>
+    <div class="cover-item"><strong>Activité 3</strong> — Grille d'observation officielle (basée sur les critères jury)</div>
+  </div>
+</div>
+
+<!-- ACTIVITÉ 1 : D/B/E -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--teal)">1</div>
+    <div>
+      <div class="sec-title">Identifier Demande · Besoin · Envie</div>
+      <div class="sec-sub">8 situations · Individuel puis collectif · 40 minutes</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Mode d'emploi formateur</h4>
+    <ul>
+      <li>Phase 1 (10 min) : individuellement, les stagiaires identifient D/B/E pour chaque situation.</li>
+      <li>Phase 2 (10 min) : en binômes, comparer les analyses — surtout sur le besoin, souvent le plus difficile à identifier.</li>
+      <li>Phase 3 (15 min) : tour de table en grand groupe sur les cas qui divisent.</li>
+      <li>Phase 4 (5 min) : synthèse formateur — quels indices permettent de détecter le vrai besoin ?</li>
+      <li><strong>Question bonus :</strong> "Quel accompagnement proposeriez-vous pour chaque situation ?"</li>
+    </ul>
+  </div>
+
+  <p style="font-size:9pt;color:var(--text-mid);margin-bottom:0.6rem">Pour chaque situation, identifie : <strong style="color:#1F618D">D = Demande</strong> exprimée · <strong style="color:var(--teal)">B = Besoin</strong> réel · <strong style="color:var(--amber)">E = Envie</strong> (levier)</p>
+
+  <div class="dbe-grid">
+    <div class="dbe-card">
+      <div class="dbe-num">Situation 01</div>
+      <p class="dbe-text">Mme Mercier, 74 ans, retraitée : "Je voudrais apprendre à me servir d'un ordinateur." En discutant, on comprend que sa banque lui demande de télécharger un relevé en ligne, et qu'elle adore les photos de ses petits-enfants sur les réseaux sociaux.</p>
+      <div class="dbe-inputs">
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-d">D →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-b">B →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-e">E →</span><div class="dbe-line"></div></div>
+      </div>
+    </div>
+    <div class="dbe-card">
+      <div class="dbe-num">Situation 02</div>
+      <p class="dbe-text">Karim, 28 ans, en recherche d'emploi : "J'arrive pas à m'inscrire sur un site." Il doit actualiser sa situation France Travail chaque mois pour toucher ses allocations. Il s'intéresse à la formation en cybersécurité.</p>
+      <div class="dbe-inputs">
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-d">D →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-b">B →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-e">E →</span><div class="dbe-line"></div></div>
+      </div>
+    </div>
+    <div class="dbe-card">
+      <div class="dbe-num">Situation 03</div>
+      <p class="dbe-text">Mme Diallo, 45 ans, employée de maison : "Mon téléphone marche pas bien." Son stockage est plein (photos). Son employeur lui envoie son planning par email qu'elle ne reçoit plus. Elle adore WhatsApp pour parler à ses amies.</p>
+      <div class="dbe-inputs">
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-d">D →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-b">B →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-e">E →</span><div class="dbe-line"></div></div>
+      </div>
+    </div>
+    <div class="dbe-card">
+      <div class="dbe-num">Situation 04</div>
+      <p class="dbe-text">M. Bertrand, 58 ans, artisan plombier : "Je veux être sur internet pour mon entreprise." Il perd des clients face aux artisans qui sont sur Google. Il veut surtout montrer ses réalisations avec des photos.</p>
+      <div class="dbe-inputs">
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-d">D →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-b">B →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-e">E →</span><div class="dbe-line"></div></div>
+      </div>
+    </div>
+    <div class="dbe-card">
+      <div class="dbe-num">Situation 05</div>
+      <p class="dbe-text">Amina, 32 ans, mère de famille : "Je veux apprendre à faire des recherches sur internet." Elle cherche une crèche disponible pour son bébé — les demandes se font en ligne. Elle aimerait aussi trouver des recettes de cuisine.</p>
+      <div class="dbe-inputs">
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-d">D →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-b">B →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-e">E →</span><div class="dbe-line"></div></div>
+      </div>
+    </div>
+    <div class="dbe-card">
+      <div class="dbe-num">Situation 06</div>
+      <p class="dbe-text">Robert, 67 ans, retraité cardiaque : "Je voudrais juste apprendre deux ou trois trucs." Il doit prendre rendez-vous en ligne avec son cardiologue (obligatoire depuis la fusion de l'hôpital). Il aimerait aussi regarder des matchs de rugby en streaming.</p>
+      <div class="dbe-inputs">
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-d">D →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-b">B →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-e">E →</span><div class="dbe-line"></div></div>
+      </div>
+    </div>
+    <div class="dbe-card">
+      <div class="dbe-num">Situation 07</div>
+      <p class="dbe-text">Nadia, 19 ans, lycéenne en terminale : "J'arrive pas à faire mon dossier Parcoursup." La date limite est dans 3 jours. Elle veut aller en école d'art — elle passe ses soirées sur Instagram à suivre des artistes.</p>
+      <div class="dbe-inputs">
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-d">D →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-b">B →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-e">E →</span><div class="dbe-line"></div></div>
+      </div>
+    </div>
+    <div class="dbe-card">
+      <div class="dbe-num">Situation 08</div>
+      <p class="dbe-text">M. Santos, 55 ans, en arrêt maladie longue durée : "Je voudrais pas rester à rien faire." Il doit déclarer mensuellement son arrêt sur Ameli pour continuer à être indemnisé. Il s'intéresse à la généalogie — sa famille est éparpillée en Europe.</p>
+      <div class="dbe-inputs">
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-d">D →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-b">B →</span><div class="dbe-line"></div></div>
+        <div class="dbe-input-row"><span class="dbe-input-label dbe-e">E →</span><div class="dbe-line"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-good" style="margin-top:0.8rem">
+    <h4>✅ Éléments de corrigé — Pour le formateur</h4>
+    <p><strong>Sit.01:</strong> D=apprendre l'ordinateur · B=télécharger relevé bancaire · E=photos petits-enfants Facebook | <strong>Sit.02:</strong> D=s'inscrire sur un site · B=actualiser France Travail (indemnités!) · E=formation cybersécurité | <strong>Sit.03:</strong> D=téléphone qui marche pas · B=libérer stockage + configurer email pro · E=WhatsApp amies | <strong>Sit.04:</strong> D=être sur internet · B=fiche Google My Business · E=galerie photo réalisations | <strong>Sit.05:</strong> D=faire des recherches · B=déposer demande de crèche en ligne · E=recettes cuisine | <strong>Sit.06:</strong> D=trucs de base · B=RDV en ligne cardiologue (santé!) · E=streaming rugby | <strong>Sit.07:</strong> D=aide Parcoursup · B=valider son dossier avant la date limite (URGENT!) · E=réseau artistes sur Instagram | <strong>Sit.08:</strong> D=s'occuper · B=déclaration Ameli mensuelle (indemnités!) · E=généalogie en ligne</p>
+  </div>
+</div>
+
+<!-- ACTIVITÉ 2 : PROFILS -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--navy)">2</div>
+    <div>
+      <div class="sec-title">Fiches-profils pour simulation d'entretien</div>
+      <div class="sec-sub">À donner au "Public" · Ne pas montrer au "Médiateur" · 8 profils</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Instructions formateur</h4>
+    <ul>
+      <li>Trinômes : Médiateur / Public (avec fiche) / Observateur (avec grille page suivante)</li>
+      <li>Le "Public" lit sa fiche en 2 minutes et l'incarne naturellement — ne pas surjouer</li>
+      <li>Simulation de 20 minutes : l'objectif est d'arriver à un diagnostic partagé et une proposition d'accompagnement</li>
+      <li>Après : l'Observateur lit sa grille, le Public dit si son vrai besoin a été bien identifié</li>
+    </ul>
+  </div>
+
+  <div class="profils-grid">
+    <div class="profil-card p-retraitee">
+      <div class="profil-num">Profil 01 · Public</div>
+      <div class="profil-name">Gisèle, 71 ans</div>
+      <span class="profil-tag">Retraitée · Niveau 0</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Retraitée de l'enseignement, vit seule depuis son divorce. Son fils lui a acheté un iPad il y a un an mais elle n'a jamais osé l'allumer seule. Elle a une retraite complémentaire à demander en ligne — délai fin du mois.</p>
+      <div class="profil-section">Demande exprimée</div>
+      <p>"Je voudrais apprendre à me servir de mon iPad."</p>
+      <div class="profil-section">Vrai besoin / Envie</div>
+      <p>Démarche retraite urgente. Envie : faire de la peinture numérique (elle est passionnée d'art).</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Parle avec élégance. Ne mentionne pas la démarche retraite d'emblée — seulement si on lui pose des questions précises sur les urgences. Peur de casser l'iPad. Lit bien, donc FALC non nécessaire.</p>
+    </div>
+
+    <div class="profil-card p-insertion">
+      <div class="profil-num">Profil 02 · Public</div>
+      <div class="profil-name">Théo, 22 ans</div>
+      <span class="profil-tag">NEET · Insertion</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Sorti du lycée en 1ère. Depuis 2 ans, ne travaille pas et ne se forme pas. Sa mère l'a poussé à venir. Il est sur TikTok 4h/jour, sait très bien utiliser son smartphone, mais n'a jamais créé de CV ni utilisé une platforme d'emploi.</p>
+      <div class="profil-section">Demande exprimée</div>
+      <p>"Ma mère m'a dit de venir..." (désengagé au départ)</p>
+      <div class="profil-section">Vrai besoin / Envie</div>
+      <p>Créer un profil France Travail et faire un CV. Envie : devenir influenceur gaming sur Twitch.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Monosyllabique au début. Regarde son téléphone. Mais si le médiateur parle de gaming ou de création de contenu vidéo, il s'anime complètement et devient très coopératif.</p>
+    </div>
+
+    <div class="profil-card p-emploi">
+      <div class="profil-num">Profil 03 · Public</div>
+      <div class="profil-name">Sylvie, 47 ans</div>
+      <span class="profil-tag">Licenciée · Reconversion</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Comptable licenciée il y a 6 mois suite à une fusion d'entreprise. Niveau numérique moyen (sait utiliser Excel, email, faire des recherches). Veut se reconvertir mais ne sait pas comment accéder au CPF (Compte Formation Professionnelle).</p>
+      <div class="profil-section">Demande exprimée</div>
+      <p>"Je voudrais me former mais j'arrive pas à utiliser ces nouvelles plateformes."</p>
+      <div class="profil-section">Vrai besoin / Envie</div>
+      <p>Accéder et activer son compte CPF. Envie : se former en gestion RH, domaine qui l'attire.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Professionnelle, s'exprime bien. Connaît les bases numériques. Cherche de l'efficacité. Si le médiateur va trop lentement, elle montrera de l'impatience. A beaucoup de questions précises sur le CPF.</p>
+    </div>
+
+    <div class="profil-card p-parent">
+      <div class="profil-num">Profil 04 · Public</div>
+      <div class="profil-name">Hakim, 38 ans</div>
+      <span class="profil-tag">Parent · Numérique basique</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Père de 3 enfants, travaille en 3x8 dans une usine. Utilise son téléphone pour appeler et regarder des vidéos YouTube. Son enfant de 8 ans a un problème scolaire à signaler sur l'ENT de l'école — il ne comprend pas comment accéder à la plateforme.</p>
+      <div class="profil-section">Demande exprimée</div>
+      <p>"Je comprends rien aux trucs de l'école sur internet."</p>
+      <div class="profil-section">Vrai besoin / Envie</div>
+      <p>Accéder à l'ENT de l'école, signaler un problème, suivre les notes. Envie : rester en contact avec les profs et savoir comment aider ses enfants.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Parle simplement. Peu de confiance avec l'écrit. Excellent candidat pour le FALC. Très motivé si on parle de ses enfants. Disponible uniquement le matin (3x8).</p>
+    </div>
+
+    <div class="profil-card p-handi">
+      <div class="profil-num">Profil 05 · Public</div>
+      <div class="profil-name">Marie, 55 ans</div>
+      <span class="profil-tag">Malvoyante · Besoin accessibilité</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Secrétaire médicale mise en retraite anticipée suite à une dégénérescence maculaire. Vue très réduite mais pas nulle (peut lire avec une loupe ou un très grand zoom). Reçoit une allocation AEEH à renouveler en ligne chaque année.</p>
+      <div class="profil-section">Demande exprimée</div>
+      <p>"Mon médecin m'a dit que je pouvais renouveler ma reconnaissance de handicap en ligne mais je vois pas bien."</p>
+      <div class="profil-section">Vrai besoin / Envie</div>
+      <p>Accéder au portail MDPH + renouveler la demande AEEH. Envie : pouvoir utiliser internet seule à domicile avec les bons paramètres.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>S'exprime très bien. Décrit précisément ses difficultés visuelles. Attend qu'on lui parle d'accessibilité. Sera très reconnaissante si on lui montre les paramètres de zoom et le mode contraste élevé.</p>
+    </div>
+
+    <div class="profil-card p-artisan">
+      <div class="profil-num">Profil 06 · Public</div>
+      <div class="profil-name">Claude, 61 ans</div>
+      <span class="profil-tag">Artisan · Numérique 0</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Menuisier artisan, travaille seul. Il doit désormais déclarer sa TVA en ligne (obligatoire depuis 2024). Son comptable lui a dit de créer son espace professionnel impots.gouv.fr mais il n'a jamais utilisé internet de sa vie. Pas d'email.</p>
+      <div class="profil-section">Demande exprimée</div>
+      <p>"Mon comptable m'a dit que maintenant les impôts c'est obligatoire en ligne. Mais je sais pas du tout comment ça marche."</p>
+      <div class="profil-section">Vrai besoin / Envie</div>
+      <p>Créer une adresse email + créer l'espace pro impots.gouv.fr + comprendre la déclaration TVA. Envie : montrer ses réalisations à ses clients via photos.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Pratique, direct. Pas anxieux mais très pragmatique : "ça sert à quoi exactement ?" Niveau zéro absolu — jamais cliqué de sa vie. Mais curieux et motivé par la nécessité.</p>
+    </div>
+
+    <div class="profil-card p-aidant">
+      <div class="profil-num">Profil 07 · Public</div>
+      <div class="profil-name">Joëlle, 52 ans</div>
+      <span class="profil-tag">Aidante familiale</span>
+      <div class="profil-section">Sa situation</div>
+      <p>S'occupe de sa mère de 86 ans. Elle-même n'est pas à l'aise avec le numérique. Elle a besoin d'aide pour gérer en ligne les démarches de sa mère (APA, téléconsultations médicales, livraison de médicaments en ligne). Son propre besoin : aussi apprendre pour elle.</p>
+      <div class="profil-section">Demande exprimée</div>
+      <p>"C'est pas tellement pour moi, c'est pour aider ma mère qui a des formulaires à remplir."</p>
+      <div class="profil-section">Vrai besoin / Envie</div>
+      <p>Gérer l'APA et les téléconsultations en ligne. Envie (après exploration) : prendre des nouvelles de ses propres amis via les réseaux sociaux, elle s'est isolée depuis qu'elle est aidante.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Efface ses propres besoins derrière ceux de sa mère. Toujours formuler les choses pour "ma mère". Si le médiateur lui pose des questions sur SES besoins, elle s'étonne et dit "ah moi c'est pas grave". Un bon médiateur va identifier qu'elle est elle aussi en besoin d'accompagnement.</p>
+    </div>
+
+    <div class="profil-card p-etudiant">
+      <div class="profil-num">Profil 08 · Public</div>
+      <div class="profil-name">Ibrahim, 28 ans</div>
+      <span class="profil-tag">Migrant récent · Allophone</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Arrivé en France il y a 8 mois. Parle français basiquement (niveau A2). A une demande de titre de séjour en cours, doit suivre l'avancement sur le portail de préfecture. Très à l'aise avec son téléphone (était développeur web dans son pays d'origine).</p>
+      <div class="profil-section">Demande exprimée</div>
+      <p>"Je veux voir... mon dossier... préfecture. Internet." (gestes pour illustrer)</p>
+      <div class="profil-section">Vrai besoin / Envie</div>
+      <p>Accéder au portail ANEF (préfecture numérique). Envie : trouver un emploi dans l'informatique — il sait développer mais ne connaît pas les plateformes françaises de recherche d'emploi technique.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Frustration de ne pas pouvoir s'exprimer pleinement en français. Montre son téléphone pour illustrer. Si le médiateur comprend qu'il est développeur web, Ibrahim s'exprime beaucoup plus — en anglais si nécessaire. Le vrai défi est la barrière linguistique, pas le numérique.</p>
+    </div>
+  </div>
+</div>
+
+<!-- GRILLE D'OBSERVATION -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:#2C3E50)">3</div>
+    <div>
+      <div class="sec-title">Grille d'observation — Entretien de diagnostic</div>
+      <div class="sec-sub">Basée sur les critères officiels du jury · Pour le rôle d'Observateur</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin-bottom:1rem">
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Médiateur observé :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Profil joué :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Date :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+  </div>
+
+  <table class="obs-grid">
+    <thead>
+      <tr>
+        <th style="width:46%">Ce que j'observe</th>
+        <th class="score-cell">1 — À travailler</th>
+        <th class="score-cell">2 — Satisfaisant</th>
+        <th class="score-cell">3 — Excellent</th>
+        <th>Observations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="5" style="background:var(--teal-light);font-weight:700;font-size:8.5pt;color:var(--teal);padding:6px 12px">POSTURE ET CADRE DE L'ENTRETIEN</td></tr>
+      <tr><td>Cadre sécurisant établi dès le début (présentation, confidentialité)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Posture non-jugeante, langage accessible, rythme adapté</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Consentement demandé avant de prendre des notes</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--teal-light);font-weight:700;font-size:8.5pt;color:var(--teal);padding:6px 12px">EXPLORATION — TRIANGLE D/B/E</td></tr>
+      <tr><td>La Demande est recueillie et reformulée (pas juste acceptée)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Le Besoin réel est exploré au-delà de la demande exprimée</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>L'Envie / levier de motivation est identifié</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>L'urgence éventuelle est détectée et traitée en priorité</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--teal-light);font-weight:700;font-size:8.5pt;color:var(--teal);padding:6px 12px">ÉVALUATION DU NIVEAU ET DES FREINS</td></tr>
+      <tr><td>Questions pertinentes sur l'usage numérique actuel</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Le niveau d'autonomie est évalué (formellement ou informellement)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les freins (émotionnels, matériels, physiques…) sont identifiés</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les ressources disponibles (aidants, équipement) sont explorées</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--teal-light);font-weight:700;font-size:8.5pt;color:var(--teal);padding:6px 12px">DIAGNOSTIC PARTAGÉ ET PROPOSITION</td></tr>
+      <tr><td>Le diagnostic est formulé et restitué à la personne</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>La personne est invitée à valider ou corriger le diagnostic</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>La proposition d'accompagnement découle logiquement du diagnostic</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>La personne valide ou négocie la proposition</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.8rem">
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--teal);margin-bottom:0.4rem">✓ 2 points forts observés :</p>
+      <div style="border:1px solid var(--teal-border);border-radius:8px;padding:0.8rem;background:var(--teal-light);min-height:65px"></div>
+    </div>
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--amber);margin-bottom:0.4rem">→ 1 axe d'amélioration :</p>
+      <div style="border:1px solid var(--amber-mid);border-radius:8px;padding:0.8rem;background:var(--amber-light);min-height:65px"></div>
+    </div>
+  </div>
+
+  <div style="margin-top:0.8rem;border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.1rem">
+    <p style="font-size:9pt;font-weight:700;color:var(--navy);margin-bottom:0.4rem">Question au "Public" après la simulation :</p>
+    <p style="font-size:9pt;font-style:italic;color:var(--text-mid)">Le médiateur a-t-il bien identifié votre vrai besoin (et pas seulement votre demande exprimée) ? Votre envie/levier de motivation a-t-il été repéré ? Vous sentiez-vous écouté(e) et respecté(e) ?</p>
+    <div style="border-bottom:1px solid var(--border);height:22px;margin-top:0.5rem"></div>
+    <div style="border-bottom:1px solid var(--border);height:22px;margin-top:4px"></div>
+  </div>
+</div>
+
+</body>
+</html>
