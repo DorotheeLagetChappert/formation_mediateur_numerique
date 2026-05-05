@@ -21,15 +21,17 @@
 @page{size:A4;margin:1.5cm}
 body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg)}
 
-.cover{background:#2C3E50;min-height:29.7cm;display:flex;flex-direction:column;padding:3cm 2.5cm;page-break-after:always}
-.cover h1{font-family:'Playfair Display',serif;font-size:44pt;color:white;line-height:1.05;margin:1.5rem 0 1rem}
+.cover{background:#2C3E50;display:flex;flex-direction:column;padding:8vh 15vw;page-break-after:always}
+.cover-h1{background:var(--teal);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover h2{font-family:'Playfair Display',serif;font-size:44pt;color:white;line-height:1.05;margin:1.5rem 0 1rem}
 .cover p{font-size:12pt;color:rgba(255,255,255,0.7);font-weight:300;line-height:1.6;max-width:13cm;margin-bottom:3rem}
 .cover-tag{background:var(--teal);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block}
 .cover-items{display:flex;flex-direction:column;gap:0.8rem;margin-top:auto}
 .cover-item{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt}
 .cover-item strong{color:rgba(255,255,255,0.9)}
 
-.page{background:white;padding:1.4cm;page-break-after:always}
+.page{background:white;padding:5vh 5vw;page-break-after:always}
 
 .sec-header{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:2px solid var(--border)}
 .sec-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700;color:white;flex-shrink:0}
@@ -71,7 +73,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
 .obs-grid th{background:var(--teal);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
 .obs-grid td{padding:9px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
 .obs-grid tr:nth-child(even) td{background:var(--bg)}
-.score-cell{text-align:center;font-size:8.5pt;width:80px}
+.score-cell{text-align:center;font-size:8.5pt;width:130px}
 
 .box{border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
 .box-tip{background:var(--amber-light);border-left:4px solid var(--amber)}
@@ -93,13 +95,14 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
 
 <!-- COVER -->
 <div class="cover">
+   <h1 class="cover-h1"><a href="../../index.html">Formation médiateur numérique</a></h1>
   <div class="cover-tag">Pack Activités · CP2</div>
-  <h1>Diagnostic<br>&amp; entretien</h1>
-  <p>8 situations pour identifier Demande/Besoin/Envie · 8 fiches-profils pour simulations d'entretien · Grille d'observation officielle · Corrigés formateur</p>
+  <h2>Diagnostic<br>&amp; entretien</h2>
+  <p>8 situations pour identifier Demande/Besoin/Envie<br>8 fiches-profils pour simulations d'entretien<br>Grille d'observation</p>
   <div class="cover-items">
     <div class="cover-item"><strong>Activité 1</strong> — Identifier D/B/E dans 8 situations — 40 min</div>
     <div class="cover-item"><strong>Activité 2</strong> — Simulation d'entretien de diagnostic — 8 profils — 2h</div>
-    <div class="cover-item"><strong>Activité 3</strong> — Grille d'observation officielle (basée sur les critères jury)</div>
+    <div class="cover-item"><strong>Activité 3</strong> — Grille d'observation</div>
   </div>
 </div>
 
@@ -114,17 +117,17 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   </div>
 
   <div class="box box-tip">
-    <h4>📋 Mode d'emploi formateur</h4>
+    <h4>📋 Mode d'emploi</h4>
     <ul>
-      <li>Phase 1 (10 min) : individuellement, les stagiaires identifient D/B/E pour chaque situation.</li>
+      <li>Phase 1 (10 min) : identifier individuellement D/B/E pour chaque situation.</li>
       <li>Phase 2 (10 min) : en binômes, comparer les analyses — surtout sur le besoin, souvent le plus difficile à identifier.</li>
       <li>Phase 3 (15 min) : tour de table en grand groupe sur les cas qui divisent.</li>
-      <li>Phase 4 (5 min) : synthèse formateur — quels indices permettent de détecter le vrai besoin ?</li>
+      <li>Phase 4 (5 min) : synthèse avec le formateur — quels indices permettent de détecter le vrai besoin ?</li>
       <li><strong>Question bonus :</strong> "Quel accompagnement proposeriez-vous pour chaque situation ?"</li>
     </ul>
   </div>
 
-  <p style="font-size:9pt;color:var(--text-mid);margin-bottom:0.6rem">Pour chaque situation, identifie : <strong style="color:#1F618D">D = Demande</strong> exprimée · <strong style="color:var(--teal)">B = Besoin</strong> réel · <strong style="color:var(--amber)">E = Envie</strong> (levier)</p>
+  <p style="font-size:9pt;color:var(--text-mid);margin-bottom:0.6rem">Pour chaque situation, identifie : <strong style="color:#1F618D">D = Demande</strong> (exprimée) · <strong style="color:var(--teal)">B = Besoin</strong> (réel) · <strong style="color:var(--amber)">E = Envie</strong> (levier)</p>
 
   <div class="dbe-grid">
     <div class="dbe-card">
@@ -138,7 +141,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
     </div>
     <div class="dbe-card">
       <div class="dbe-num">Situation 02</div>
-      <p class="dbe-text">Karim, 28 ans, en recherche d'emploi : "J'arrive pas à m'inscrire sur un site." Il doit actualiser sa situation France Travail chaque mois pour toucher ses allocations. Il s'intéresse à la formation en cybersécurité.</p>
+      <p class="dbe-text">Karim, 28 ans, en recherche d'emploi : "Je n'arrive pas à m'inscrire sur un site." Il doit actualiser sa situation France Travail chaque mois pour toucher ses allocations. Il s'intéresse à la formation en cybersécurité.</p>
       <div class="dbe-inputs">
         <div class="dbe-input-row"><span class="dbe-input-label dbe-d">D →</span><div class="dbe-line"></div></div>
         <div class="dbe-input-row"><span class="dbe-input-label dbe-b">B →</span><div class="dbe-line"></div></div>
@@ -147,7 +150,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
     </div>
     <div class="dbe-card">
       <div class="dbe-num">Situation 03</div>
-      <p class="dbe-text">Mme Diallo, 45 ans, employée de maison : "Mon téléphone marche pas bien." Son stockage est plein (photos). Son employeur lui envoie son planning par email qu'elle ne reçoit plus. Elle adore WhatsApp pour parler à ses amies.</p>
+      <p class="dbe-text">Mme Diallo, 45 ans, employée de maison : "Mon téléphone ne marche pas bien." Son stockage est plein (photos). Son employeur lui envoie son planning par email qu'elle ne reçoit plus. Elle adore WhatsApp pour parler à ses amies.</p>
       <div class="dbe-inputs">
         <div class="dbe-input-row"><span class="dbe-input-label dbe-d">D →</span><div class="dbe-line"></div></div>
         <div class="dbe-input-row"><span class="dbe-input-label dbe-b">B →</span><div class="dbe-line"></div></div>
@@ -192,18 +195,13 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
     </div>
     <div class="dbe-card">
       <div class="dbe-num">Situation 08</div>
-      <p class="dbe-text">M. Santos, 55 ans, en arrêt maladie longue durée : "Je voudrais pas rester à rien faire." Il doit déclarer mensuellement son arrêt sur Ameli pour continuer à être indemnisé. Il s'intéresse à la généalogie — sa famille est éparpillée en Europe.</p>
+      <p class="dbe-text">M. Santos, 55 ans, en arrêt maladie longue durée : "Je voudrais ne pas rester à rien faire." Il doit déclarer mensuellement son arrêt sur Ameli pour continuer à être indemnisé. Il s'intéresse à la généalogie — sa famille est éparpillée en Europe.</p>
       <div class="dbe-inputs">
         <div class="dbe-input-row"><span class="dbe-input-label dbe-d">D →</span><div class="dbe-line"></div></div>
         <div class="dbe-input-row"><span class="dbe-input-label dbe-b">B →</span><div class="dbe-line"></div></div>
         <div class="dbe-input-row"><span class="dbe-input-label dbe-e">E →</span><div class="dbe-line"></div></div>
       </div>
     </div>
-  </div>
-
-  <div class="box box-good" style="margin-top:0.8rem">
-    <h4>✅ Éléments de corrigé — Pour le formateur</h4>
-    <p><strong>Sit.01:</strong> D=apprendre l'ordinateur · B=télécharger relevé bancaire · E=photos petits-enfants Facebook | <strong>Sit.02:</strong> D=s'inscrire sur un site · B=actualiser France Travail (indemnités!) · E=formation cybersécurité | <strong>Sit.03:</strong> D=téléphone qui marche pas · B=libérer stockage + configurer email pro · E=WhatsApp amies | <strong>Sit.04:</strong> D=être sur internet · B=fiche Google My Business · E=galerie photo réalisations | <strong>Sit.05:</strong> D=faire des recherches · B=déposer demande de crèche en ligne · E=recettes cuisine | <strong>Sit.06:</strong> D=trucs de base · B=RDV en ligne cardiologue (santé!) · E=streaming rugby | <strong>Sit.07:</strong> D=aide Parcoursup · B=valider son dossier avant la date limite (URGENT!) · E=réseau artistes sur Instagram | <strong>Sit.08:</strong> D=s'occuper · B=déclaration Ameli mensuelle (indemnités!) · E=généalogie en ligne</p>
   </div>
 </div>
 
@@ -213,14 +211,14 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
     <div class="sec-num" style="background:var(--navy)">2</div>
     <div>
       <div class="sec-title">Fiches-profils pour simulation d'entretien</div>
-      <div class="sec-sub">À donner au "Public" · Ne pas montrer au "Médiateur" · 8 profils</div>
+      <div class="sec-sub">Un profil par "Public" · Ne pas montrer au "médiateur" · 8 profils</div>
     </div>
   </div>
 
   <div class="box box-tip">
-    <h4>📋 Instructions formateur</h4>
+    <h4>📋 Instructions</h4>
     <ul>
-      <li>Trinômes : Médiateur / Public (avec fiche) / Observateur (avec grille page suivante)</li>
+      <li>Trinômes : Médiateur / Public (avec fiche) / Observateur (avec grille plus bas)</li>
       <li>Le "Public" lit sa fiche en 2 minutes et l'incarne naturellement — ne pas surjouer</li>
       <li>Simulation de 20 minutes : l'objectif est d'arriver à un diagnostic partagé et une proposition d'accompagnement</li>
       <li>Après : l'Observateur lit sa grille, le Public dit si son vrai besoin a été bien identifié</li>
@@ -291,7 +289,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
       <div class="profil-section">Sa situation</div>
       <p>Secrétaire médicale mise en retraite anticipée suite à une dégénérescence maculaire. Vue très réduite mais pas nulle (peut lire avec une loupe ou un très grand zoom). Reçoit une allocation AEEH à renouveler en ligne chaque année.</p>
       <div class="profil-section">Demande exprimée</div>
-      <p>"Mon médecin m'a dit que je pouvais renouveler ma reconnaissance de handicap en ligne mais je vois pas bien."</p>
+      <p>"Mon médecin m'a dit que je pouvais renouveler ma reconnaissance de handicap en ligne mais je ne vois pas bien."</p>
       <div class="profil-section">Vrai besoin / Envie</div>
       <p>Accéder au portail MDPH + renouveler la demande AEEH. Envie : pouvoir utiliser internet seule à domicile avec les bons paramètres.</p>
       <div class="profil-section">Comment jouer</div>
@@ -345,7 +343,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
 <!-- GRILLE D'OBSERVATION -->
 <div class="page">
   <div class="sec-header">
-    <div class="sec-num" style="background:#2C3E50)">3</div>
+    <div class="sec-num" style="background:#2C3E50">3</div>
     <div>
       <div class="sec-title">Grille d'observation — Entretien de diagnostic</div>
       <div class="sec-sub">Basée sur les critères officiels du jury · Pour le rôle d'Observateur</div>
@@ -411,7 +409,10 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
     <div style="border-bottom:1px solid var(--border);height:22px;margin-top:0.5rem"></div>
     <div style="border-bottom:1px solid var(--border);height:22px;margin-top:4px"></div>
   </div>
+  <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../../index.html">🔙 Retour à l'accueil</a></button>
 </div>
-
+  <footer>
+  <p style="text-align: center; align-content: center; font-size: 8pt; color: var(--text-mid); margin: 20px 0;">© 2026 - Formation médiateur numérique - Tous droits réservés Dev&Info</p>
+  </footer>
 </body>
 </html>
