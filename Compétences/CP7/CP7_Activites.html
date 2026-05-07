@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CP7 — Pack Activités — Plateformes Administratives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#5B2C6F;--plum-mid:#7D3C98;--plum-light:#F5EEF8;--plum-border:#C39BD3;
+  --gold:#B7950B;--gold-light:#FEF9E7;--gold-border:#F9E79F;
+  --teal:#0B6E4F;--teal-light:#E3F5EE;--teal-border:#7ECFA4;
+  --coral:#B03A2E;--coral-light:#FDEDEC;--coral-border:#F1948A;
+  --navy:#1B3A6B;--navy-light:#EBF2FB;--navy-border:#7FB3D3;
+  --blue:#1F618D;--blue-light:#EBF5FB;
+  --amber:#C47B1E;--amber-light:#FEF6EC;--amber-mid:#F5C57A;
+  --green:#1A7A4A;--green-light:#E8F8F0;
+  --orange:#935116;--orange-light:#FDEBD0;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.5cm}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg)}
+
+/* COVER */
+.cover{background:var(--plum);display:flex;flex-direction:column;padding:8vh 15vw;page-break-after:always;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;bottom:-80px;right:-80px;width:380px;height:380px;border-radius:50%;background:rgba(255,255,255,0.05)}
+.cover::after{content:'';position:absolute;top:80px;right:120px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.cover-h1{background:var(--gold);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover h2{font-family:'Playfair Display',serif;font-size:44pt;color:white;line-height:1.05;margin:1.5rem 0 1rem}
+.cover p{font-size:11.5pt;color:rgba(255,255,255,0.7);font-weight:300;line-height:1.6;max-width:13cm;margin-bottom:3rem}
+.cover-tag{background:var(--gold);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block}
+.cover-items{display:flex;flex-direction:column;gap:0.8rem;margin-top:auto}
+.cover-item{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt}
+.cover-item strong{color:rgba(255,255,255,0.9)}
+
+/* PAGES */
+.page{background:white;padding:5vh 5vw;page-break-after:always}
+
+/* SEC HEADER */
+.sec-header{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:2px solid var(--border)}
+.sec-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700;color:white;flex-shrink:0}
+.sec-title{font-family:'Playfair Display',serif;font-size:18pt;color:var(--navy)}
+.sec-sub{font-size:9pt;color:var(--text-mid)}
+
+/* PROFIL CARDS */
+.profils-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0.5rem 0}
+.profil-card{border-radius:12px;padding:1.1rem 1.2rem;border:2px solid}
+.profil-num{font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.4rem;opacity:0.65}
+.profil-name{font-family:'Playfair Display',serif;font-size:14pt;margin-bottom:0.4rem}
+.profil-tag{display:inline-block;font-size:7pt;font-weight:700;padding:2px 9px;border-radius:10px;margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.5px}
+.profil-plat{display:inline-block;font-size:7.5pt;font-weight:700;padding:2px 9px;border-radius:10px;margin-bottom:0.6rem;margin-left:4px;font-family:monospace}
+.profil-section{font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-top:0.5rem;margin-bottom:0.2rem;opacity:0.55}
+.profil-card p{font-size:8.5pt;line-height:1.45;margin-bottom:0.2rem}
+.urgence-badge{display:inline-block;font-size:7pt;font-weight:700;padding:2px 8px;border-radius:8px;margin-top:3px}
+.u-crit{background:#FADBD8;color:#C0392B}
+.u-haut{background:#FDEBD0;color:#C47B1E}
+.u-moy{background:var(--teal-light);color:var(--teal)}
+
+/* COLOR VARIANTS */
+.p-senior{background:#F0F3FA;border-color:#85929E} .p-senior .profil-name{color:var(--navy)} .p-senior .profil-tag{background:var(--navy-light);color:var(--navy)} .p-senior .profil-plat{background:#D5E8F5;color:#1A5276}
+.p-caf{background:#FDF2F8;border-color:#D7BDE2} .p-caf .profil-name{color:var(--plum)} .p-caf .profil-tag{background:var(--plum-light);color:var(--plum)} .p-caf .profil-plat{background:#EEE0F5;color:#6C3483}
+.p-ft{background:#EAF2FF;border-color:#85C1E9} .p-ft .profil-name{color:var(--blue)} .p-ft .profil-tag{background:#D6EAF8;color:var(--blue)} .p-ft .profil-plat{background:#C8DCEF;color:#1A5276}
+.p-ameli{background:#E8F8F5;border-color:#76D7C4} .p-ameli .profil-name{color:var(--teal)} .p-ameli .profil-tag{background:var(--teal-light);color:var(--teal)} .p-ameli .profil-plat{background:#A9DFBF;color:#145A32}
+.p-impots{background:#FEF9E7;border-color:#F9E79F} .p-impots .profil-name{color:var(--gold)} .p-impots .profil-tag{background:var(--gold-light);color:var(--gold)} .p-impots .profil-plat{background:#FDEBD0;color:#7E5109}
+.p-handi{background:var(--coral-light);border-color:var(--coral-border)} .p-handi .profil-name{color:var(--coral)} .p-handi .profil-tag{background:#FADADD;color:#922B21} .p-handi .profil-plat{background:#FADBD8;color:#922B21}
+.p-allophone{background:var(--green-light);border-color:#7ECFA4} .p-allophone .profil-name{color:var(--teal)} .p-allophone .profil-tag{background:#D5F5E3;color:#1A7A4A} .p-allophone .profil-plat{background:#A9DFBF;color:#145A32}
+.p-test{background:var(--amber-light);border-color:var(--amber-mid)} .p-test .profil-name{color:var(--amber)} .p-test .profil-tag{background:#FDEBD0;color:var(--orange)} .p-test .profil-plat{background:var(--amber-light);color:var(--orange)}
+
+/* OBS GRID */
+.obs-grid{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.obs-grid th{background:var(--plum);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.obs-grid td{padding:9px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
+.obs-grid tr:nth-child(even) td{background:var(--bg)}
+.score-cell{text-align:center;font-size:8.5pt;width:111px}
+
+/* SITUATIONS */
+.sit-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin:0.5rem 0}
+.sit-card{border:1px solid var(--border);border-radius:8px;padding:0.9rem 1rem;background:white; background-color: var(--amber-light);}
+.sit-num{font-size:7.5pt;font-weight:700;color:var(--text-mid);margin-bottom:0.3rem}
+.sit-plat{display:inline-block;font-size:7.5pt;font-weight:700;padding:2px 8px;border-radius:8px;margin-bottom:0.4rem;font-family:monospace}
+.plat-a{background:#D6EAF8;color:#1A5276} .plat-c{background:#EEE0F5;color:#6C3483}
+.plat-f{background:#D5E8F5;color:#1A5276} .plat-i{background:#FDEBD0;color:#7E5109}
+.plat-fc{background:#D5F5E3;color:#145A32}
+.sit-text{font-size:9pt;line-height:1.45;margin-bottom:0.6rem}
+.sit-question{font-size:8.5pt;font-weight:600;color:var(--plum);font-style:italic;margin-bottom:0.4rem}
+.sit-inputs{display:flex;flex-direction:column;gap:3px}
+.sit-label{font-size:7.5pt;font-weight:700;color:var(--text-mid);margin-bottom:2px}
+.sit-line{border-bottom:1px solid var(--border);height:18px}
+
+/* BOXES */
+.box{border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-tip{background:var(--gold-light);border-left:4px solid var(--gold)}
+.box-good{background:var(--teal-light);border-left:4px solid var(--teal)}
+.box h4{font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.4rem}
+.box-tip h4{color:var(--gold)} .box-good h4{color:var(--teal)}
+.box p,.box li{font-size:9.5pt;margin-bottom:3px}
+.box ul{padding-left:1.1rem}
+
+/* FICHE FALC TEMPLATE */
+.falc-template{border:2px dashed var(--plum-border);border-radius:10px;padding:1.2rem;margin:0.8rem 0;background:var(--plum-light)}
+.falc-title{font-size:9pt;font-weight:700;color:var(--plum);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem}
+.falc-step{display:flex;align-items:flex-start;gap:10px;padding:8px;background:white;border-radius:6px;margin-bottom:6px}
+.falc-num{width:22px;height:22px;background:var(--plum);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8.5pt;font-weight:700;flex-shrink:0}
+.falc-content{flex:1}
+.falc-text-zone{border-bottom:1px dashed var(--border);height:20px;margin-bottom:3px}
+.falc-img-zone{border:1px dashed var(--border);height:35px;border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--text-light);font-size:7.5pt}
+
+@media print{
+  body{background:white}
+  .page{padding:0}
+  .cover,.obs-grid th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .p-senior,.p-caf,.p-ft,.p-ameli,.p-impots,.p-handi,.p-allophone,.p-test{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1 class="cover-h1"><a href="../../index.html">Formation médiateur numérique</a></h1>
+  <div class="cover-tag">Pack Activités · CP7</div>
+  <h2>Plateformes<br>administratives</h2>
+  <p>8 situations à analyser · 8 fiches-profils pour simulations<br>Grille d'observation · Modèle de fiche FALC à créer</p>
+  <div class="cover-items">
+    <div class="cover-item"><strong>Activité 1</strong> — Analyser 8 situations d'accompagnement — 40 min</div>
+    <div class="cover-item"><strong>Activité 2</strong> — Simulation complète dos à dos + jeu de rôle — 8 profils — 2h</div>
+    <div class="cover-item"><strong>Activité 3</strong> — Grille d'observation</div>
+    <div class="cover-item"><strong>Outil</strong> — Modèle de fiche FALC à compléter pour le stage</div>
+  </div>
+</div>
+
+<!-- ACTIVITÉ 1 : SITUATIONS À ANALYSER -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--plum)">1</div>
+    <div>
+      <div class="sec-title">Situations à analyser</div>
+      <div class="sec-sub">8 cas · Identifier frein, urgence, périmètre et 1ère action · 40 minutes</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Mode d'emploi</h4>
+    <ul>
+      <li>Phase 1 (10 min) : analyse individuelle — frein principal, niveau d'urgence, dans mon périmètre ou pas, première action.</li>
+      <li>Phase 2 (10 min) : discussion en binômes sur les divergences — surtout l'urgence et la 1ère action.</li>
+      <li>Phase 3 (15 min) : tour de table grand groupe — formateur apporte les nuances.</li>
+      <li>Phase 4 (5 min) : synthèse — quels réflexes faut-il avoir dès les premières secondes ?</li>
+    </ul>
+  </div>
+
+  <p style="font-size:9pt;color:var(--text-mid);margin:1.2rem 0 0.6rem 0;">Pour chaque situation, identifie : <strong style="color: var(--gold);">le frein principal</strong> · <strong style="color: var(--coral);">l'urgence</strong> · <strong style="color: var(--green);">dans mon périmètre ou pas</strong> · <strong style="color: var(--plum-mid);">ma 1ère action concrète</strong></p>
+
+  <div class="sit-grid">
+    <div class="sit-card">
+      <div class="sit-num">Situation 01</div>
+      <span class="sit-plat plat-c">caf.fr</span>
+      <p class="sit-text">Mme Dupont, 55 ans. Arrive stressée : "Ma déclaration CAF doit être faite aujourd'hui, sinon ils coupent mes allocations. J'arrive pas à me connecter, mon mot de passe marche plus." Elle a son téléphone avec elle.</p>
+      <div class="sit-question">Urgence ? Frein principal ? 1ère action ?</div>
+      <div class="sit-inputs">
+        <div class="sit-label">Urgence :</div><div class="sit-line"></div>
+        <div class="sit-label">Frein :</div><div class="sit-line"></div>
+        <div class="sit-label">1ère action :</div><div class="sit-line"></div>
+      </div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 02</div>
+      <span class="sit-plat plat-f">francetravail.fr</span>
+      <p class="sit-text">M. Tran, 34 ans, au chômage depuis 3 mois. "Je devais m'actualiser sur France Travail mais j'ai oublié, c'était il y a 2 semaines. Maintenant mon espace dit que mes droits sont suspendus."</p>
+      <div class="sit-question">Urgence ? Frein ? Périmètre ? 1ère action ?</div>
+      <div class="sit-inputs">
+        <div class="sit-label">Urgence :</div><div class="sit-line"></div>
+        <div class="sit-label">Frein :</div><div class="sit-line"></div>
+        <div class="sit-label">1ère action :</div><div class="sit-line"></div>
+      </div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 03</div>
+      <span class="sit-plat plat-a">ameli.fr</span>
+      <p class="sit-text">Gisèle, 78 ans. "Le médecin m'a dit d'imprimer mon attestation de droits pour le spécialiste. J'ai un ordinateur mais je sais pas du tout comment aller sur le site. J'ai jamais utilisé internet."</p>
+      <div class="sit-question">Urgence ? Frein principal ? Démarche faisable en 1 séance ?</div>
+      <div class="sit-inputs">
+        <div class="sit-label">Urgence :</div><div class="sit-line"></div>
+        <div class="sit-label">Frein :</div><div class="sit-line"></div>
+        <div class="sit-label">1ère action :</div><div class="sit-line"></div>
+      </div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 04</div>
+      <span class="sit-plat plat-i">impots.gouv.fr</span>
+      <p class="sit-text">Laurent, 47 ans, artisan. "J'ai reçu un courrier des impôts qui dit que je dois valider mon espace pro avant le 30. Mais quand j'essaie de me connecter, ça demande un code qu'ils ont envoyé par courrier et je l'ai pas gardé."</p>
+      <div class="sit-question">Frein ? Urgence ? 1ère action ?</div>
+      <div class="sit-inputs">
+        <div class="sit-label">Urgence :</div><div class="sit-line"></div>
+        <div class="sit-label">Frein :</div><div class="sit-line"></div>
+        <div class="sit-label">1ère action :</div><div class="sit-line"></div>
+      </div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 05</div>
+      <span class="sit-plat plat-c">caf.fr</span>
+      <p class="sit-text">Nadira, 29 ans. "J'essaie de faire une demande d'APL pour mon nouveau logement depuis 3 semaines. J'arrive à me connecter mais il me manque toujours un document. Là j'ai plus tout ce qu'il faut."</p>
+      <div class="sit-question">Frein ? Est-ce que c'est dans mon périmètre ? Que lui manque-t-il probablement ?</div>
+      <div class="sit-inputs">
+        <div class="sit-label">Frein :</div><div class="sit-line"></div>
+        <div class="sit-label">Dans mon périmètre ?</div><div class="sit-line"></div>
+        <div class="sit-label">1ère action :</div><div class="sit-line"></div>
+      </div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 06</div>
+      <span class="sit-plat plat-a">ameli.fr</span>
+      <p class="sit-text">Robert, 69 ans, tremblement des mains léger. "Je veux déclarer mon médecin traitant en ligne. Mon fils a créé un compte pour moi mais la souris c'est difficile à manier — ça tremble."</p>
+      <div class="sit-question">Frein principal ? Adaptation nécessaire ? Que proposez-vous ?</div>
+      <div class="sit-inputs">
+        <div class="sit-label">Frein :</div><div class="sit-line"></div>
+        <div class="sit-label">Adaptation :</div><div class="sit-line"></div>
+        <div class="sit-label">1ère action :</div><div class="sit-line"></div>
+      </div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 07</div>
+      <span class="sit-plat plat-fc">FranceConnect</span>
+      <p class="sit-text">Sylvie, 52 ans. "J'ai reçu un email qui dit que mon compte FranceConnect a été utilisé depuis un endroit inconnu. Maintenant j'ose plus me connecter nulle part. C'est quoi FranceConnect exactement ?"</p>
+      <div class="sit-question">Frein ? Urgence ? Périmètre ? Que faire en premier ?</div>
+      <div class="sit-inputs">
+        <div class="sit-label">Frein :</div><div class="sit-line"></div>
+        <div class="sit-label">Périmètre :</div><div class="sit-line"></div>
+        <div class="sit-label">1ère action :</div><div class="sit-line"></div>
+      </div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 08</div>
+      <span class="sit-plat plat-c">caf.fr</span>
+      <p class="sit-text">Un couple, Mamadou et Fatoumata, 35 et 33 ans. Ils ont une suspension d'allocations depuis 2 mois suite à un "trop-perçu" qu'ils ne comprennent pas. Ils veulent que vous les aidiez à contester et à comprendre pourquoi.</p>
+      <div class="sit-question">Dans mon périmètre ? Si non, vers qui orienter et comment ?</div>
+      <div class="sit-inputs">
+        <div class="sit-label">Dans mon périmètre ?</div><div class="sit-line"></div>
+        <div class="sit-label">Orientation :</div><div class="sit-line"></div>
+        <div class="sit-label">Ce que je PEUX faire :</div><div class="sit-line"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVITÉ 2 : PROFILS -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--navy)">2</div>
+    <div>
+      <div class="sec-title">Fiches-profils pour simulation</div>
+      <div class="sec-sub">Un profil par "public" · Ne pas montrer au "médiateur" · 8 profils</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Instructions — Simulation dos à dos</h4>
+    <ul>
+      <li>Pour l'exercice "mains à soi" et "dos à dos" : le Médiateur est DOS à l'écran — il guide uniquement par la voix.</li>
+      <li>Le Public a sa fiche et est face à l'écran — il suit les instructions verbales exactes.</li>
+      <li>Durée : 15 à 20 minutes par simulation. Ensuite débriefing à 3 avec la grille d'observation.</li>
+      <li>Pour les profils avec accessibilité (06) ou langue (07) : prévoir le matériel adapté à l'avance.</li>
+    </ul>
+  </div>
+
+  <div class="profils-grid">
+    <div class="profil-card p-senior">
+      <div class="profil-num">Profil 01 · Public</div>
+      <div class="profil-name">Madeleine, 77 ans</div>
+      <span class="profil-tag">Senior · Niveau 0</span>
+      <span class="profil-plat">ameli.fr</span>
+      <span class="urgence-badge u-moy">Pas urgent</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Retraitée. Doit imprimer son attestation de droits Ameli pour un rendez-vous chez un spécialiste dans 2 semaines. Son petit-fils lui a créé un compte Ameli il y a 6 mois mais elle n'est jamais allée dessus seule.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Ne sait pas où cliquer. Demande confirmation avant chaque action : "C'est bien là ?" Regarde le mauvais endroit de l'écran. Très reconnaissante si on prend le temps. Peur de casser quelque chose. Se connecter via FranceConnect Ameli.</p>
+    </div>
+
+    <div class="profil-card p-caf">
+      <div class="profil-num">Profil 02 · Public</div>
+      <div class="profil-name">Aïcha, 32 ans</div>
+      <span class="profil-tag">Mère isolée</span>
+      <span class="profil-plat">caf.fr</span>
+      <span class="urgence-badge u-crit">CRITIQUE aujourd'hui</span>
+      <div class="profil-section">Sa situation</div>
+      <p>3 enfants, séparée. Sa déclaration trimestrielle de ressources (RSA) doit absolument être faite aujourd'hui — c'est le dernier jour. Elle a un compte CAF mais son mot de passe ne fonctionne plus. Elle a son téléphone.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Très stressée, parle vite. Exprime l'urgence dès le début. Sait se connecter en général mais est bloquée par le mot de passe oublié. Dispose de son numéro d'allocataire sur une lettre CAF qu'elle a apportée. Se débrouille avec un smartphone.</p>
+    </div>
+
+    <div class="profil-card p-ft">
+      <div class="profil-num">Profil 03 · Public</div>
+      <div class="profil-name">Théodore, 41 ans</div>
+      <span class="profil-tag">Demandeur d'emploi</span>
+      <span class="profil-plat">francetravail.fr</span>
+      <span class="urgence-badge u-crit">CRITIQUE — 2 jours</span>
+      <div class="profil-section">Sa situation</div>
+      <p>En recherche d'emploi. La fenêtre d'actualisation mensuelle ferme dans 2 jours. Il a essayé hier depuis son téléphone mais "il y avait un truc qui marchait pas". Niveau moyen — utilise internet mais pas à l'aise avec les démarches administratives.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Un peu découragé par son échec de la veille. Se connecte facilement avec ses identifiants. Bloque sur la page d'actualisation qui lui pose des questions sur son activité du mois — il ne comprend pas certaines formulations administratives ("êtes-vous inscrit en formation professionnelle ?").</p>
+    </div>
+
+    <div class="profil-card p-ameli">
+      <div class="profil-num">Profil 04 · Public</div>
+      <div class="profil-name">Joëlle, 58 ans</div>
+      <span class="profil-tag">Pas d'email</span>
+      <span class="profil-plat">ameli.fr</span>
+      <span class="urgence-badge u-haut">Important</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Auxiliaire de vie à la retraite anticipée. Son médecin lui a demandé d'activer son espace Ameli pour pouvoir faire de la téléconsultation. Problème : elle n'a jamais créé d'adresse email. Elle a un smartphone récent.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Motivée mais ne sait pas ce qu'est une "adresse email". Capable d'apprendre si on lui explique simplement. Le médiateur doit d'abord créer une adresse email (Gmail ou laposte.net), PUIS créer le compte Ameli. C'est une séance en deux étapes.</p>
+    </div>
+
+    <div class="profil-card p-impots">
+      <div class="profil-num">Profil 05 · Public</div>
+      <div class="profil-name">Bernard, 64 ans</div>
+      <span class="profil-tag">Artisan retraité</span>
+      <span class="profil-plat">impots.gouv.fr</span>
+      <span class="urgence-badge u-moy">Important — 10 jours</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Ancien plombier. Doit faire sa déclaration de revenus annuelle pour la 1ère fois en ligne (son comptable a cessé son activité). A son numéro fiscal sur l'avis d'imposition papier qu'il a apporté.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Pragmatique et direct. Dit souvent "dites-moi juste quoi faire, j'essaierai après". Peut utiliser une souris de base. Sera surpris par la quantité d'informations déjà pré-remplies sur sa déclaration. Risque de vouloir tout vérifier ligne par ligne — gérer le temps.</p>
+    </div>
+
+    <div class="profil-card p-handi">
+      <div class="profil-num">Profil 06 · Public</div>
+      <div class="profil-name">Marc, 45 ans</div>
+      <span class="profil-tag">Malvoyant léger</span>
+      <span class="profil-plat">caf.fr</span>
+      <span class="urgence-badge u-haut">Important</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Déficience visuelle légère (40% d'acuité), non déclarée MDPH. Veut signaler un changement de situation (nouvelle adresse) sur son espace CAF. A un compte. Texte standard trop petit pour lui.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>S'approche de l'écran. Lit avec difficulté les petits textes. Plisse les yeux. Demande "c'est quoi ce texte là en petit ?" Le médiateur doit d'abord paramétrer le zoom du navigateur (Ctrl +) et/ou activer l'agrandissement système. C'est la priorité avant de commencer la démarche.</p>
+    </div>
+
+    <div class="profil-card p-allophone">
+      <div class="profil-num">Profil 07 · Public</div>
+      <div class="profil-name">Aminata, 27 ans</div>
+      <span class="profil-tag">Allophone — Français A2</span>
+      <span class="profil-plat">caf.fr</span>
+      <span class="urgence-badge u-crit">CRITIQUE — délai</span>
+      <div class="profil-section">Sa situation</div>
+      <p>Arrivée en France il y a 8 mois. Comprend le français basique mais ne lit pas bien. Doit faire une demande d'APL (aide au logement) pour son appartement. A son passeport, son contrat de bail et son RIB.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Sourit et hoche la tête même quand elle ne comprend pas tout. Montre les documents qu'elle a apportés. Le médiateur doit simplifier son vocabulaire au maximum, utiliser des gestes, et pointer l'écran pour montrer. Documents sont en règle — la démarche est faisable.</p>
+    </div>
+
+    <div class="profil-card p-test">
+      <div class="profil-num">Profil 08 · Public</div>
+      <div class="profil-name">Patrick, 52 ans</div>
+      <span class="profil-tag">Périmètre à tester</span>
+      <span class="profil-plat">caf.fr · CCAS</span>
+      <span class="urgence-badge u-haut">Urgent — évaluer</span>
+      <div class="profil-section">Sa situation (complexe)</div>
+      <p>Ses allocations CAF ont été suspendues il y a 3 semaines. Il ne comprend pas pourquoi. Il veut deux choses : 1 - accéder à son espace CAF pour voir ce qui se passe (DANS périmètre) 2 - vous demander de l'aider à écrire un courrier de contestation à la CAF (HORS périmètre).</p>
+      <div class="profil-section">Objectif pédagogique</div>
+      <p>Le médiateur doit dissocier les deux demandes. Accepter de regarder l'espace CAF ensemble pour comprendre le motif. Mais orienter vers le CCAS ou une assistante sociale pour la contestation — avec les mots justes et un contact concret.</p>
+      <div class="profil-section">Comment jouer</div>
+      <p>Progressivement plus exigeant : d'abord la connexion, puis "et maintenant vous pouvez m'aider à écrire la lettre ?" Observer si le médiateur maintient ses limites avec bienveillance.</p>
+    </div>
+  </div>
+</div>
+
+<!-- GRILLE OBSERVATION -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:#2C3E50">3</div>
+    <div>
+      <div class="sec-title">Grille d'observation — Accompagnement administratif</div>
+      <div class="sec-sub">Basée sur les critères officiels du jury · Pour le rôle d'Observateur</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin-bottom:1rem">
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Médiateur observé :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Profil joué :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Plateforme :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+  </div>
+
+  <table class="obs-grid">
+    <thead>
+      <tr>
+        <th style="width:44%">Ce que j'observe</th>
+        <th class="score-cell">1 — À travailler</th>
+        <th class="score-cell">2 — Satisfaisant</th>
+        <th class="score-cell">3 — Excellent</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="5" style="background:var(--plum-light);font-weight:700;font-size:8.5pt;color:var(--plum);padding:6px 12px">DIAGNOSTIC INITIAL</td></tr>
+      <tr><td>L'urgence est identifiée dès les premières minutes</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>La plateforme et l'action sont bien identifiées</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les ressources disponibles sont vérifiées (compte, email, téléphone, documents)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Le cadre "mains à soi" est posé clairement au départ</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--plum-light);font-weight:700;font-size:8.5pt;color:var(--plum);padding:6px 12px">POSTURE "MAINS À SOI"</td></tr>
+      <tr><td>Le médiateur ne prend pas la souris ni le clavier</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Le guidage verbal est précis et visuel (sans jargon)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>"Vous le voyez ?" est utilisé avant de demander de cliquer</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>La personne valide elle-même chaque étape</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--plum-light);font-weight:700;font-size:8.5pt;color:var(--plum);padding:6px 12px">ADAPTATION ET ACCESSIBILITÉ</td></tr>
+      <tr><td>Rythme adapté au niveau et aux besoins de la personne</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Freins identifiés et pris en compte (technique, cognitif, physique)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Adaptations techniques si nécessaire (zoom, police, accessibilité)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>RGPD respecté lors des saisies de données sensibles</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--plum-light);font-weight:700;font-size:8.5pt;color:var(--plum);padding:6px 12px">FAVORISER L'AUTONOMIE</td></tr>
+      <tr><td>Chaque réussite est célébrée et renforcée</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les actions clés sont faites répéter</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Fiche étapes ou autre support remis pour la prochaine fois</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Suivi proposé (prochain RDV, atelier)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--plum-light);font-weight:700;font-size:8.5pt;color:var(--plum);padding:6px 12px">GESTION DU PÉRIMÈTRE (si applicable)</td></tr>
+      <tr><td>Reconnaît quand la demande dépasse son périmètre</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Oriente avec les mots justes ET un contact concret</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.8rem">
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--teal);margin-bottom:0.4rem">✓ 2 points forts observés :</p>
+      <div style="border:1px solid var(--teal-border);border-radius:8px;padding:0.8rem;background:var(--teal-light);min-height:65px"></div>
+    </div>
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--amber);margin-bottom:0.4rem">→ 1 axe d'amélioration :</p>
+      <div style="border:1px solid var(--amber-mid);border-radius:8px;padding:0.8rem;background:var(--amber-light);min-height:65px"></div>
+    </div>
+  </div>
+
+  <div style="margin-top:0.8rem;border:1px solid var(--border);border-radius:8px;padding:0.9rem 1.1rem">
+    <p style="font-size:9pt;font-weight:700;color:var(--navy);margin-bottom:0.3rem">Question au "Public" après la simulation :</p>
+    <p style="font-size:9pt;font-style:italic;color:var(--text-mid)">La démarche a-t-elle été complétée ? Vous sentiez-vous guidé(e) sans que le médiateur fasse à votre place ? Y a-t-il eu des moments où vous ne compreniez pas ses instructions ?</p>
+    <div style="border-bottom:1px solid var(--border);height:22px;margin-top:0.5rem"></div>
+    <div style="border-bottom:1px solid var(--border);height:22px;margin-top:4px"></div>
+  </div>
+</div>
+
+<!-- FICHE FALC TEMPLATE -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--gold)">4</div>
+    <div>
+      <div class="sec-title">Modèle de fiche FALC</div>
+      <div class="sec-sub">À compléter pour le stage · Un modèle par plateforme / action · Outil de la séquence 3</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Instructions</h4>
+    <ul>
+      <li>Chaque stagiaire crée au moins 3 fiches FALC en stage (les 3 plateformes les plus demandées).</li>
+      <li>Format : recto-verso A4, Arial 14 minimum pour l'impression, captures d'écran annotées.</li>
+      <li>Tester la fiche avec une personne du public AVANT de la finaliser.</li>
+      <li>Règles FALC : une idée par ligne, phrases courtes (&lt;15 mots), mots simples, beaucoup d'espaces.</li>
+    </ul>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:0.5rem">
+    <!-- MODÈLE 1 -->
+    <div class="falc-template">
+      <div class="falc-title">Modèle — Fiche FALC à compléter</div>
+
+      <p style="font-size:8.5pt;margin-bottom:0.6rem;color:var(--plum)"><strong>Titre :</strong> Comment [action] sur [plateforme]</p>
+      <div style="border-bottom:1px solid var(--plum-border);height:22px;margin-bottom:0.7rem"></div>
+
+      <p style="font-size:8pt;font-weight:700;color:var(--text-mid);margin-bottom:0.4rem">CE QU'IL FAUT AVOIR AVANT DE COMMENCER :</p>
+      <div style="border-bottom:1px solid var(--border);height:18px;margin-bottom:3px"></div>
+      <div style="border-bottom:1px solid var(--border);height:18px;margin-bottom:0.6rem"></div>
+
+      <div class="falc-step">
+        <div class="falc-num">1</div>
+        <div class="falc-content">
+          <div class="falc-text-zone"></div>
+          <div class="falc-img-zone">[ capture d'écran ici ]</div>
+        </div>
+      </div>
+      <div class="falc-step">
+        <div class="falc-num">2</div>
+        <div class="falc-content">
+          <div class="falc-text-zone"></div>
+          <div class="falc-img-zone">[ capture d'écran ici ]</div>
+        </div>
+      </div>
+      <div class="falc-step">
+        <div class="falc-num">3</div>
+        <div class="falc-content">
+          <div class="falc-text-zone"></div>
+          <div class="falc-img-zone">[ capture d'écran ici ]</div>
+        </div>
+      </div>
+      <div class="falc-step">
+        <div class="falc-num">4</div>
+        <div class="falc-content">
+          <div class="falc-text-zone"></div>
+          <div class="falc-img-zone">[ capture d'écran ici ]</div>
+        </div>
+      </div>
+      <div class="falc-step">
+        <div class="falc-num">5</div>
+        <div class="falc-content">
+          <div class="falc-text-zone"></div>
+          <div class="falc-img-zone">[ capture d'écran ici ]</div>
+        </div>
+      </div>
+
+      <p style="font-size:8.5pt;margin-top:0.7rem;color:var(--plum)"><strong>EN CAS DE PROBLÈME :</strong></p>
+      <div style="border-bottom:1px solid var(--border);height:18px;margin-bottom:3px"></div>
+      <div style="border-bottom:1px solid var(--border);height:18px"></div>
+    </div>
+
+    <!-- EXEMPLES ET RÈGLES -->
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--plum);margin-bottom:0.6rem">Règles FALC à respecter</p>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="background:var(--teal-light);border-radius:6px;padding:8px 10px;border-left:3px solid var(--teal)">
+          <p style="font-size:8.5pt;font-weight:700;color:var(--teal);margin-bottom:3px">✓ Phrases courtes</p>
+          <p style="font-size:8.5pt">Max 15 mots par phrase. Une idée = une ligne.</p>
+        </div>
+        <div style="background:var(--teal-light);border-radius:6px;padding:8px 10px;border-left:3px solid var(--teal)">
+          <p style="font-size:8.5pt;font-weight:700;color:var(--teal);margin-bottom:3px">✓ Mots simples</p>
+          <p style="font-size:8.5pt">Remplacer "valider" → "appuyer sur le bouton vert". Remplacer "navigateur" → "la fenêtre du site".</p>
+        </div>
+        <div style="background:var(--teal-light);border-radius:6px;padding:8px 10px;border-left:3px solid var(--teal)">
+          <p style="font-size:8.5pt;font-weight:700;color:var(--teal);margin-bottom:3px">✓ Images annotées</p>
+          <p style="font-size:8.5pt">Capture d'écran avec une flèche rouge vers le bouton à cliquer. Une image par étape.</p>
+        </div>
+        <div style="background:var(--teal-light);border-radius:6px;padding:8px 10px;border-left:3px solid var(--teal)">
+          <p style="font-size:8.5pt;font-weight:700;color:var(--teal);margin-bottom:3px">✓ Police 14 minimum à l'impression</p>
+          <p style="font-size:8.5pt">Beaucoup d'espace blanc. Pas de blocs de texte denses.</p>
+        </div>
+        <div style="background:var(--coral-light);border-radius:6px;padding:8px 10px;border-left:3px solid var(--coral)">
+          <p style="font-size:8.5pt;font-weight:700;color:var(--coral);margin-bottom:3px">✗ Éviter absolument</p>
+          <p style="font-size:8.5pt">Jargon technique, phrases subordonnées longues, trop d'étapes sur une même page, captures d'écran sans annotation.</p>
+        </div>
+      </div>
+
+      <p style="font-size:9pt;font-weight:700;color:var(--plum);margin-top:0.8rem;margin-bottom:0.4rem">Mes 3 fiches FALC à créer en stage</p>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="background:var(--bg);border-radius:6px;padding:8px 10px;display:flex;align-items:center;gap:8px">
+          <span style="font-size:9pt;font-weight:700;color:var(--plum);width:20px">1.</span>
+          <div style="border-bottom:1px solid var(--border);flex:1;height:18px"></div>
+        </div>
+        <div style="background:var(--bg);border-radius:6px;padding:8px 10px;display:flex;align-items:center;gap:8px">
+          <span style="font-size:9pt;font-weight:700;color:var(--plum);width:20px">2.</span>
+          <div style="border-bottom:1px solid var(--border);flex:1;height:18px"></div>
+        </div>
+        <div style="background:var(--bg);border-radius:6px;padding:8px 10px;display:flex;align-items:center;gap:8px">
+          <span style="font-size:9pt;font-weight:700;color:var(--plum);width:20px">3.</span>
+          <div style="border-bottom:1px solid var(--border);flex:1;height:18px"></div>
+        </div>
+      </div>
+      <p style="font-size:8pt;color:var(--text-mid);margin-top:0.4rem">Choisir les 3 actions les plus demandées par le public de ta structure de stage.</p>
+    </div>
+  </div>
+    <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../../index.html">🔙 Retour à l'accueil</a></button>
+</div>
+  <footer>
+  <p style="text-align: center; align-content: center; font-size: 8pt; color: var(--text-mid); margin: 20px 0;">© 2026 - Formation médiateur numérique - Tous droits réservés Dev&Info</p>
+  </footer>
+</body>
+</html>

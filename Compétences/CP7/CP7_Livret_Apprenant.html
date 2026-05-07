@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CP7 — Livret Apprenant — Médiateur Numérique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#5B2C6F;--plum-mid:#7D3C98;--plum-light:#F5EEF8;--plum-border:#C39BD3;
+  --gold:#B7950B;--gold-light:#FEF9E7;--gold-border:#F9E79F;
+  --teal:#0B6E4F;--teal-light:#E3F5EE;--teal-border:#7ECFA4;
+  --coral:#B03A2E;--coral-light:#FDEDEC;--coral-border:#F1948A;
+  --navy:#1B3A6B;--navy-light:#EBF2FB;--navy-border:#7FB3D3;
+  --blue:#1F618D;--blue-light:#EBF5FB;
+  --amber:#C47B1E;--amber-light:#FEF6EC;--amber-mid:#F5C57A;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.5cm 1.4cm}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg);line-height:1.55}
+
+/* COVER */
+.cover{background:var(--navy);display:flex;flex-direction:column;justify-content:flex-end;padding:8vh 15vw;page-break-after:always;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,0.05)}
+.cover::after{content:'';position:absolute;bottom:120px;left:30px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.cover-tag{background:var(--gold);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block;margin-bottom:1.5rem}
+.cover-h1{background:var(--gold);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover h2{font-family:'Playfair Display',serif;font-size:38pt;color:white;line-height:1.05;margin-bottom:0.8rem}
+.cover h3{font-size:11.5pt;color:rgba(255,255,255,0.75);font-weight:300;line-height:1.6;margin-bottom:2rem}
+.cover-pills{display:flex;flex-wrap:wrap;gap:0.8rem}
+.cover-pill{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);color:white;padding:7px 16px;border-radius:20px;font-size:9pt}
+
+/* PAGES */
+.page{background:white;padding:5vh 5vw;page-break-after:always}
+.page:last-child{page-break-after:auto}
+
+/* FICHE HEADER */
+.fiche-header{margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:3px solid var(--plum)}
+.fiche-num{font-size:8pt;font-weight:600;color:var(--plum);text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:0.3rem}
+.fiche-title{font-family:'Playfair Display',serif;font-size:22pt;color:var(--navy)}
+.fiche-sub{font-size:10pt;color:var(--text-mid);font-weight:300;margin-top:0.3rem}
+
+/* TITRES */
+h3{font-family:'Playfair Display',serif;font-size:15pt;color:var(--plum);margin:1.3rem 0 0.5rem;padding-left:0.8rem;border-left:4px solid var(--plum)}
+h4{font-size:10.5pt;color:var(--navy);font-weight:600;margin:0.9rem 0 0.3rem}
+p{font-size:9.5pt;margin-bottom:0.5rem;line-height:1.55}
+ul,ol{padding-left:1.2rem;margin-bottom:0.6rem}
+li{font-size:9.5pt;margin-bottom:3px;line-height:1.5}
+
+/* BOXES */
+.box-key{background:var(--plum);border-radius:10px;padding:1.1rem 1.4rem;margin:0.8rem 0}
+.box-key h4{color:rgba(255,255,255,0.6);font-size:8.5pt;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.6rem}
+.box-key p,.box-key li{color:white;font-size:9.5pt;margin-bottom:4px;line-height:1.5}
+.box-key ul{padding-left:1.1rem}
+.box-gold{background:var(--gold-light);border:1px solid var(--gold-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-teal{background:var(--teal-light);border:1px solid var(--teal-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-coral{background:var(--coral-light);border:1px solid var(--coral-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-navy{background:var(--navy-light);border:1px solid var(--navy-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+
+/* PLATEFORMES MINI */
+.plat-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;margin-bottom:6px}
+.plat-ameli{background:#E8F4FD;border-left:4px solid #2E86C1}
+.plat-caf{background:#FDF2F8;border-left:4px solid #8E44AD}
+.plat-ft{background:#EBF5FB;border-left:4px solid #1A5276}
+.plat-impots{background:#FEF9E7;border-left:4px solid #D4AC0D}
+.plat-fc{background:#E9F7EF;border-left:4px solid #1E8449}
+.plat-sp{background:#FEF5E7;border-left:4px solid #CA6F1E}
+.plat-icon{font-size:18px;width:28px;text-align:center;flex-shrink:0}
+.plat-name{font-weight:700;font-size:10pt}
+.plat-ameli .plat-name{color:#2E86C1} .plat-caf .plat-name{color:#8E44AD}
+.plat-ft .plat-name{color:#1A5276} .plat-impots .plat-name{color:#D4AC0D}
+.plat-fc .plat-name{color:#1E8449} .plat-sp .plat-name{color:#CA6F1E}
+.plat-desc{font-size:8.5pt;color:var(--text-mid);flex:1;line-height:1.3}
+.plat-url{font-size:7.5pt;font-family:monospace;opacity:0.65;white-space:nowrap}
+
+/* ÉTAPES D'ACCOMPAGNEMENT */
+.etapes{display:flex;flex-direction:column;gap:6px;margin:0.8rem 0}
+.etape{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:7px;background:var(--bg)}
+.etape-num{width:24px;height:24px;background:var(--plum);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9pt;font-weight:700;flex-shrink:0;margin-top:1px}
+.etape-text{flex:1}
+.etape-title{font-weight:600;font-size:9.5pt;color:var(--plum);display:block}
+.etape-desc{font-size:8.5pt;color:var(--text-mid);line-height:1.4}
+
+/* VOCABS */
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0.8rem 0}
+.vocab-item{display:flex;gap:8px;align-items:flex-start;padding:8px 10px;background:var(--bg);border-radius:6px}
+.vocab-tech{font-size:8.5pt;font-weight:700;color:var(--coral);min-width:110px}
+.vocab-simple{font-size:8.5pt;color:var(--text);font-style:italic;flex:1;line-height:1.4}
+
+/* PHRASES */
+.phrase-block{margin:0.7rem 0}
+.phrase-yes{color:var(--teal);font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:0.2rem}
+.phrase-no{color:var(--coral);font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:0.2rem}
+.phrase-text{padding:0.65rem 1rem;border-radius:6px;font-size:9.5pt;font-style:italic;border-left:3px solid}
+.yes-text{background:var(--teal-light);border-color:var(--teal)}
+.no-text{background:var(--coral-light);border-color:var(--coral)}
+
+/* GRILLES */
+.grid{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.grid th{background:var(--plum);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.grid td{padding:8px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
+.grid tr:nth-child(even) td{background:var(--bg)}
+
+/* AUTO-ÉVAL */
+.auto-eval{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.auto-eval th{background:var(--plum);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px}
+.auto-eval td{padding:8px 12px;font-size:9pt;border-bottom:1px solid var(--border)}
+.auto-eval tr:nth-child(even) td{background:var(--plum-light)}
+.check-cell{text-align:center;width:100px}
+
+/* URGENCES */
+.urgence-badge{display:inline-block;font-size:7.5pt;font-weight:700;padding:2px 9px;border-radius:10px}
+.u-crit{background:#FADBD8;color:#C0392B}
+.u-haut{background:#FDEBD0;color:#C47B1E}
+.u-moy{background:var(--teal-light);color:var(--teal)}
+
+/* JOURNAL */
+.journal-entry{border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem;margin:0.8rem 0}
+.journal-entry h4{font-size:9.5pt;font-weight:600;color:var(--plum);margin-bottom:0.6rem}
+.journal-line{border-bottom:1px dashed var(--border);height:22px;margin-bottom:4px}
+.journal-label{font-size:8pt;color:var(--text-light);margin-bottom:5px}
+
+@media print{
+  body{background:white;font-size:9pt}
+  .page{padding:0;box-shadow:none}
+  .cover,.box-key,.grid th,.auto-eval th,.plat-ameli,.plat-caf,.plat-ft,.plat-impots,.plat-fc,.plat-sp{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1 class="cover-h1"><a href="../../index.html">Formation médiateur numérique</a></h1>
+  <div class="cover-tag">Livret Apprenant</div>
+  <h2>CP7 : Plateformes administratives</h2>
+  <h3>Accompagner aux usages numériques sur les plateformes administratives<br>Mes fiches mémos · Mes outils · Ma préparation au jury</h3>
+  <div class="cover-pills">
+    <div class="cover-pill">🖥️ 6 fiches plateformes</div>
+    <div class="cover-pill">🙌 Technique mains à soi</div>
+    <div class="cover-pill">⚡ Gestion des urgences</div>
+    <div class="cover-pill">📁 Guide dossier</div>
+  </div>
+</div>
+
+<!-- FICHE 1 : LES 6 PLATEFORMES -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 1</span>
+    <div class="fiche-title">Les 6 plateformes à maîtriser</div>
+    <div class="fiche-sub">Ce qu'elles font · Leurs adresses · Quand les utiliser</div>
+  </div>
+
+  <div class="box-key">
+    <h4>Pourquoi c'est si important</h4>
+    <p>Depuis 2022, un nombre croissant de démarches administratives sont <strong>uniquement disponibles en ligne</strong>. Pour les personnes qui ne maîtrisent pas le numérique, c'est une barrière d'accès aux droits. Le médiateur numérique est souvent le <strong>dernier recours</strong> avant la perte d'allocations ou d'une prestation.</p>
+  </div>
+
+  <h3>Les 6 plateformes incontournables</h3>
+
+  <div class="plat-row plat-fc">
+    <div class="plat-icon">🔑</div>
+    <div>
+      <span class="plat-name">FranceConnect</span>
+      <span class="plat-url"> — franceconnect.gouv.fr</span>
+      <p class="plat-desc">La "clé universelle" : permet de se connecter à tous les services publics avec un seul identifiant existant (Ameli, impôts…). C'est TOUJOURS la première étape à vérifier.</p>
+    </div>
+  </div>
+  <div class="plat-row plat-ameli">
+    <div class="plat-icon">🏥</div>
+    <div>
+      <span class="plat-name">Ameli</span>
+      <span class="plat-url"> — ameli.fr</span>
+      <p class="plat-desc">Assurance maladie : attestations de droits, remboursements, médecin traitant, arrêts maladie, carte européenne. Contact : 3646.</p>
+    </div>
+  </div>
+  <div class="plat-row plat-caf">
+    <div class="plat-icon">👨‍👩‍👧</div>
+    <div>
+      <span class="plat-name">CAF</span>
+      <span class="plat-url"> — caf.fr</span>
+      <p class="plat-desc">Allocations familiales : RSA, APL, déclarations de ressources (délai strict !), changements de situation. Contact : 3230.</p>
+    </div>
+  </div>
+  <div class="plat-row plat-ft">
+    <div class="plat-icon">💼</div>
+    <div>
+      <span class="plat-name">France Travail</span>
+      <span class="plat-url"> — francetravail.fr</span>
+      <p class="plat-desc">Emploi : inscription, actualisation mensuelle (fenêtre 3 jours — critique !), offres, CPF. Contact : 3949.</p>
+    </div>
+  </div>
+  <div class="plat-row plat-impots">
+    <div class="plat-icon">📊</div>
+    <div>
+      <span class="plat-name">impots.gouv.fr</span>
+      <span class="plat-url"> — impots.gouv.fr</span>
+      <p class="plat-desc">Déclaration de revenus, espace particulier, paiements, attestations fiscales. Principalement utilisé en saison de déclaration (avril–juin).</p>
+    </div>
+  </div>
+  <div class="plat-row plat-sp">
+    <div class="plat-icon">🏛️</div>
+    <div>
+      <span class="plat-name">service-public.fr</span>
+      <span class="plat-url"> — service-public.fr</span>
+      <p class="plat-desc">Portail général des démarches : guides pratiques, simulateurs, formulaires CERFA, coordonnées des services. Très utile pour orienter.</p>
+    </div>
+  </div>
+
+  <h3>FranceConnect — Les identifiants acceptés</h3>
+  <table class="grid">
+    <thead><tr><th>Identifiant</th><th>Compte nécessaire</th><th>À recommander si…</th></tr></thead>
+    <tbody>
+      <tr><td><b>Ameli</b></td><td>Espace assuré ameli.fr</td><td>La personne a déjà un compte Ameli <span class="urgence-badge u-crit">Le + courant</span></td></tr>
+      <tr><td><b>Impots</b></td><td>Espace particulier impots.gouv.fr</td><td>La personne a déjà son numéro fiscal</td></tr>
+      <tr><td><b>L'identité numérique</b></td><td>Espace lidentitenumerique.laposte.fr</td><td>Être majeur, posséder une carte d'identité valable et un smartphone</td></tr>
+      <tr><td><b>MSA</b></td><td>Espace adhérent msa.fr</td><td>Agriculteurs et salariés agricoles</td></tr>
+      <tr><td><b>France Identité</b></td><td>Application officielle proposé par l'État</td><td>Sur demande à la délivrance de la carte nationale d’identité électronique</td></tr>
+    </tbody>
+  </table>
+  <div class="box-coral">
+    <p><strong>⚠️ Arrêt d'YRIS - Le compte YRIS ne sera plus disponible à partir du 1er juillet 2026. Si une personne utilise encore ce compte, il faudra l'inviter à créer ou utiliser une autre identité numérique afin de continuer à réaliser ses démarches. Plus d'informations sur l'arrêt d'YRIS : https://aide.franceconnect.gouv.fr/faq/comptes-identifiants/arret%20Yris/</em></p>
+  </div>
+  <div class="box-gold">
+    <p><strong>La métaphore à utiliser avec le public :</strong> <em>"FranceConnect, c'est comme une clé unique qui ouvre plusieurs portes. Au lieu d'un mot de passe pour la CAF, un autre pour Ameli, un autre pour les impôts — une seule clé pour tout."</em></p>
+  </div>
+</div>
+
+<!-- FICHE 2 : MES 7 ÉTAPES -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 2</span>
+    <div class="fiche-title">Mes 7 étapes d'accompagnement</div>
+    <div class="fiche-sub">La séquence à suivre à chaque accompagnement administratif</div>
+  </div>
+
+  <div class="etapes">
+    <div class="etape">
+      <div class="etape-num">1</div>
+      <div class="etape-text">
+        <span class="etape-title">Évaluer la demande et l'urgence</span>
+        <span class="etape-desc">Quelle plateforme ? Quelle action ? Y a-t-il un délai ? L'urgence détermine tout le reste. Vérifier les documents nécessaires.</span>
+      </div>
+    </div>
+    <div class="etape">
+      <div class="etape-num">2</div>
+      <div class="etape-text">
+        <span class="etape-title">Poser le cadre — la règle "mains à soi"</span>
+        <span class="etape-desc">"Je vous guide — c'est vous qui cliquez. Je ne saisirai jamais vos données personnelles." Dire ça clairement dès le début.</span>
+      </div>
+    </div>
+    <div class="etape">
+      <div class="etape-num">3</div>
+      <div class="etape-text">
+        <span class="etape-title">Vérifier les ressources disponibles</span>
+        <span class="etape-desc">La personne a-t-elle un compte existant ? Une adresse email ? Le téléphone pour recevoir un code SMS ? Tous les documents ?</span>
+      </div>
+    </div>
+    <div class="etape">
+      <div class="etape-num">4</div>
+      <div class="etape-text">
+        <span class="etape-title">Guider verbalement — mots visuels et précis</span>
+        <span class="etape-desc">"En haut à droite, bouton bleu — vous le voyez ?" C'est LA personne qui navigue et clique. Jamais le médiateur.</span>
+      </div>
+    </div>
+    <div class="etape">
+      <div class="etape-num">5</div>
+      <div class="etape-text">
+        <span class="etape-title">Valider chaque étape et renforcer la confiance</span>
+        <span class="etape-desc">"Parfait ! Vous êtes sur la bonne page. Vous voyez votre nom en haut ?" Célébrer chaque réussite, aussi petite soit-elle.</span>
+      </div>
+    </div>
+    <div class="etape">
+      <div class="etape-num">6</div>
+      <div class="etape-text">
+        <span class="etape-title">Faire répéter les actions clés</span>
+        <span class="etape-desc">"Maintenant refaites la même chose, mais sans mon aide — je vous observe." Répétition = mémorisation = autonomie.</span>
+      </div>
+    </div>
+    <div class="etape">
+      <div class="etape-num">7</div>
+      <div class="etape-text">
+        <span class="etape-title">Remettre la fiche étapes + proposer un suivi</span>
+        <span class="etape-desc">Fiche FALC avec captures annotées. Proposer un prochain rendez-vous pour vérifier que la personne peut reproduire seule.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="box-teal">
+    <p style="font-size:9pt"><strong>La règle d'or de CP7 :</strong> Si la personne ne fait pas l'action elle-même au moins une fois, elle n'aura rien appris. L'objectif n'est pas de faire la démarche — c'est de lui apprendre à la faire.</p>
+  </div>
+</div>
+
+<!-- FICHE 3 : POSTURE MAINS À SOI -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 3</span>
+    <div class="fiche-title">La posture "mains à soi"</div>
+    <div class="fiche-sub">Guider sans faire · Le vocabulaire visuel · Ce qu'il faut éviter absolument</div>
+  </div>
+
+  <div class="box-key">
+    <h4>Pourquoi ne jamais prendre le clavier</h4>
+    <ul>
+      <li>La personne ne mémorise pas ce qu'elle ne fait pas elle-même</li>
+      <li>Elle perd confiance : "De toute façon c'est trop compliqué pour moi"</li>
+      <li>Je touche à des données sensibles — risque RGPD et responsabilité</li>
+      <li>En cas d'erreur de saisie : ma responsabilité est engagée</li>
+      <li>La prochaine fois, elle reviendra vers le médiateur au lieu de faire seule</li>
+    </ul>
+  </div>
+
+  <h3>Mon vocabulaire visuel — sans jargon</h3>
+  <div class="vocab-grid">
+    <div class="vocab-item">
+      <span class="vocab-tech">Navigateur</span>
+      <span class="vocab-simple">"La grande fenêtre bleue (ou orange) dans laquelle vous regardez les sites"</span>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Onglet</span>
+      <span class="vocab-simple">"L'étiquette tout en haut avec le nom du site"</span>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Menu déroulant</span>
+      <span class="vocab-simple">"La liste qui apparaît quand vous cliquez sur ce bouton"</span>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Lien</span>
+      <span class="vocab-simple">"Le texte en couleur (ou souligné) sur lequel vous pouvez cliquer"</span>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Champ de saisie</span>
+      <span class="vocab-simple">"La case blanche dans laquelle vous devez écrire"</span>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Valider / Soumettre</span>
+      <span class="vocab-simple">"Le bouton qui dit 'Confirmer' ou 'Envoyer' — on clique en dernier"</span>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Scroll / Défiler</span>
+      <span class="vocab-simple">"Faites bouger la page vers le bas avec la molette ou en glissant"</span>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Pop-up / Cookie</span>
+      <span class="vocab-simple">"La fenêtre qui s'est ouverte par-dessus la page — cliquez sur 'Accepter' ou 'Refuser'"</span>
+    </div>
+  </div>
+
+  <h3>Formulations clés du guidage verbal</h3>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Formulation spatiale :</span>
+    <div class="phrase-text yes-text">"En haut à droite de la page — pas tout en haut, juste en dessous de la barre bleue — il y a un bouton vert. Vous le voyez ? Dites-moi quand vous l'avez trouvé."</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Validation avant action :</span>
+    <div class="phrase-text yes-text">"Ne cliquez pas encore — dites-moi d'abord ce que vous voyez sur la page en ce moment."</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Données sensibles :</span>
+    <div class="phrase-text yes-text">"À cette étape vous allez entrer des informations personnelles. Je regarde ailleurs — entrez ce qui est sur votre document, puis dites-moi quand c'est fait."</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-no">✗ À ne jamais dire :</span>
+    <div class="phrase-text no-text">"Attendez, je vais le faire moi" / "Donnez-moi la souris deux secondes" / "C'est là !" en pointant sans laisser la personne trouver elle-même.</div>
+  </div>
+
+  <h4>📝 Mon exercice — Traduire en langage accessible</h4>
+  <div class="box-gold">
+    <p style="font-size:9pt;margin-bottom:0.5rem">Traduis ces instructions techniques en langage accessible pour un public débutant :</p>
+    <ul>
+      <li>"Ouvrez un nouvel onglet dans votre navigateur" → ____________________________________________________</li>
+      <li>"Scrollez jusqu'en bas de la page et cliquez sur le lien" → _________________________________________________</li>
+      <li>"Renseignez vos identifiants dans le formulaire de connexion" → ____________________________________________</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FICHE 4 : FREINS ET URGENCES -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 4</span>
+    <div class="fiche-title">Freins, urgences et orientation</div>
+    <div class="fiche-sub">Ce qui bloque · Les situations critiques · Quand et comment orienter</div>
+  </div>
+
+  <h3>Les freins spécifiques aux démarches admin.</h3>
+  <table class="grid">
+    <thead><tr><th>Frein</th><th>Comment je le repère</th><th>Ma réponse</th></tr></thead>
+    <tbody>
+      <tr><td><b>Pas de compte / accès perdu</b></td><td>"J'ai plus mon mot de passe" / "J'ai plus cet email"</td><td>Procédure de récupération avant tout. Si bloqué : appeler le service.</td></tr>
+      <tr><td><b>Interface complexe</b></td><td>La personne hésite, cherche, ne sait pas où regarder</td><td>Ralentir. Décomposer. Utiliser la fiche FALC. Montrer visuellement où regarder.</td></tr>
+      <tr><td><b>Peur de faire une erreur</b></td><td>"Si je clique là ça va partir ?" / blocage total</td><td>"On ne valide rien avant que vous soyez sûr(e). Cette page n'envoie rien tant qu'on n'appuie pas sur 'Envoyer'."</td></tr>
+      <tr><td><b>Documents manquants</b></td><td>La personne n'a pas son numéro d'allocataire, son RIB, son avis d'imposition</td><td>Vérifier les prérequis AVANT de commencer. Si manquant → reporter la séance.</td></tr>
+      <tr><td><b>Pas de téléphone pour SMS</b></td><td>Double authentification impossible</td><td>Chercher l'option "code par email". Si impossible : appeler le service directement.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Les urgences — comment réagir</h3>
+  <table class="grid">
+    <thead><tr><th>Situation</th><th>Niveau</th><th>Action immédiate</th></tr></thead>
+    <tbody>
+      <tr><td>Déclaration CAF/RSA avec délai ce jour</td><td><span class="urgence-badge u-crit">CRITIQUE</span></td><td>Priorité absolue. Si blocage tech : appeler le 3230 ensemble.</td></tr>
+      <tr><td>Actualisation France Travail — fenêtre de 3 jours</td><td><span class="urgence-badge u-crit">CRITIQUE</span></td><td>Vérifier la date dans l'espace. Si dépassée : appeler le 3949.</td></tr>
+      <tr><td>Compte bloqué avec démarche urgente</td><td><span class="urgence-badge u-haut">URGENT</span></td><td>Ne pas perdre de temps à tester. Appeler le service directement.</td></tr>
+      <tr><td>Document à remettre avant date fiscale</td><td><span class="urgence-badge u-moy">IMPORTANT</span></td><td>Si &lt; 48h → traiter en priorité. Sinon → programmer un RDV.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Quand et comment orienter</h3>
+  <div class="box-key">
+    <h4>La règle des 3 temps</h4>
+    <ul>
+      <li><strong>1. Expliquer pourquoi :</strong> "Ce que vous décrivez relève d'une assistante sociale, pas de ma mission..."</li>
+      <li><strong>2. Donner le contact concret :</strong> "Voici le numéro du CCAS : XX XX XX XX"</li>
+      <li><strong>3. Proposer un accompagnement :</strong> "Voulez-vous qu'on les appelle ensemble maintenant ?"</li>
+    </ul>
+  </div>
+
+  <div class="phrase-block">
+    <span class="phrase-no">✗ La mauvaise orientation :</span>
+    <div class="phrase-text no-text">"Ça c'est pas mon problème, allez à la CAF." → Abandonne la personne sans transition ni contact concret.</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ La bonne orientation :</span>
+    <div class="phrase-text yes-text">"Ce que vous me décrivez — la suspension d'allocations — c'est une décision administrative qu'une assistante sociale peut vous aider à contester. Je peux vous aider à voir ce qui s'est passé sur votre espace CAF, et vous donner le contact du CCAS. Qu'est-ce qui vous convient ?"</div>
+  </div>
+</div>
+
+<!-- FICHE 5 : RGPD ET PROBLÈMES FRÉQUENTS -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 5</span>
+    <div class="fiche-title">RGPD et problèmes fréquents</div>
+    <div class="fiche-sub">Ce que je peux faire · Ce que je ne peux pas faire · Résoudre les problèmes courants</div>
+  </div>
+
+  <h3>RGPD — Mes obligations lors des démarches</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0.8rem 0">
+    <div class="box-teal">
+      <p style="font-size:9pt;font-weight:700;color:var(--teal);margin-bottom:0.5rem">✅ Ce que je PEUX faire</p>
+      <ul>
+        <li>Guider verbalement vers les champs à remplir</li>
+        <li>Expliquer ce que chaque champ demande</li>
+        <li>Vérifier que les infos saisies semblent correctes</li>
+        <li>Aider à comprendre le vocabulaire administratif</li>
+        <li>Rester présent mais regarder ailleurs lors des saisies sensibles</li>
+      </ul>
+    </div>
+    <div class="box-coral">
+      <p style="font-size:9pt;font-weight:700;color:var(--coral);margin-bottom:0.5rem">❌ Ce que je NE PEUX PAS faire</p>
+      <ul>
+        <li>Voir ou noter le numéro de sécurité sociale</li>
+        <li>Voir ou noter un mot de passe ou code SMS</li>
+        <li>Saisir le RIB ou des coordonnées bancaires</li>
+        <li>Photographier l'écran avec des données personnelles</li>
+        <li>Rester proche quand des données très sensibles sont saisies</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box-gold">
+    <p><strong>Ma formule pour les données sensibles :</strong><br><em>"À cette étape vous allez entrer des informations personnelles. Je regarde ailleurs — prenez votre temps et dites-moi quand c'est fait."</em></p>
+  </div>
+
+  <h3>Résoudre les problèmes techniques fréquents</h3>
+  <table class="grid">
+    <thead><tr><th>Problème</th><th>Cause probable</th><th>Solution</th></tr></thead>
+    <tbody>
+      <tr><td>"J'ai plus mon mot de passe"</td><td>Mot de passe oublié</td><td>Clic sur "Mot de passe oublié" → récupération par email ou SMS</td></tr>
+      <tr><td>"Je reçois pas le code SMS"</td><td>Numéro de téléphone incorrect ou réseau</td><td>Vérifier le numéro enregistré, essayer l'option "code par email"</td></tr>
+      <tr><td>"Le site dit que je suis déjà connecté(e)"</td><td>Session non fermée sur un appareil partagé</td><td>Fermer et rouvrir le navigateur, ou vider le cache</td></tr>
+      <tr><td>"J'ai pas d'email"</td><td>Pas d'adresse email</td><td>Créer une adresse Gmail ou laposte.net en premier — prérequis absolu</td></tr>
+      <tr><td>"Le compte est bloqué"</td><td>Trop de tentatives échouées</td><td>Attendre 24h OU appeler directement le service concerné</td></tr>
+      <tr><td>"La page charge pas"</td><td>Connexion lente, problème technique du site</td><td>Vérifier la connexion. Essayer un autre navigateur. Réessayer plus tard.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Numéros utiles à avoir sous la main</h3>
+  <table class="grid">
+    <thead><tr><th>Service</th><th>Numéro</th></tr></thead>
+    <tbody>
+      <tr><td>Assurance maladie (Ameli)</td><td style="font-weight:700">3646</td></tr>
+      <tr><td>CAF</td><td style="font-weight:700">3230</td></tr>
+      <tr><td>France Travail</td><td style="font-weight:700">3949</td></tr>
+      <tr><td>Direction des finances publiques</td><td style="font-weight:700">0809 401 401</td></tr>
+      <tr><td>Cybermalveillance (arnaque en ligne)</td><td style="font-weight:700">cybermalveillance.gouv.fr</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FICHE 6 : PRÉPARATION JURY -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 6</span>
+    <div class="fiche-title">Préparation au jury — CP7</div>
+    <div class="fiche-sub">5 critères officiels · Questions types · Guide Partie 3 du dossier</div>
+  </div>
+
+  <h3>Les 5 critères officiels du jury</h3>
+  <table class="auto-eval">
+    <thead><tr><th>Critère de performance</th><th class="check-cell">À travailler</th><th class="check-cell">Acquis</th></tr></thead>
+    <tbody>
+      <tr><td>L'évaluation de la demande et le diagnostic sont pertinents</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Les types de freins empêchant la démarche en ligne sont identifiés</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>L'accompagnement est adapté au niveau d'autonomie et au handicap éventuel</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>La prise en compte des acquis favorise la réalisation de tâches en autonomie</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Les explications sur l'interface aident la personne à naviguer dans les contenus</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Questions types du jury — Prépare tes réponses</h3>
+  <div class="journal-entry">
+    <h5>"Décrivez l'accompagnement administratif de votre dossier. Plateforme, profil, freins identifiés."</h5>
+    <div class="journal-label">Mon exemple concret (plateforme + profil + freins + ce que j'ai fait) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h5>"Comment avez-vous guidé sans faire à la place ? Donnez des exemples précis de ce que vous disiez."</h5>
+    <div class="journal-label">2 ou 3 formulations précises que j'ai utilisées :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h5>"La personne avait oublié son mot de passe, la démarche était urgente. Que faites-vous ?"</h5>
+    <div class="journal-label">Ma réponse étape par étape :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h5>"Comment avez-vous favorisé l'autonomie pour qu'elle puisse refaire seule la prochaine fois ?"</h5>
+    <div class="journal-label">Techniques de mémorisation utilisées :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+
+  <h3>Guide du dossier professionnel</h3>
+  <div class="box-navy">
+    <p><strong>Ce que je dois rédiger :</strong> Analyse d'une expérience d'accompagnement à une démarche administrative — 2 à 3 pages, Arial 11, interligne 1,15.</p>
+  </div>
+  <table class="grid">
+    <thead><tr><th>Section obligatoire</th><th>Ce que je note en stage</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>Profil de la personne</td><td>Âge, contexte, freins, niveau numérique, handicap éventuel</td><td>☐</td></tr>
+      <tr><td>Objet de la demande</td><td>Plateforme, action, délai, difficulté de la démarche</td><td>☐</td></tr>
+      <tr><td>Contrat d'accompagnement</td><td>Ce que j'ai proposé, nombre de séances, objectifs</td><td>☐</td></tr>
+      <tr><td>Déroulement</td><td>Plateformes, méthodes, difficultés, remédiations utilisées</td><td>☐</td></tr>
+      <tr><td><strong>Analyse de la prestation ★</strong></td><td>Résultats, points forts, difficultés, bilan, ce que je referais différemment</td><td>☐</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:8.5pt;color:var(--gold);margin-top:0.3rem">★ L'analyse de la prestation est la section la mieux notée — montre ta réflexivité !</p>
+</div>
+
+<!-- JOURNAL DE BORD -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Outil stage</span>
+    <div class="fiche-title">Journal de bord — Accompagnements administratifs</div>
+    <div class="fiche-sub">À remplir après chaque accompagnement · Base de la Partie 3 de ton dossier</div>
+  </div>
+
+  <div class="box-gold">
+    <p><strong>Rappel :</strong> Cette partie du dossier exige l'analyse d'un accompagnement administratif complet. Prends 5–10 minutes après chaque séance pour noter pendant que les détails sont frais. C'est irremplaçable au moment de rédiger le dossier.</p>
+  </div>
+
+  <div class="journal-entry">
+    <h5>Accompagnement n°1</h5>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:0.8rem">
+      <div><div class="journal-label">Date :</div><div class="journal-line"></div></div>
+      <div><div class="journal-label">Plateforme :</div><div class="journal-line"></div></div>
+      <div><div class="journal-label">Action demandée :</div><div class="journal-line"></div></div>
+    </div>
+    <div class="journal-label">Profil de la personne (âge, niveau numérique, contexte) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Urgence identifiée (délai, enjeu) :</div>
+    <div class="journal-line"></div>
+    <div class="journal-label">Freins rencontrés (technique, cognitif, émotionnel, matériel) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Ce que j'ai fait concrètement (méthodes, guidage, adaptations) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Résultat : la démarche a-t-elle été complétée ? La personne pourrait-elle refaire seule ?</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Mon analyse : points forts ✓ / ce que je referais différemment :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+
+  <div class="journal-entry">
+    <h5>Accompagnement n°2</h5>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:0.8rem">
+      <div><div class="journal-label">Date :</div><div class="journal-line"></div></div>
+      <div><div class="journal-label">Plateforme :</div><div class="journal-line"></div></div>
+      <div><div class="journal-label">Action demandée :</div><div class="journal-line"></div></div>
+    </div>
+    <div class="journal-label">Profil de la personne :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Freins et urgence :</div>
+    <div class="journal-line"></div>
+    <div class="journal-label">Ce que j'ai fait :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+    <div class="journal-label">Résultat et analyse :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+    <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../../index.html">🔙 Retour à l'accueil</a></button>
+</div>
+  <footer>
+  <p style="text-align: center; align-content: center; font-size: 8pt; color: var(--text-mid); margin: 20px 0;">© 2026 - Formation médiateur numérique - Tous droits réservés Dev&Info</p>
+  </footer>
+</body>
+</html>
