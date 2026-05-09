@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CP3 — Livret Apprenant — Médiateur Numérique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2C3150;--ink-mid:#3D4A7A;--ink-light:#EEF0F8;--ink-border:#9BA8D0;
+  --rust:#A93226;--rust-light:#FDEDEC;--rust-border:#F1948A;
+  --sage:#1A6B4A;--sage-light:#E8F5EE;--sage-border:#7EC8A4;
+  --gold:#9A7D0A;--gold-light:#FEF9E7;--gold-border:#F7DC6F;
+  --sky:#1A6698;--sky-light:#EBF5FB;--sky-border:#7FB3D3;
+  --plum:#6C3483;--plum-light:#F5EEF8;--plum-border:#C39BD3;
+  --amber:#C47B1E;--amber-light:#FEF6EC;--amber-mid:#F5C57A;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.5cm 1.4cm}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg);line-height:1.55}
+
+.cover{background:var(--rust);display:flex;flex-direction:column;justify-content:flex-end;padding:8vh 15vw;page-break-after:always;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:rgba(0,0,0,0.12)}
+.cover::after{content:'';position:absolute;bottom:120px;left:30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.06)}
+.cover-tag{background:var(--ink);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block;margin-bottom:1.5rem}
+.cover-h1{background:var(--ink);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover h2{font-family:'Playfair Display',serif;font-size:38pt;color:white;line-height:1.05;margin-bottom:0.8rem}
+.cover h3{font-size:11.5pt;color:rgba(255,255,255,0.8);font-weight:300;line-height:1.6;margin-bottom:2rem}
+.cover-pills{display:flex;flex-wrap:wrap;gap:0.8rem}
+.cover-pill{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.28);color:white;padding:7px 16px;border-radius:20px;font-size:9pt}
+
+.page{background:white;padding:5vh 5vw;page-break-after:always}
+.page:last-child{page-break-after:auto}
+
+.fiche-header{margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:3px solid var(--ink)}
+.fiche-num{font-size:8pt;font-weight:600;color:var(--rust);text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:0.3rem}
+.fiche-title{font-family:'Playfair Display',serif;font-size:22pt;color:var(--ink)}
+.fiche-sub{font-size:10pt;color:var(--text-mid);font-weight:300;margin-top:0.3rem}
+
+h3{font-family:'Playfair Display',serif;font-size:15pt;color:var(--ink);margin:1.3rem 0 0.5rem;padding-left:0.8rem;border-left:4px solid var(--ink)}
+h4{font-size:10.5pt;color:var(--ink-border);font-weight:600;margin:0.9rem 0 0.3rem}
+h5{font-size:10.5pt;color:var(--ink-mid);font-weight:600;margin:0.9rem 0 0.3rem}
+h6{font-size:9pt;color:var(--ink-mid);font-weight:600;margin:0.3rem 0;text-transform:uppercase;letter-spacing:1px}
+p{font-size:9.5pt;margin-bottom:0.5rem;line-height:1.55}
+ul,ol{padding-left:1.2rem;margin-bottom:0.6rem}
+li{font-size:9.5pt;margin-bottom:3px;line-height:1.5}
+
+.box-key{background:var(--ink);border-radius:10px;padding:1.1rem 1.4rem;margin:0.8rem 0}
+.box-key h3{color:rgba(255,255,255,0.6);font-size:8.5pt;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.6rem}
+.box-key p,.box-key li{color:white;font-size:9.5pt;margin-bottom:4px;line-height:1.5}
+.box-key ul{padding-left:1.1rem}
+.box-gold{background:var(--gold-light);border:1px solid var(--gold-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-sage{background:var(--sage-light);border:1px solid var(--sage-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-rust{background:var(--rust-light);border:1px solid var(--rust-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-ink{background:var(--ink-light);border:1px solid var(--ink-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+
+/* CHAÎNE CAUSALE */
+.chain{display:flex;align-items:center;gap:0;margin:0.8rem 0;flex-wrap:nowrap;overflow:hidden}
+.chain-item{flex:1;text-align:center;padding:0.7rem 0.4rem;border-radius:6px;min-width:0}
+.chain-arrow{color:var(--rust);font-size:14pt;font-weight:700;flex-shrink:0;padding:0 4px}
+.c1{background:#FDEDEC} .c2{background:var(--ink-light)} .c3{background:var(--sky-light)} .c4{background:var(--sage-light)} .c5{background:var(--gold-light)}
+.chain-item .num{font-size:16pt;font-weight:700;display:block;line-height:1}
+.c1 .num{color:var(--rust)} .c2 .num{color:var(--ink)} .c3 .num{color:var(--sky)} .c4 .num{color:var(--sage)} .c5 .num{color:var(--gold)}
+.chain-item .label{font-size:8pt;font-weight:700;display:block;margin-top:2px;color:var(--text)}
+.chain-item .sublabel{font-size:7pt;color:var(--text-mid);line-height:1.2;display:block;margin-top:2px}
+
+/* BLOOM VISUAL */
+.bloom-mini{display:flex;flex-direction:column;gap:4px;margin:0.7rem 0;max-width:480px}
+.bloom-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:6px;}
+.bloom-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9pt;font-weight:700;color:white;flex-shrink:0}
+.b1{background:#7D6608;} .b1r{background:#FEF9E7}
+.b2{background:#1A5276;} .b2r{background:#EBF5FB}
+.b3{background:#1A6B4A;} .b3r{background:#E8F5EE}
+.b4{background:#C47B1E;} .b4r{background:#FEF6EC}
+.b5{background:#6C3483;} .b5r{background:#F5EEF8}
+.b6{background:#A93226;} .b6r{background:#FDEDEC}
+.bloom-name{font-weight:700;font-size:9.5pt;width: 120px;padding-left: 20px;}
+.bloom-verbs{font-size:8.5pt;color:var(--text-mid);flex:1}
+
+/* MODALITÉS MINI */
+.mod-mini{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0.7rem 0}
+.mod-item{border-radius:6px;padding:8px 10px}
+.mi-expo{background:var(--ink-light);border-left:3px solid var(--ink)}
+.mi-guide{background:var(--sage-light);border-left:3px solid var(--sage)}
+.mi-sit{background:var(--sky-light);border-left:3px solid var(--sky)}
+.mi-pairs{background:var(--gold-light);border-left:3px solid var(--gold)}
+.mi-ludo{background:var(--plum-light);border-left:3px solid var(--plum)}
+.mi-auto{background:var(--amber-light);border-left:3px solid var(--amber)}
+.mod-item h4{font-size:9pt;font-weight:700;margin-bottom:2px}
+.mi-expo h4{color:var(--ink)} .mi-guide h4{color:var(--sage)} .mi-sit h4{color:var(--sky)}
+.mi-pairs h4{color:var(--gold)} .mi-ludo h4{color:var(--plum)} .mi-auto h4{color:var(--amber)}
+.mod-item p{font-size:8pt;color:var(--text-mid);margin:0;line-height:1.3}
+
+/* PHRASES */
+.phrase-block{margin:0.7rem 0}
+.phrase-yes{color:var(--sage);font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:0.2rem}
+.phrase-no{color:var(--rust);font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:0.2rem}
+.phrase-text{padding:0.65rem 1rem;border-radius:6px;font-size:9.5pt;border-left:3px solid}
+.yes-text{background:var(--sage-light);border-color:var(--sage)}
+.no-text{background:var(--rust-light);border-color:var(--rust)}
+
+/* GRILLES */
+.grid{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.grid th{background:var(--ink);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.grid td{padding:8px 12px;font-size:9pt;border-bottom:1px solid var(--border);}
+.grid tr:nth-child(even) td{background:var(--bg)}
+
+/* AUTO-ÉVAL */
+.auto-eval{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.auto-eval th{background:var(--ink);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.auto-eval td{padding:8px 12px;font-size:9pt;border-bottom:1px solid var(--border)}
+.auto-eval tr:nth-child(even) td{background:var(--ink-light)}
+.check-cell{text-align:center;width:100px;}
+
+/* FICHE SÉANCE VIERGE */
+.fiche-vierge{border:2px solid var(--ink-border);border-radius:10px;padding:1.2rem;margin:0.8rem 0;background:var(--ink-light)}
+.fv-label{font-size:7.5pt;font-weight:700;color:var(--ink-mid);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:3px}
+.fv-line{border-bottom:1px solid var(--border);height:22px;margin-bottom:6px;background:white;border-radius:3px}
+.fv-box{border:1px solid var(--border);border-radius:5px;min-height:40px;background:white;margin-bottom:6px;padding:5px 8px}
+.fv-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
+.fv-full{grid-column:1/-1}
+
+/* JOURNAL */
+.journal-entry{border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem;margin:0.8rem 0}
+.journal-entry h4{font-size:9.5pt;font-weight:600;color:var(--ink);margin-bottom:0.6rem}
+.journal-line{border-bottom:1px dashed var(--border);height:22px;margin-bottom:4px}
+.journal-label{font-size:8pt;color:var(--text-light);margin-bottom:5px}
+
+@media print{
+  body{background:white;font-size:9pt}
+  .page{padding:0}
+  .cover,.box-key,.grid th,.auto-eval th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .bloom-row,.mod-item,.c1,.c2,.c3,.c4,.c5{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1 class="cover-h1"><a href="../../index.html">Formation médiateur numérique</a></h1>
+  <div class="cover-tag">Livret Apprenant</div>
+  <h2>CP3 : Concevoir &amp; programmer</h2>
+  <h3>Concevoir et programmer des accompagnements aux usages numériques<br>Mon guide complet pour les 3 fiches de séance du jury</h3>
+  <div class="cover-pills">
+    <div class="cover-pill">📐 7 fiches mémos</div>
+    <div class="cover-pill">🎯 Bloom + objectifs</div>
+    <div class="cover-pill">📄 Modèle de fiche de séance</div>
+    <div class="cover-pill">🎓 Préparation jury</div>
+  </div>
+</div>
+
+<!-- FICHE 1 : LA CHAÎNE CAUSALE -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 1</span>
+    <div class="fiche-title">La logique de l'ingénierie pédagogique</div>
+    <div class="fiche-sub">Les 5 maillons · Du besoin à l'évaluation · Les 3 domaines d'apprentissage</div>
+  </div>
+
+  <div class="box-key">
+    <h4>La règle d'or</h4>
+    <p>On ne conçoit jamais une séance en partant du contenu. On part toujours du <strong>besoin</strong>, on définit des <strong>objectifs mesurables</strong>, on choisit le <strong>contenu</strong> qui permet de les atteindre, on sélectionne les <strong>méthodes</strong> et on conçoit l'<strong>évaluation</strong> en même temps que les objectifs.</p>
+  </div>
+
+  <h3>La chaîne causale — les 5 maillons</h3>
+  <div class="chain">
+    <div class="chain-item c1">
+      <span class="num">1</span>
+      <span class="label">Besoin</span>
+      <span class="sublabel">Que doit apprendre le public ?</span>
+    </div>
+    <div class="chain-arrow">›</div>
+    <div class="chain-item c2">
+      <span class="num">2</span>
+      <span class="label">Objectifs</span>
+      <span class="sublabel">À la fin, il sera capable de…</span>
+    </div>
+    <div class="chain-arrow">›</div>
+    <div class="chain-item c3">
+      <span class="num">3</span>
+      <span class="label">Contenu</span>
+      <span class="sublabel">Quelles connaissances ?</span>
+    </div>
+    <div class="chain-arrow">›</div>
+    <div class="chain-item c4">
+      <span class="num">4</span>
+      <span class="label">Méthodes</span>
+      <span class="sublabel">Comment enseigner ?</span>
+    </div>
+    <div class="chain-arrow">›</div>
+    <div class="chain-item c5">
+      <span class="num">5</span>
+      <span class="label">Évaluation</span>
+      <span class="sublabel">Comment mesurer ?</span>
+    </div>
+  </div>
+
+  <h3>Les 3 domaines d'apprentissage</h3>
+  <table class="grid">
+    <thead><tr><th>Domaine</th><th>Ce que c'est</th><th>Exemple concret</th></tr></thead>
+    <tbody>
+      <tr><td><b>Savoir</b><br><small>(cognitif)</small></td><td>Connaissances, concepts, informations à retenir</td><td>"Savoir ce qu'est FranceConnect et à quoi ça sert"</td></tr>
+      <tr><td><b>Savoir-faire</b><br><small>(procédural)</small></td><td>Gestes, techniques, procédures à maîtriser</td><td>"Créer un compte Gmail et envoyer un email avec photo"</td></tr>
+      <tr><td><b>Savoir-être</b><br><small>(comportemental)</small></td><td>Attitudes, comportements, postures à développer</td><td>"Adopter une posture critique face aux infos en ligne"</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box-gold">
+    <p>Une bonne séance de médiation numérique touche souvent les 3 domaines à la fois. Exemple pour une séance "créer un compte email" : Savoir (comprendre ce qu'est un email), Savoir-faire (créer le compte), Savoir-être (avoir confiance pour l'utiliser seul ensuite).</p>
+  </div>
+
+  <h5>📝 Mon exercice — Classe ces apprentissages</h5>
+  <div class="box-rust">
+    <p style="font-size:9pt;margin-bottom:0.5rem">Pour chaque apprentissage, écris S (Savoir), SF (Savoir-faire) ou SE (Savoir-être) :</p>
+    <ul>
+      <li>"Utiliser Google Maps pour trouver son chemin" →  _________________________________________</li>
+      <li>"Connaître les 3 types d'arnaques par SMS" →  ____________________________________________</li>
+      <li>"Ne pas avoir peur de faire des erreurs sur un ordinateur" →  ___________________________________</li>
+      <li>"Télécharger une attestation depuis son espace Ameli" →  _____________________________________</li>
+      <li>"Comprendre ce qu'est un mot de passe sécurisé" →  ________________________________________</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FICHE 2 : BLOOM ET OBJECTIFS -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 2</span>
+    <div class="fiche-title">Les objectifs pédagogiques</div>
+    <div class="fiche-sub">La taxonomie de Bloom · Formuler un objectif opérationnel · Ce qu'il faut éviter</div>
+  </div>
+
+  <h3>Les 6 niveaux de Bloom</h3>
+  <div class="bloom-mini">
+    <div class="bloom-row b1r">
+      <div class="bloom-num b1">1</div>
+      <span class="bloom-name">Mémoriser &nbsp;</span>
+      <span class="bloom-verbs">Citer, nommer, lister, identifier, reconnaître</span>
+    </div>
+    <div class="bloom-row b2r">
+      <div class="bloom-num b2">2</div>
+      <span class="bloom-name">Comprendre &nbsp;</span>
+      <span class="bloom-verbs">Expliquer, décrire, résumer, distinguer, interpréter</span>
+    </div>
+    <div class="bloom-row b3r">
+      <div class="bloom-num b3">3</div>
+      <span class="bloom-name">Appliquer &nbsp;</span>
+      <span class="bloom-verbs">Utiliser, réaliser, mettre en œuvre, effectuer, créer</span>
+    </div>
+    <div class="bloom-row b4r">
+      <div class="bloom-num b4">4</div>
+      <span class="bloom-name">Analyser &nbsp;</span>
+      <span class="bloom-verbs">Comparer, analyser, distinguer, examiner, différencier</span>
+    </div>
+    <div class="bloom-row b5r">
+      <div class="bloom-num b5">5</div>
+      <span class="bloom-name">Évaluer &nbsp;</span>
+      <span class="bloom-verbs">Évaluer, juger, critiquer, défendre, argumenter</span>
+    </div>
+    <div class="bloom-row b6r">
+      <div class="bloom-num b6">6</div>
+      <span class="bloom-name">Créer &nbsp;</span>
+      <span class="bloom-verbs">Concevoir, produire, construire, élaborer, inventer</span>
+    </div>
+  </div>
+
+  <h3>La formule d'un objectif opérationnel</h3>
+  <div class="box-key">
+    <h4>Structure en 3 temps</h4>
+    <p><strong>Verbe d'action observable</strong> + <strong>quoi</strong> + <strong>condition + critère de réussite</strong></p>
+    <p style="margin-top:0.5rem">Exemple complet : <em>"À la fin de la séance, le participant sera capable de <span style="color: var(--plum-border)">[envoyer un email avec une pièce jointe]</span> + <span style="color: var(--plum-border)">[depuis l'interface Gmail]</span> + <span style="color: var(--plum-border)">[en moins de 5 minutes et sans aide]</span>."</em></p>
+  </div>
+
+  <div class="phrase-block">
+    <span class="phrase-no">✗ Objectifs mal formulés — à ne jamais écrire :</span>
+    <div class="phrase-text no-text">"Comprendre internet" / "Être à l'aise avec le numérique" / "Maîtriser les réseaux sociaux" / "Prendre conscience des risques" — Trop vagues, non mesurables, pas de comportement observable.</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Objectifs bien formulés :</span>
+    <div class="phrase-text yes-text">"Créer un compte FranceConnect depuis son espace Ameli" / "Identifier 3 signes d'un email suspect parmi 5 exemples" / "Envoyer une photo par WhatsApp à un contact de sa liste"</div>
+  </div>
+
+  <h5>📝 Mon exercice — Reformuler 3 objectifs ratés</h5>
+  <div class="box-sage">
+    <ul>
+      <li>"Savoir utiliser un smartphone" →  _________________________________________</li>
+      <li>"Connaître les dangers d'Internet" →  ________________________________________</li>
+      <li>"Apprendre à faire des recherches" →  ________________________________________</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FICHE 3 : MODALITÉS -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 3</span>
+    <div class="fiche-title">Les 6 modalités pédagogiques</div>
+    <div class="fiche-sub">Quand utiliser chaque méthode · La règle de la variété · L'andragogie</div>
+  </div>
+
+  <h3>Les 6 modalités en un coup d'œil</h3>
+  <div class="mod-mini">
+    <div class="mod-item mi-expo">
+      <h6>1. Exposé / Démonstration</h6>
+      <p style="font-size: 11px;">Je montre, j'explique. <span style="color: var(--sage); font-weight: bold;">✓</span> Pour introduire. <span style="color: var(--rust); font-weight: bold;">✗</span> Passif, max 20 min.</p>
+    </div>
+    <div class="mod-item mi-guide">
+      <h6>2. Exercice guidé</h6>
+      <p style="font-size: 11px;">Le participant reproduit. <span style="color: var(--sage); font-weight: bold;">✓</span> Ancrage par la pratique. Alterner avec l'exposé.</p>
+    </div>
+    <div class="mod-item mi-sit">
+      <h6>3. Mise en situation</h6>
+      <p style="font-size: 11px;">Problème réel à résoudre. <span style="color: var(--sage); font-weight: bold;">✓</span> Transfert dans la vraie vie. Niveau Bloom 3-4.</p>
+    </div>
+    <div class="mod-item mi-pairs">
+      <h6>4. Apprentissage entre pairs</h6>
+      <p style="font-size: 11px;">Le plus avancé aide le moins avancé. <span style="color: var(--sage); font-weight: bold;">✓</span> Très efficace avec les adultes.</p>
+    </div>
+    <div class="mod-item mi-ludo">
+      <h6>5. Ludopédagogie</h6>
+      <p style="font-size: 11px;">Quiz, jeux, cartes. <span style="color: var(--sage); font-weight: bold;">✓</span> Réduit l'anxiété. Idéal pour la sécurité numérique.</p>
+    </div>
+    <div class="mod-item mi-auto">
+      <h6>6. Auto-formation guidée</h6>
+      <p style="font-size: 11px;">La personne avance à son rythme + soutien. <span style="color: var(--sage); font-weight: bold;">✓</span> Respecte les vitesses différentes.</p>
+    </div>
+  </div>
+
+  <div class="box-gold">
+    <p><strong>La règle des 20 minutes :</strong> l'attention d'un adulte non-expert tient environ 20 minutes sur un même type d'activité. Alterner au minimum toutes les 20 minutes entre exposé et exercice pratique. Avec un public anxieux : toutes les 10 minutes.</p>
+  </div>
+
+  <h3>Les 5 principes de l'andragogie (adultes)</h3>
+  <table class="grid">
+    <thead><tr><th>Principe</th><th>Comment l'appliquer en séance</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Pourquoi avant quoi</b></td><td>Toujours commencer par "Grâce à ça, vous pourrez..." avant d'enseigner</td></tr>
+      <tr><td><b>2. Autonomie</b></td><td>Ne jamais faire à la place — demander l'avis sur le déroulé proposé</td></tr>
+      <tr><td><b>3. Partir des acquis</b></td><td>Valoriser ce que la personne sait déjà avant d'introduire du nouveau</td></tr>
+      <tr><td><b>4. Besoin concret</b></td><td>Ancrer chaque apprentissage dans une situation de vie réelle</td></tr>
+      <tr><td><b>5. Par problème</b></td><td>Proposer des mises en situation concrètes, pas des exercices abstraits</td></tr>
+    </tbody>
+  </table>
+
+  <h5>📝 Mon exercice — Quelle modalité pour quel objectif ?</h5>
+  <div class="box-ink">
+    <p style="font-size:9pt;margin-bottom:0.5rem">Pour chaque objectif, propose la modalité la plus adaptée et justifie en 1 phrase :</p>
+    <ul>
+      <li>"Identifier 3 signes d'un email de phishing"<br>→ Modalité : _________________________________________ <br>→ Pourquoi : _________________________________________</li>
+      <li>"Créer son compte FranceConnect"<br>→ Modalité : _________________________________________ <br>→ Pourquoi : _________________________________________</li>
+      <li>"Apprendre à évaluer une source d'information"<br>→ Modalité : _________________________________________ <br>→ Pourquoi : _________________________________________</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FICHE 4 : FICHE DE SÉANCE -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 4</span>
+    <div class="fiche-title">La fiche de séance — Format jury</div>
+    <div class="fiche-sub">Les 11 éléments obligatoires · Les pièges · La partie de 30 min</div>
+  </div>
+
+  <div class="box-key">
+    <h4>Ce que le jury lit avant de choisir ta séance</h4>
+    <p>Le jury prend connaissance de tes 3 fiches AVANT le questionnement. Il choisit laquelle tu animeras (la partie de 30 min). Tes fiches doivent être suffisamment précises pour qu'il comprenne exactement ce que tu vas faire, avec qui, et pourquoi.</p>
+  </div>
+
+  <h3>Les 11 éléments obligatoires</h3>
+  <table class="auto-eval">
+    <thead><tr><th>Élément</th><th>Piège fréquent</th><th class="check-cell"></th></tr></thead>
+    <tbody>
+      <tr><td><b>Thématique + intitulé</b></td><td>Trop vague : "Internet pour débutants"</td><td class="check-cell">☐</td></tr>
+      <tr><td><b>Durée totale (1h–2h)</b></td><td>Sous-estimer : 1h est souvent insuffisant</td><td class="check-cell">☐</td></tr>
+      <tr><td><b>Type (individuelle ou collective)</b></td><td>Oublier de préciser le nombre de participants</td><td class="check-cell">☐</td></tr>
+      <tr><td><b>Bénéficiaires (précis)</b></td><td>"Adultes" → trop vague. Préciser âge, contexte</td><td class="check-cell">☐</td></tr>
+      <tr><td><b>Objectifs pédagogiques observables</b></td><td>Confondre objectif et contenu</td><td class="check-cell">☐</td></tr>
+      <tr><td><b>Déroulé étape par étape avec durées</b></td><td>Étapes trop vagues : "exercice pratique 30 min"</td><td class="check-cell">☐</td></tr>
+      <tr><td><b>★ Partie de 30 min identifiée</b></td><td>Oublier de la signaler clairement</td><td class="check-cell">☐</td></tr>
+      <tr><td><b>Méthodes et activités pédagogiques</b></td><td>Ne mettre que "démonstration" sans varier</td><td class="check-cell">☐</td></tr>
+      <tr><td><b>Méthodes d'évaluation</b></td><td>Oubli très fréquent — très pénalisé au jury</td><td class="check-cell">☐</td></tr>
+      <tr><td><b>Noms et types de matériels</b></td><td>Trop vague : "supports numériques"</td><td class="check-cell">☐</td></tr>
+      <tr><td><b>Provenance des supports</b></td><td>Non précisée → question jury sur les droits</td><td class="check-cell">☐</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box-gold">
+    <p><strong>La règle des 3 thématiques :</strong> tes 3 séances doivent couvrir 3 thématiques distinctes. Une combinaison gagnante : usage courant (email/photo) + démarche administrative (CAF/Ameli) + sécurité numérique (arnaques/mots de passe).</p>
+  </div>
+
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ À propos de la partie de 30 min :</span>
+    <div class="phrase-text yes-text">La partie de 30 min que tu animeras au jury ne doit PAS contenir d'évaluation (quiz, test). Elle doit être une portion autonome du déroulé — le jury peut comprendre ce qui se passe sans avoir vu le reste de la séance.</div>
+  </div>
+</div>
+
+<!-- FICHE 5 : FALC -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 5</span>
+    <div class="fiche-title">Le FALC</div>
+    <div class="fiche-sub">Les 7 règles · Ce qu'il faut éviter · Tester son support</div>
+  </div>
+
+  <h3>Les 7 règles FALC à respecter toujours</h3>
+  <table class="grid">
+    <thead><tr><th>Règle</th><th>En pratique</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Une idée par phrase</b></td><td>Pas de "et" qui cumule plusieurs actions : 3 actions = 3 phrases</td></tr>
+      <tr><td><b>2. Phrases courtes</b></td><td>Maximum 15 mots par phrase. Compter mentalement.</td></tr>
+      <tr><td><b>3. Mots simples</b></td><td>"Valider" → "Appuyer sur le bouton vert" / "Identifiants" → "Votre email et votre mot de passe"</td></tr>
+      <tr><td><b>4. Police sans serif</b></td><td>Arial ou Calibri, taille 14 minimum pour l'impression</td></tr>
+      <tr><td><b>5. Beaucoup d'espaces</b></td><td>Interlignes généreux, marges larges, peu de texte par page</td></tr>
+      <tr><td><b>6. Images utiles et annotées</b></td><td>Capture d'écran + flèche rouge vers le bouton. Pas d'images décoratives.</td></tr>
+      <tr><td><b>7. Valider par le public</b></td><td>Faire tester à une vraie personne du public cible avant de finaliser</td></tr>
+    </tbody>
+  </table>
+
+  <div class="phrase-block">
+    <span class="phrase-no">✗ Texte AVANT réécriture FALC :</span>
+    <div class="phrase-text no-text">"Pour accéder à votre espace personnel, il convient de renseigner vos identifiants dans les champs appropriés du formulaire de connexion, puis de valider votre saisie en cliquant sur le bouton d'authentification."</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Texte APRÈS réécriture FALC (3 étapes) :</span>
+    <div class="phrase-text yes-text">Étape 1 : Écrivez votre email dans la case blanche.<br>Étape 2 : Écrivez votre mot de passe dans la case en dessous.<br>Étape 3 : Appuyez sur le bouton bleu "Se connecter".</div>
+  </div>
+
+  <h5>📝 Mes 3 fiches FALC à créer pour le stage</h5>
+  <div class="box-sage">
+    <ul>
+      <li>Fiche 1 (la plus demandée dans ma structure) : ____________________________________</li>
+      <li>Fiche 2 : _______________________________________________________________</li>
+      <li>Fiche 3 : _______________________________________________________________</li>
+    </ul>
+    <p style="font-size:8.5pt;color:var(--text-mid);margin-top:0.5rem">Ces fiches seront les matériels pédagogiques mentionnés dans tes fiches de séance.</p>
+  </div>
+</div>
+
+<!-- FICHE 6 : LICENCES ET RESSOURCES -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 6</span>
+    <div class="fiche-title">Licences libres et ressources</div>
+    <div class="fiche-sub">Les licences Creative Commons · Ce que je peux utiliser · Où trouver des ressources</div>
+  </div>
+
+  <h3>Les licences Creative Commons en résumé</h3>
+  <table class="grid">
+    <thead><tr><th>Licence</th><th>Je peux…</th><th>Je dois…</th></tr></thead>
+    <tbody>
+      <tr><td><b style="color:#3498DB">CC BY</b></td><td>Utiliser, modifier, diffuser librement</td><td>Citer l'auteur</td></tr>
+      <tr><td><b style="color:#27AE60">CC BY-SA</b></td><td>Utiliser et modifier librement</td><td>Citer l'auteur ET publier sous la même licence</td></tr>
+      <tr><td><b style="color:#F39C12">CC BY-NC</b></td><td>Utiliser et modifier sans but commercial</td><td>Citer l'auteur, pas d'usage commercial</td></tr>
+      <tr><td><b style="color:#9B59B6">CC BY-ND</b></td><td>Utiliser tel quel</td><td>Citer l'auteur, pas de modification</td></tr>
+      <tr><td><b>Domaine public</b></td><td>Tout, librement</td><td>Rien d'obligatoire</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box-gold">
+    <p><strong>Pour mes propres supports :</strong> le référentiel exige que mes supports soient produits <strong>sous licences libres</strong>. La licence recommandée est <strong>CC BY-SA</strong> — elle permet à d'autres médiateurs de réutiliser et améliorer mes supports, à condition de citer mon nom et de maintenir la même licence.</p>
+  </div>
+
+  <h3>Mes ressources pédagogiques en ligne</h3>
+  <table class="grid">
+    <thead><tr><th>Ressource</th><th>URL</th><th>Pour quoi ?</th></tr></thead>
+    <tbody>
+      <tr><td>Numérique en commun(s)</td><td>numerique-en-communs.fr</td><td>Ressources partagées médiateurs</td></tr>
+      <tr><td>Stratégie numérique de l'État</td><td>numerique.gouv.fr</td><td>Actualités de l'État</td></tr>
+      <tr><td>Wikimedia Commons</td><td>commons.wikimedia.org</td><td>Images libres pour les supports</td></tr>
+      <tr><td>Flaticon</td><td>flaticon.com</td><td>Pictogrammes pour FALC</td></tr>
+      <tr><td>CLEMI</td><td>clemi.fr</td><td>Ressources éducation aux médias</td></tr>
+      <tr><td>PIX</td><td>pix.fr</td><td>Évaluation et formation numériques</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FICHE 7 : JURY + CHECK-LIST -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 7</span>
+    <div class="fiche-title">Préparation au jury — CP3</div>
+    <div class="fiche-sub">Critères officiels · Questions types · Check-list finale des 3 séances</div>
+  </div>
+
+  <h3>Les 5 critères officiels du jury</h3>
+  <table class="auto-eval">
+    <thead><tr><th>Critère de performance</th><th class="check-cell">À travailler</th><th class="check-cell">Acquis</th></tr></thead>
+    <tbody>
+      <tr><td>Les thèmes et les connaissances/savoir-faire associés sont identifiés</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Les connaissances et savoir-faire sont traduits en objectifs pédagogiques</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>La construction du scénario pédagogique est claire et adaptée au public</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Les outils d'évaluation respectent les besoins du scénario pédagogique</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Les supports pédagogiques respectent les règles du FALC</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Mes réponses aux questions du jury</h3>
+  <div class="journal-entry">
+    <h6>"Pourquoi ces 3 thématiques ? Quel besoin chacune répond-elle ?"</h6>
+    <div class="journal-label">Pour chaque séance, le besoin identifié (en stage ou en formation) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h6>"Vos supports respectent-ils le FALC ? Montrez 3 éléments FALC."</h6>
+    <div class="journal-label">Les 3 éléments FALC que je vais montrer et expliquer :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h6>"Quelle modalité pédagogique avez-vous choisie et pourquoi pas les autres ?"</h6>
+    <div class="journal-label">Ma justification (en lien avec le public et l'objectif) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h6>"Comment évaluez-vous si les objectifs sont atteints ?"</h6>
+    <div class="journal-label">L'outil d'évaluation choisi pour chaque séance et pourquoi :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+
+  <h3>Check-list finale — avant de remettre mes fiches au jury</h3>
+  <div class="box-sage">
+    <ul>
+      <li style="list-style-type: none;">☐ Chaque fiche tient sur un recto-verso A4</li>
+      <li style="list-style-type: none;">☐ Les 3 thématiques sont distinctes</li>
+      <li style="list-style-type: none;">☐ Chaque séance dure entre 1h et 2h</li>
+      <li style="list-style-type: none;">☐ Chaque séance cible un <strong>public adulte</strong></li>
+      <li style="list-style-type: none;">☐ La partie de 30 min est clairement identifiée dans chaque fiche</li>
+      <li style="list-style-type: none;">☐ Cette partie de 30 min ne contient pas d'évaluation</li>
+      <li style="list-style-type: none;">☐ Les objectifs sont formulés avec un verbe observable</li>
+      <li style="list-style-type: none;">☐ Les méthodes d'évaluation sont mentionnées</li>
+      <li style="list-style-type: none;">☐ La provenance des supports est précisée</li>
+    </ul>
+  </div>
+</div>
+
+<!-- MODÈLE FICHE DE SÉANCE VIERGE -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Outil production</span>
+    <div class="fiche-title">Modèle de fiche de séance — à compléter</div>
+    <div class="fiche-sub">Format officiel jury · Recto A4 · À utiliser pour tes 3 séances</div>
+  </div>
+
+  <div class="fiche-vierge">
+    <p style="font-size:9pt;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem">Fiche de séance n°___ — Médiateur numérique</p>
+
+    <div class="fv-grid">
+      <div>
+        <span class="fv-label">Thématique et intitulé</span>
+        <div class="fv-box" style="min-height:30px"></div>
+      </div>
+      <div>
+        <span class="fv-label">Durée totale · Type (individuel / collectif)</span>
+        <div class="fv-box" style="min-height:30px"></div>
+      </div>
+      <div>
+        <span class="fv-label">Public bénéficiaire (âge, caractéristiques)</span>
+        <div class="fv-box" style="min-height:35px"></div>
+      </div>
+      <div>
+        <span class="fv-label">Objectifs pédagogiques (3 max, observables)</span>
+        <div class="fv-box" style="min-height:35px"></div>
+      </div>
+    </div>
+
+    <span class="fv-label">Déroulé de la séance — étapes et durées (★ identifier la partie de 30 min)</span>
+    <div class="fv-box" style="min-height:90px;font-size:8pt;color:var(--text-light);display:flex;align-items:flex-start;padding:8px"></div>
+
+    <div class="fv-grid">
+      <div>
+        <span class="fv-label">Méthodes et activités pédagogiques</span>
+        <div class="fv-box" style="min-height:35px"></div>
+      </div>
+      <div>
+        <span class="fv-label">Méthodes d'évaluation</span>
+        <div class="fv-box" style="min-height:35px"></div>
+      </div>
+      <div>
+        <span class="fv-label">Matériels pédagogiques (noms et types)</span>
+        <div class="fv-box" style="min-height:35px"></div>
+      </div>
+      <div>
+        <span class="fv-label">Provenance des supports</span>
+        <div class="fv-box" style="min-height:35px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box-rust" style="margin-top:0.6rem">
+    <p style="font-size:8.5pt"><strong>RAPPEL :</strong> Ce modèle correspond au recto de ta fiche A4. Le verso contiendra les détails supplémentaires du déroulé, les captures d'écran de tes supports FALC et les ressources complémentaires.</p>
+  </div>
+  <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../../index.html">🔙 Retour à l'accueil</a></button>
+</div>
+  <footer>
+  <p style="text-align: center; align-content: center; font-size: 8pt; color: var(--text-mid); margin: 20px 0;">© 2026 - Formation médiateur numérique - Tous droits réservés Dev&Info</p>
+  </footer>
+</body>
+</html>
