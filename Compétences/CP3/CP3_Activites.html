@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CP3 — Pack Activités — Concevoir et Programmer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2C3150;--ink-mid:#3D4A7A;--ink-light:#EEF0F8;--ink-border:#9BA8D0;
+  --rust:#A93226;--rust-light:#FDEDEC;--rust-border:#F1948A;
+  --sage:#1A6B4A;--sage-light:#E8F5EE;--sage-border:#7EC8A4;
+  --gold:#9A7D0A;--gold-light:#FEF9E7;--gold-border:#F7DC6F;
+  --sky:#1A6698;--sky-light:#EBF5FB;--sky-border:#7FB3D3;
+  --plum:#6C3483;--plum-light:#F5EEF8;--plum-border:#C39BD3;
+  --amber:#C47B1E;--amber-light:#FEF6EC;--amber-mid:#F5C57A;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.5cm}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg)}
+
+.cover{background:var(--ink);display:flex;flex-direction:column;padding:8vh 15vw;page-break-after:always;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;bottom:-80px;right:-80px;width:380px;height:380px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.cover-h1{background:var(--rust);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover h2{font-family:'Playfair Display',serif;font-size:44pt;color:white;line-height:1.05;margin:1.5rem 0 1rem}
+.cover p{font-size:11.5pt;color:rgba(255,255,255,0.68);font-weight:300;line-height:1.6;max-width:13cm;margin-bottom:3rem}
+.cover-tag{background:var(--rust);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block}
+.cover-items{display:flex;flex-direction:column;gap:0.8rem;margin-top:auto}
+.cover-item{background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt}
+.cover-item strong{color:rgba(255,255,255,0.9)}
+
+.page{background:white;padding:1.4cm;page-break-after:always}
+
+.sec-header{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:2px solid var(--border)}
+.sec-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700;color:white;flex-shrink:0}
+.sec-title{font-family:'Playfair Display',serif;font-size:18pt;color:var(--ink)}
+.sec-sub{font-size:9pt;color:var(--text-mid)}
+
+/* CARTES DE TRI S/SF/SE */
+.cartes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;margin:0.5rem 0}
+.carte{border-radius:8px;padding:0.8rem 0.9rem;border:1.5px solid var(--border);background:white;cursor:pointer;min-height:70px}
+.carte-num{font-size:7.5pt;font-weight:700;color:var(--text-light);margin-bottom:0.3rem}
+.carte-text{font-size:9pt;line-height:1.4}
+.carte-answer{margin-top:0.5rem;border-top:1px dashed var(--border);padding-top:0.4rem;display:flex;gap:6px}
+.ca-btn{border:1.5px solid var(--border);border-radius:5px;padding:3px 8px;font-size:8pt;font-weight:700;cursor:pointer}
+.ca-s{border-color:var(--gold);color:var(--gold);background:var(--gold-light)}
+.ca-sf{border-color:var(--sage);color:var(--sage);background:var(--sage-light)}
+.ca-se{border-color:var(--sky);color:var(--sky);background:var(--sky-light)}
+
+/* OBJECTIFS */
+.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin:0.5rem 0}
+.obj-card{border:1px solid var(--border);border-radius:8px;padding:0.9rem 1rem;background:white}
+.obj-num{font-size:7.5pt;font-weight:700;color:var(--text-mid);margin-bottom:0.4rem}
+.obj-bad{font-size:9pt;background:var(--rust-light);border-left:3px solid var(--rust);padding:6px 10px;border-radius:4px;font-style:italic;margin-bottom:0.5rem}
+.obj-label{font-size:7.5pt;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px}
+.obj-line{border-bottom:1px solid var(--border);height:20px;margin-bottom:3px}
+.obj-bloom-label{font-size:7.5pt;font-weight:700;color:var(--ink-mid);text-transform:uppercase;letter-spacing:0.5px;margin-top:5px;margin-bottom:2px}
+.obj-bloom-line{border-bottom:1px solid var(--border);height:18px}
+
+/* GRILLE VÉRIFICATION */
+.verif-grid{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.verif-grid th{background:var(--ink);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.verif-grid td{padding:9px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
+.verif-grid tr:nth-child(even) td{background:var(--bg)}
+.check-cell{text-align:center;width:100px}
+
+/* SCÉNARIOS À CONSTRUIRE */
+.scenario-card{border:2px solid var(--ink-border);border-radius:10px;padding:1.1rem;margin:0.7rem 0;background:var(--ink-light)}
+.sc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem}
+.sc-title{font-family:'Playfair Display',serif;font-size:13pt;color:var(--ink)}
+.sc-badge{background:var(--ink);color:white;font-size:7.5pt;font-weight:600;padding:3px 10px;border-radius:10px}
+.sc-field{margin-bottom:0.6rem}
+.sc-label{font-size:7.5pt;font-weight:700;color:var(--ink-mid);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:3px}
+.sc-line{border-bottom:1px solid var(--border);height:20px;background:white;border-radius:3px;margin-bottom:3px}
+.sc-box{border:1px solid var(--border);min-height:45px;background:white;border-radius:5px;padding:5px 8px;font-size:8.5pt;color:var(--text-light)}
+
+/* BOXES */
+.box{border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-tip{background:var(--gold-light);border-left:4px solid var(--gold)}
+.box-good{background:var(--sage-light);border-left:4px solid var(--sage)}
+.box h4{font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.4rem}
+.box-tip h4{color:var(--gold)} .box-good h4{color:var(--sage)}
+.box p,.box li{font-size:9.5pt;margin-bottom:3px}
+.box ul{padding-left:1.1rem}
+
+@media print{
+  body{background:white}
+  .page{padding:0}
+  .cover,.verif-grid th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .ca-s,.ca-sf,.ca-se,.obj-bad{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1 class="cover-h1"><a href="../../index.html">Formation médiateur numérique</a></h1>
+  <div class="cover-tag">Pack Activités · CP3</div>
+  <h2>Concevoir<br>&amp; programmer</h2>
+  <p>18 cartes de tri : Savoir / Savoir-faire / Savoir-être<br>10 objectifs à reformuler · 6 scénarios à construire<br>Grille de vérification des fiches de séance</p>
+  <div class="cover-items">
+    <div class="cover-item"><strong>Activité 1</strong> — Tri S / SF / SE — 18 cartes — 45 min</div>
+    <div class="cover-item"><strong>Activité 2</strong> — Reformuler 10 objectifs ratés — 1h</div>
+    <div class="cover-item"><strong>Activité 3</strong> — Construire 6 mini-scénarios pédagogiques — 1h30</div>
+    <div class="cover-item"><strong>Outil</strong> — Grille de vérification des fiches de séance (relecture croisée)</div>
+  </div>
+</div>
+
+<!-- ACTIVITÉ 1 : TRI S/SF/SE -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--rust)">1</div>
+    <div>
+      <div class="sec-title">Tri Savoir / Savoir-faire / Savoir-être</div>
+      <div class="sec-sub">18 cartes · Équipes de 3 · 45 minutes · Classer chaque apprentissage dans le bon domaine</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Mode d'emploi</h4>
+    <ul>
+      <li>Imprimer et découper les 18 cartes. Distribuer un jeu par équipe de 3.</li>
+      <li>Phase 1 (15 min) : classer les cartes en 3 tas — S (Savoir), SF (Savoir-faire), SE (Savoir-être).</li>
+      <li>Phase 2 (10 min) : chaque équipe compare avec une autre équipe et argumente les divergences.</li>
+      <li>Phase 3 (15 min) : tour de table grand groupe sur les cartes qui divisent.</li>
+      <li>Phase 4 (5 min) : synthèse — certaines cartes relèvent de plusieurs domaines, c'est normal.</li>
+    </ul>
+  </div>
+
+  <div class="cartes-grid">
+    <div class="carte"><div class="carte-num">01</div><p class="carte-text">Envoyer un email avec une pièce jointe depuis Gmail</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">02</div><p class="carte-text">Savoir ce qu'est FranceConnect et à quoi ça sert</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">03</div><p class="carte-text">Télécharger son attestation de droits depuis son espace Ameli</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">04</div><p class="carte-text">Ne pas avoir peur de cliquer sur des boutons sur un ordinateur</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">05</div><p class="carte-text">Connaître les 3 types d'arnaques par email les plus fréquents</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">06</div><p class="carte-text">Faire une recherche Google et évaluer 2 sources différentes</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">07</div><p class="carte-text">Adopter une posture critique face aux informations trouvées sur internet</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">08</div><p class="carte-text">Comprendre ce qu'est un mot de passe sécurisé et pourquoi c'est important</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">09</div><p class="carte-text">Créer un compte Gmail avec une adresse et un mot de passe sécurisé</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">10</div><p class="carte-text">Être à l'aise pour utiliser internet en autonomie sans aide extérieure</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">11</div><p class="carte-text">Savoir expliquer la différence entre un navigateur et un moteur de recherche</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">12</div><p class="carte-text">Paramétrer le zoom et la taille des caractères sur un téléphone Android</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">13</div><p class="carte-text">Faire une actualisation mensuelle sur l'espace France Travail</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">14</div><p class="carte-text">Vouloir pratiquer Internet seul(e) chez soi après les séances</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">15</div><p class="carte-text">Identifier les éléments d'une interface web (menu, lien, bouton, formulaire)</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">16</div><p class="carte-text">Utiliser WhatsApp pour envoyer un message et partager une photo</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">17</div><p class="carte-text">Se sentir légitime pour demander de l'aide numérique sans honte</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+    <div class="carte"><div class="carte-num">18</div><p class="carte-text">Créer un compte FranceConnect depuis son espace Ameli existant</p><div class="carte-answer"><div class="ca-btn ca-s">S</div><div class="ca-btn ca-sf">SF</div><div class="ca-btn ca-se">SE</div></div></div>
+  </div>
+</div>
+
+<!-- ACTIVITÉ 2 : OBJECTIFS À REFORMULER -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--ink-mid)">2</div>
+    <div>
+      <div class="sec-title">Reformuler 10 objectifs ratés</div>
+      <div class="sec-sub">Objectifs mal formulés · Réécrire avec un verbe observable · Préciser le niveau de Bloom · 1 heure</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Mode d'emploi</h4>
+    <ul>
+      <li>Phase 1 (20 min) : travail individuel — reformuler les 10 objectifs.</li>
+      <li>Phase 2 (10 min) : binômes — comparer et choisir la meilleure version.</li>
+      <li>Phase 3 (20 min) : tour de table — chaque binôme lit sa reformulation pour 1 objectif. Le groupe choisit la meilleure.</li>
+      <li>Phase 4 (10 min) : synthèse formateur. <strong>Règle clé :</strong> "Si on ne peut pas cocher une case oui/non après la séance, l'objectif est mal formulé."</li>
+    </ul>
+  </div>
+
+  <div class="obj-grid">
+    <div class="obj-card">
+      <div class="obj-num">Objectif 01</div>
+      <div class="obj-bad">"Comprendre comment fonctionne internet"</div>
+      <div class="obj-label">Ma reformulation opérationnelle :</div>
+      <div class="obj-line"></div>
+      <div class="obj-bloom-label">Niveau de Bloom :</div>
+      <div class="obj-bloom-line"></div>
+    </div>
+    <div class="obj-card">
+      <div class="obj-num">Objectif 02</div>
+      <div class="obj-bad">"Savoir utiliser un smartphone"</div>
+      <div class="obj-label">Ma reformulation opérationnelle :</div>
+      <div class="obj-line"></div>
+      <div class="obj-bloom-label">Niveau de Bloom :</div>
+      <div class="obj-bloom-line"></div>
+    </div>
+    <div class="obj-card">
+      <div class="obj-num">Objectif 03</div>
+      <div class="obj-bad">"Prendre conscience des dangers d'internet"</div>
+      <div class="obj-label">Ma reformulation opérationnelle :</div>
+      <div class="obj-line"></div>
+      <div class="obj-bloom-label">Niveau de Bloom :</div>
+      <div class="obj-bloom-line"></div>
+    </div>
+    <div class="obj-card">
+      <div class="obj-num">Objectif 04</div>
+      <div class="obj-bad">"Maîtriser les réseaux sociaux"</div>
+      <div class="obj-label">Ma reformulation opérationnelle :</div>
+      <div class="obj-line"></div>
+      <div class="obj-bloom-label">Niveau de Bloom :</div>
+      <div class="obj-bloom-line"></div>
+    </div>
+    <div class="obj-card">
+      <div class="obj-num">Objectif 05</div>
+      <div class="obj-bad">"Être à l'aise avec les démarches en ligne"</div>
+      <div class="obj-label">Ma reformulation opérationnelle :</div>
+      <div class="obj-line"></div>
+      <div class="obj-bloom-label">Niveau de Bloom :</div>
+      <div class="obj-bloom-line"></div>
+    </div>
+    <div class="obj-card">
+      <div class="obj-num">Objectif 06</div>
+      <div class="obj-bad">"Apprendre à faire des recherches sur Internet"</div>
+      <div class="obj-label">Ma reformulation opérationnelle :</div>
+      <div class="obj-line"></div>
+      <div class="obj-bloom-label">Niveau de Bloom :</div>
+      <div class="obj-bloom-line"></div>
+    </div>
+    <div class="obj-card">
+      <div class="obj-num">Objectif 07</div>
+      <div class="obj-bad">"Connaître la sécurité numérique"</div>
+      <div class="obj-label">Ma reformulation opérationnelle :</div>
+      <div class="obj-line"></div>
+      <div class="obj-bloom-label">Niveau de Bloom :</div>
+      <div class="obj-bloom-line"></div>
+    </div>
+    <div class="obj-card">
+      <div class="obj-num">Objectif 08</div>
+      <div class="obj-bad">"Savoir utiliser CAF.fr pour ses démarches"</div>
+      <div class="obj-label">Ma reformulation opérationnelle :</div>
+      <div class="obj-line"></div>
+      <div class="obj-bloom-label">Niveau de Bloom :</div>
+      <div class="obj-bloom-line"></div>
+    </div>
+    <div class="obj-card">
+      <div class="obj-num">Objectif 09</div>
+      <div class="obj-bad">"Sensibiliser aux fausses informations"</div>
+      <div class="obj-label">Ma reformulation opérationnelle :</div>
+      <div class="obj-line"></div>
+      <div class="obj-bloom-label">Niveau de Bloom :</div>
+      <div class="obj-bloom-line"></div>
+    </div>
+    <div class="obj-card">
+      <div class="obj-num">Objectif 10</div>
+      <div class="obj-bad">"Utiliser le numérique de façon responsable"</div>
+      <div class="obj-label">Ma reformulation opérationnelle :</div>
+      <div class="obj-line"></div>
+      <div class="obj-bloom-label">Niveau de Bloom :</div>
+      <div class="obj-bloom-line"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVITÉ 3 : MINI-SCÉNARIOS -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--sage)">3</div>
+    <div>
+      <div class="sec-title">Construire 6 mini-scénarios pédagogiques</div>
+      <div class="sec-sub">1 situation = 1 scénario à construire · Public + Objectif + Méthode + Évaluation · 1h30</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Mode d'emploi</h4>
+    <ul>
+      <li>Chaque groupe, composé de 3–4 personnes, construit le scénario de sa fiche (30 min).</li>
+      <li>Chaque groupe présente son scénario au reste de la salle (5 min par groupe).</li>
+      <li>Le reste de la salle questionne : pourquoi cette méthode ? Pourquoi ce niveau de Bloom ?</li>
+      <li>Variante avancée : chaque groupe reçoit 2 fiches et doit choisir la meilleure stratégie pour chacune.</li>
+    </ul>
+  </div>
+
+  <div class="scenario-card">
+    <div class="sc-header">
+      <div class="sc-title">Scénario A</div>
+      <div class="sc-badge">Situation donnée</div>
+    </div>
+    <p style="font-size:9.5pt;font-style:italic;color:var(--text-mid);margin-bottom:0.8rem">Un groupe de 6 seniors (70–80 ans) n'a jamais utilisé Internet. Ils veulent apprendre à appeler en vidéo leurs proches à l'étranger. Ils ont tous un smartphone basique. 1h30 disponible.</p>
+    <div class="sc-field"><span class="sc-label">3 objectifs pédagogiques opérationnels :</span><div class="sc-box">1. À la fin, le participant sera capable de... &nbsp; 2. ... &nbsp; 3. ...</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <div class="sc-field"><span class="sc-label">Méthodes pédagogiques choisies (et pourquoi) :</span><div class="sc-box"></div></div>
+      <div class="sc-field"><span class="sc-label">Méthode d'évaluation des acquis :</span><div class="sc-box"></div></div>
+    </div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="sc-header">
+      <div class="sc-title">Scénario B</div>
+      <div class="sc-badge">Situation donnée</div>
+    </div>
+    <p style="font-size:9.5pt;font-style:italic;color:var(--text-mid);margin-bottom:0.8rem">Un accompagnement individuel pour un homme de 45 ans, demandeur d'emploi. Il doit faire son actualisation France Travail chaque mois mais n'a jamais réussi seul. Niveau moyen. 1h disponible.</p>
+    <div class="sc-field"><span class="sc-label">3 objectifs pédagogiques opérationnels :</span><div class="sc-box">1. ... 2. ... 3. ...</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <div class="sc-field"><span class="sc-label">Méthodes pédagogiques + justification :</span><div class="sc-box"></div></div>
+      <div class="sc-field"><span class="sc-label">Méthode d'évaluation :</span><div class="sc-box"></div></div>
+    </div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="sc-header">
+      <div class="sc-title">Scénario C</div>
+      <div class="sc-badge">Situation donnée</div>
+    </div>
+    <p style="font-size:9.5pt;font-style:italic;color:var(--text-mid);margin-bottom:0.8rem">Atelier collectif de 8 participants (parents d'enfants 8–12 ans). Problématique : ils s'inquiètent des risques numériques pour leurs enfants mais ne savent pas comment agir. 1h30 disponible.</p>
+    <div class="sc-field"><span class="sc-label">3 objectifs pédagogiques opérationnels :</span><div class="sc-box">1. ... 2. ... 3. ...</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <div class="sc-field"><span class="sc-label">Méthodes pédagogiques + justification :</span><div class="sc-box"></div></div>
+      <div class="sc-field"><span class="sc-label">Méthode d'évaluation :</span><div class="sc-box"></div></div>
+    </div>
+  </div>
+  <div class="scenario-card">
+    <div class="sc-header">
+      <div class="sc-title">Scénario D</div>
+      <div class="sc-badge">Situation donnée</div>
+    </div>
+    <p style="font-size:9.5pt;font-style:italic;color:var(--text-mid);margin-bottom:0.8rem">Atelier de 5 personnes en situation de handicap (déficience intellectuelle légère), accompagnées d'une éducatrice spécialisée. Objectif : leur apprendre à utiliser YouTube pour regarder des vidéos de leurs artistes préférés. 1h30 + coanimation.</p>
+    <div class="sc-field"><span class="sc-label">2 objectifs pédagogiques opérationnels (adaptés au public) :</span><div class="sc-box">1. ... &nbsp; 2. ...</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <div class="sc-field"><span class="sc-label">Adaptations nécessaires (supports, rythme, matériel) :</span><div class="sc-box"></div></div>
+      <div class="sc-field"><span class="sc-label">Méthodes pédagogiques + rôle du coanimateur :</span><div class="sc-box"></div></div>
+    </div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="sc-header">
+      <div class="sc-title">Scénario E</div>
+      <div class="sc-badge">Situation donnée</div>
+    </div>
+    <p style="font-size:9.5pt;font-style:italic;color:var(--text-mid);margin-bottom:0.8rem">Atelier collectif "Médias et information" pour un groupe de 10 adolescents (14–17 ans) en maison des jeunes. Thème : comment reconnaître une fausse information sur les réseaux sociaux ? 1h30.</p>
+    <div class="sc-field"><span class="sc-label">3 objectifs pédagogiques (niveau Bloom 4 ou 5 visé) :</span><div class="sc-box">1. ... 2. ... 3. ...</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <div class="sc-field"><span class="sc-label">Méthodes adaptées aux adolescents :</span><div class="sc-box"></div></div>
+      <div class="sc-field"><span class="sc-label">Comment maintenir leur engagement 1h30 ?</span><div class="sc-box"></div></div>
+    </div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="sc-header">
+      <div class="sc-title">Scénario F</div>
+      <div class="sc-badge">Situation donnée</div>
+    </div>
+    <p style="font-size:9.5pt;font-style:italic;color:var(--text-mid);margin-bottom:0.8rem">Un artisan de 60 ans, aucune compétence numérique, qui doit impérativement créer sa fiche Google My Business pour son activité. Il est pragmatique et veut juste "que ça marche". Accompagnement individuel, 2h.</p>
+    <div class="sc-field"><span class="sc-label">3 objectifs opérationnels très concrets :</span><div class="sc-box">1. ... 2. ... 3. ...</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <div class="sc-field"><span class="sc-label">Déroulé proposé (étapes) :</span><div class="sc-box"></div></div>
+      <div class="sc-field"><span class="sc-label">Support FALC à créer :</span><div class="sc-box"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GRILLE DE VÉRIFICATION -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--gold)">4</div>
+    <div>
+      <div class="sec-title">Grille de vérification des fiches de séance</div>
+      <div class="sec-sub">Relecture croisée en binôme · À utiliser avant de remettre les fiches au jury</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin-bottom:1rem">
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Auteur de la fiche :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Relecteur :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Séance n° :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+  </div>
+
+  <table class="verif-grid">
+    <thead>
+      <tr>
+        <th style="width:50%">Élément à vérifier</th>
+        <th class="check-cell" style="text-align: center;"><span style="color: var(--sage);">✓</span> OK</th>
+        <th class="check-cell" style="text-align: center;"><span style="color: var(--rust);">✗</span> À revoir</th>
+        <th style="text-align: center;">Commentaire du relecteur</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="4" style="background:var(--ink-light);font-weight:700;font-size:8.5pt;color:var(--ink);padding:6px 12px">FORME ET FORMAT</td></tr>
+      <tr><td>La fiche tient sur un recto-verso A4 (pas plus)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>La police est lisible (Arial ou Calibri, 10pt minimum)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>La mise en page est claire et aérée</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="4" style="background:var(--ink-light);font-weight:700;font-size:8.5pt;color:var(--ink);padding:6px 12px">INFORMATIONS OBLIGATOIRES</td></tr>
+      <tr><td>Thématique et intitulé précis (pas trop vague)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>Durée entre 1h et 2h</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>Type précisé (individuelle / collective + nombre)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>Public adulte décrit avec précision (âge, contexte)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="4" style="background:var(--ink-light);font-weight:700;font-size:8.5pt;color:var(--ink);padding:6px 12px">OBJECTIFS PÉDAGOGIQUES</td></tr>
+      <tr><td>Chaque objectif contient un verbe observable</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>Les objectifs sont formulés en "sera capable de…"</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>Les objectifs sont réalisables en 1 à 2h (pas trop ambitieux)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="4" style="background:var(--ink-light);font-weight:700;font-size:8.5pt;color:var(--ink);padding:6px 12px">DÉROULÉ ET MÉTHODES</td></tr>
+      <tr><td>Le déroulé est détaillé avec des durées pour chaque étape</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>La partie de 30 min est clairement identifiée (★ ou surligné)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>La partie de 30 min ne contient pas d'évaluation</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>Au moins 2 méthodes pédagogiques différentes sont utilisées</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="4" style="background:var(--ink-light);font-weight:700;font-size:8.5pt;color:var(--ink);padding:6px 12px">ÉVALUATION ET SUPPORTS</td></tr>
+      <tr><td>Une méthode d'évaluation est mentionnée</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>Les matériels pédagogiques sont nommés précisément</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>La provenance des supports est précisée</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>Si supports créés par le candidat : licence précisée</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+      <tr><td>Les supports respectent les règles FALC (si applicable)</td><td class="check-cell">☐</td><td class="check-cell">☐</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.8rem">
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--sage);margin-bottom:0.4rem">✓ 2 points forts de cette fiche :</p>
+      <div style="border:1px solid var(--sage-border);border-radius:8px;padding:0.8rem;background:var(--sage-light);min-height:60px"></div>
+    </div>
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--rust);margin-bottom:0.4rem">→ 1 ou 2 points à améliorer avant le jury :</p>
+      <div style="border:1px solid var(--rust-border);border-radius:8px;padding:0.8rem;background:var(--rust-light);min-height:60px"></div>
+    </div>
+  </div>
+  <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../../index.html">🔙 Retour à l'accueil</a></button>
+</div>
+  <footer>
+  <p style="text-align: center; align-content: center; font-size: 8pt; color: var(--text-mid); margin: 20px 0;">© 2026 - Formation médiateur numérique - Tous droits réservés Dev&Info</p>
+  </footer>
+</body>
+</html>
