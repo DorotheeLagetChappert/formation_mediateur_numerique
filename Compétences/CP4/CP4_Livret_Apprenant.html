@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CP4 — Livret Apprenant — Médiateur Numérique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#1B5E3B;--forest-mid:#2E7D52;--forest-light:#E8F5EE;--forest-border:#7EC8A4;
+  --brick:#8B2635;--brick-light:#FDEDEC;--brick-border:#F1948A;
+  --slate:#2C3A47;--slate-mid:#4A6274;--slate-light:#EBF0F4;--slate-border:#A9C2D3;
+  --honey:#9C6F00;--honey-light:#FEF9E7;--honey-border:#F7DC6F;
+  --sky:#1A6698;--sky-light:#EBF5FB;--sky-border:#7FB3D3;
+  --plum:#6C3483;--plum-light:#F5EEF8;--plum-border:#C39BD3;
+  --amber:#C47B1E;--amber-light:#FEF6EC;--amber-mid:#F5C57A;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.5cm 1.4cm}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg);line-height:1.55}
+
+.cover{background:var(--slate);display:flex;flex-direction:column;justify-content:flex-end;padding:8vh 15vw;page-break-after:always;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,0.05)}
+.cover::after{content:'';position:absolute;bottom:120px;left:30px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.cover-tag{background:var(--forest);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block;margin-bottom:1.5rem}
+.cover-h1{background:var(--forest);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover h2{font-family:'Playfair Display',serif;font-size:38pt;color:white;line-height:1.05;margin-bottom:0.8rem}
+.cover h3{font-size:11.5pt;color:rgba(255,255,255,0.75);font-weight:300;line-height:1.6;max-width:16cm;margin-bottom:2rem}
+.cover-pills{display:flex;flex-wrap:wrap;gap:0.8rem}
+.cover-pill{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:white;padding:7px 16px;border-radius:20px;font-size:9pt}
+
+.page{background:white;padding:5vh 5vw;page-break-after:always}
+.page:last-child{page-break-after:auto}
+
+.fiche-header{margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:3px solid var(--forest)}
+.fiche-num{font-size:8pt;font-weight:600;color:var(--forest);text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:0.3rem}
+.fiche-title{font-family:'Playfair Display',serif;font-size:22pt;color:var(--slate)}
+.fiche-sub{font-size:10pt;color:var(--text-mid);font-weight:300;margin-top:0.3rem}
+
+h3{font-family:'Playfair Display',serif;font-size:15pt;color:var(--forest);margin:1.3rem 0 0.5rem;padding-left:0.8rem;border-left:4px solid var(--forest)}
+h4{font-size:10.5pt;color:var(--forest-mid);font-weight:600;margin:0.9rem 0 0.3rem}
+p{font-size:9.5pt;margin-bottom:0.5rem;line-height:1.55}
+ul,ol{padding-left:1.2rem;margin-bottom:0.6rem}
+li{font-size:9.5pt;margin-bottom:3px;line-height:1.5}
+
+.box-key{background:var(--forest);border-radius:10px;padding:1.1rem 1.4rem;margin:0.8rem 0}
+.box-key h3{color:rgba(255,255,255,0.6);font-size:8.5pt;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.6rem}
+.box-key p,.box-key li{color:white;font-size:9.5pt;margin-bottom:4px;line-height:1.5}
+.box-key ul{padding-left:1.1rem}
+.box-forest{background:var(--forest-light);border:1px solid var(--forest-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-honey{background:var(--honey-light);border:1px solid var(--honey-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-brick{background:var(--brick-light);border:1px solid var(--brick-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-sky{background:var(--sky-light);border:1px solid var(--sky-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+
+/* 5 TEMPS VISUELS */
+.cinq-temps{display:flex;flex-direction:column;gap:5px;margin:0.8rem 0}
+.ct-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:7px}
+.ct-1{background:#FDEDEC;border-left:4px solid var(--brick)}
+.ct-2{background:var(--slate-light);border-left:4px solid var(--slate-mid)}
+.ct-3{background:var(--forest-light);border-left:4px solid var(--forest)}
+.ct-4{background:var(--sky-light);border-left:4px solid var(--sky)}
+.ct-5{background:var(--honey-light);border-left:4px solid var(--honey)}
+.ct-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9.5pt;font-weight:700;color:white;flex-shrink:0}
+.n1{background:var(--brick)} .n2{background:var(--slate-mid)} .n3{background:var(--forest)} .n4{background:var(--sky)} .n5{background:var(--honey)}
+.ct-content{flex:1}
+.ct-title{font-weight:700;font-size:9.5pt}
+.ct-1 .ct-title{color:var(--brick)} .ct-2 .ct-title{color:var(--slate-mid)} .ct-3 .ct-title{color:var(--forest)} .ct-4 .ct-title{color:var(--sky)} .ct-5 .ct-title{color:var(--honey)}
+.ct-desc{font-size:8.5pt;color:var(--text-mid);line-height:1.3}
+.ct-temps{font-size:8pt;font-weight:600;opacity:0.7;white-space:nowrap}
+
+/* VOCAB */
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0.8rem 0}
+.vocab-item{background:var(--bg);border-radius:6px;padding:8px 10px;display:flex;gap:8px;align-items:flex-start}
+.vocab-tech{font-size:9.5pt;font-weight:700;color:var(--brick);min-width:100px;flex-shrink:0}
+.vocab-simple{font-size:9.5pt;color:var(--text);flex:1;line-height:1.4}
+.vocab-analogy{font-size:9pt;color:var(--forest-mid);font-style:italic;margin-top:2px;display:block}
+
+/* PHRASES */
+.phrase-block{margin:0.7rem 0}
+.phrase-yes{color:var(--forest);font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:0.2rem}
+.phrase-no{color:var(--brick);font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:0.2rem}
+.phrase-text{padding:0.65rem 1rem;border-radius:6px;font-size:9.5pt;border-left:3px solid}
+.yes-text{background:var(--forest-light);border-color:var(--forest)}
+.no-text{background:var(--brick-light);border-color:var(--brick)}
+
+/* GRILLES */
+.grid{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.grid th{background:var(--forest);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.grid td{padding:8px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
+.grid tr:nth-child(even) td{background:var(--bg)}
+
+/* AUTO-ÉVAL */
+.auto-eval{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.auto-eval th{background:var(--forest);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px}
+.auto-eval td{padding:8px 12px;font-size:9pt;border-bottom:1px solid var(--border)}
+.auto-eval tr:nth-child(even) td{background:var(--forest-light)}
+.check-cell{text-align:center;width:100px}
+
+/* CHECK-LIST PRÉPA */
+.checklist{display:flex;flex-direction:column;gap:5px;margin:0.7rem 0}
+.cl-item{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:6px;background:var(--bg)}
+.cl-check{width:20px;height:20px;border:2px solid var(--forest-border);border-radius:4px;flex-shrink:0;margin-top:1px}
+.cl-text{font-size:9pt;line-height:1.4;flex:1}
+
+/* JOURNAL */
+.journal-entry{border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem;margin:0.8rem 0;}
+.journal-entry h4{font-size:9.5pt;font-weight:600;color:var(--forest);margin-bottom:0.6rem}
+.journal-line{border-bottom:1px dashed var(--border);height:22px;margin-bottom:4px}
+.journal-label{font-size:8pt;color:var(--text-light);margin-bottom:5px}
+
+@media print{
+  body{background:white;font-size:9pt}
+  .page{padding:0}
+  .cover,.box-key,.grid th,.auto-eval th,.ct-1,.ct-2,.ct-3,.ct-4,.ct-5{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1 class="cover-h1"><a href="../../index.html">Formation médiateur numérique</a></h1>
+  <div class="cover-tag">Livret Apprenant</div>
+  <h2>CP4 : Préparer &amp; animer</h2>
+  <h3>Préparer et animer des accompagnements aux usages numériques <br>Mon guide complet pour l'épreuve principale du jury</h3>
+  <div class="cover-pills">
+    <div class="cover-pill">🎭 L'épreuve centrale</div>
+    <div class="cover-pill">🎯 7 fiches mémos</div>
+    <div class="cover-pill">♿ Accessibilité</div>
+    <div class="cover-pill">📋 Check-list jury</div>
+  </div>
+</div>
+
+<!-- FICHE 1 : LES 5 TEMPS -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 1</span>
+    <div class="fiche-title">La structure d'une séance</div>
+    <div class="fiche-sub">Les 5 temps incontournables · L'accroche · Le contrat pédagogique</div>
+  </div>
+
+  <div class="box-key">
+    <h4 style="color:var(--forest-border);">Ce que le jury observe et évalue en 30 minutes</h4>
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li>✓ la préparation visible de l'espace</li>
+      <li>✓ la présentation claire des objectifs et du déroulé</li>
+      <li>✓ l'animation qui respecte la fiche de séance</li>
+      <li>✓ un langage accessible sans jargon</li>
+      <li>✓ la gestion du "participant" (rôle joué par le jury)</li>
+    </ul>
+  </div>
+
+  <h3>Les 5 temps de la séance</h3>
+  <div class="cinq-temps">
+    <div class="ct-row ct-1">
+      <div class="ct-num n1">1</div>
+      <div class="ct-content">
+        <span class="ct-title">Accueil et accroche</span>
+        <span class="ct-desc"> — Créer la curiosité et le lien. Question impliquante, situation concrète.</span>
+      </div>
+      <span class="ct-temps">5–10 min</span>
+    </div>
+    <div class="ct-row ct-2">
+      <div class="ct-num n2">2</div>
+      <div class="ct-content">
+        <span class="ct-title">Contrat pédagogique</span>
+        <span class="ct-desc"> — Objectifs, déroulé, durée, règles. C'est le moment où les participants s'engagent.</span>
+      </div>
+      <span class="ct-temps">3–5 min</span>
+    </div>
+    <div class="ct-row ct-3">
+      <div class="ct-num n3">3</div>
+      <div class="ct-content">
+        <span class="ct-title">Apprentissage actif</span>
+        <span class="ct-desc"> — Le cœur. Alterner exposé (max 20 min) et pratique. C'est la partie animée au jury.</span>
+      </div>
+      <span class="ct-temps">70–80%</span>
+    </div>
+    <div class="ct-row ct-4">
+      <div class="ct-num n4">4</div>
+      <div class="ct-content">
+        <span class="ct-title">Synthèse et évaluation</span>
+        <span class="ct-desc"> — Reprendre les points clés, vérifier les acquis. PAS dans la partie de 30 min du jury.</span>
+      </div>
+      <span class="ct-temps">10 min</span>
+    </div>
+    <div class="ct-row ct-5">
+      <div class="ct-num n5">5</div>
+      <div class="ct-content">
+        <span class="ct-title">Clôture et suites</span>
+        <span class="ct-desc"> — Fiche FALC, prochaine séance, invitation à pratiquer chez soi.</span>
+      </div>
+      <span class="ct-temps">5 min</span>
+    </div>
+  </div>
+
+  <h3>Exemples d'accroches fortes</h3>
+  <div class="phrase-block">
+    <span class="phrase-yes">Thème email :</span>
+    <div class="phrase-text yes-text">"Saviez-vous que chaque mois des milliers de personnes perdent des allocations parce qu'elles n'ont pas vu un email de la CAF ?"</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">Thème arnaques :</span>
+    <div class="phrase-text yes-text">"Je vais vous montrer un SMS. Levez la main si vous pensez que c'est une arnaque." [montrer → débat → "voilà pourquoi c'est difficile à détecter"]</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">Thème smartphone :</span>
+    <div class="phrase-text yes-text">"Qui ici connaît quelqu'un qui a perdu toutes ses photos parce que son téléphone est tombé ? C'est exactement ce qu'on va éviter ensemble."</div>
+  </div>
+
+  <h4>📝 Mon accroche pour chacune de mes 3 séances</h4>
+  <div class="box-honey">
+    <ul>
+      <li>Séance 1 — "______________________" : mon accroche → ______________________________</li>
+      <li>Séance 2 — "______________________" : mon accroche → ______________________________</li>
+      <li>Séance 3 — "______________________" : mon accroche → ______________________________</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FICHE 2 : PRÉPARER L'ESPACE -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 2</span>
+    <div class="fiche-title">Préparer l'espace — les 10 minutes avant</div>
+    <div class="fiche-sub">Configurations de salle · Check-list · Plans B</div>
+  </div>
+
+  <h3>Les 3 configurations de salle</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin:0.8rem 0">
+    <div class="box-sky" style="text-align:center">
+      <p style="font-size:10pt;font-weight:700;color:var(--sky);margin-bottom:0.3rem">En U</p>
+      <p style="font-size:8.5pt">Le formateur circule.<br>Chacun voit l'écran et les autres.<br><span style="color: var(--forest); font-weight: bold;">✓</span> Recommandé pour 4 à 12 personnes.</p>
+    </div>
+    <div class="box-forest" style="text-align:center">
+      <p style="font-size:10pt;font-weight:700;color:var(--forest);margin-bottom:0.3rem">En îlots</p>
+      <p style="font-size:8.5pt">Organisation en sous-groupes.<br>Favorise le travail collaboratif.<br><span style="color: var(--forest); font-weight: bold;">✓</span> Idéal pour ateliers participatifs.</p>
+    </div>
+    <div class="box-brick" style="text-align:center">
+      <p style="font-size:10pt;font-weight:700;color:var(--brick);margin-bottom:0.3rem">En rangées</p>
+      <p style="font-size:8.5pt">Coupe la communication.<br>Limite la circulation.<br><span style="color: var(--brick); font-weight: bold;">✗</span> À éviter si possible.</p>
+    </div>
+  </div>
+
+  <h3>Ma check-list des 10 minutes avant le public</h3>
+  <div class="checklist">
+    <div class="cl-item"><div class="cl-check"></div><div class="cl-text"><strong>Connexion internet</strong> — ouvrir le site cible et cliquer sur 2 pages</div></div>
+    <div class="cl-item"><div class="cl-check"></div><div class="cl-text"><strong>Vidéoprojecteur</strong> — tester l'affichage depuis tous les angles de la salle</div></div>
+    <div class="cl-item"><div class="cl-check"></div><div class="cl-text"><strong>Ordinateurs participants</strong> — allumer, navigateur ouvert, mises à jour désactivées</div></div>
+    <div class="cl-item"><div class="cl-check"></div><div class="cl-text"><strong>Zoom navigateur</strong> — à 125% minimum pour la démonstration projetée</div></div>
+    <div class="cl-item"><div class="cl-check"></div><div class="cl-text"><strong>Supports imprimés</strong> — nombre d'exemplaires vérifié, lisibilité, ordre</div></div>
+    <div class="cl-item"><div class="cl-check"></div><div class="cl-text"><strong>Accessibilité physique</strong> — espace fauteuil, hauteur tables, luminosité</div></div>
+    <div class="cl-item"><div class="cl-check"></div><div class="cl-text"><strong>Téléphone en silencieux</strong> — notifications ordinateur désactivées</div></div>
+    <div class="cl-item"><div class="cl-check"></div><div class="cl-text"><strong>Plan B connexion</strong> — ressources téléchargées en local ET partage 4G prêt</div></div>
+  </div>
+
+  <div class="box-honey">
+    <p><strong>La règle du plan B :</strong> pour chaque élément critique (connexion, projecteur, supports), tu dois avoir une solution de secours prête. Le professionnel expérimenté ne dit jamais "ça ne marchait pas" — il dit "ça ne marchait pas, donc j'ai fait..."</p>
+  </div>
+</div>
+
+<!-- FICHE 3 : TECHNIQUES D'ANIMATION -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 3</span>
+    <div class="fiche-title">Techniques d'animation</div>
+    <div class="fiche-sub">Faire participer · Détecter le décrochage · Adapter en temps réel</div>
+  </div>
+
+  <h3>6 techniques pour faire participer</h3>
+  <table class="grid">
+    <thead><tr><th>Technique</th><th>Comment l'utiliser</th></tr></thead>
+    <tbody>
+      <tr><td><b>Question ouverte générale</b></td><td>"Qui d'entre vous a déjà essayé de faire une démarche en ligne ?" → Attendre → Ne pas répondre soi-même</td></tr>
+      <tr><td><b>Question nominative</b></td><td>"Marie, vous avez un smartphone — qu'est-ce que vous faites avec ?" → Jamais pour mettre en difficulté</td></tr>
+      <tr><td><b>Tour de table</b></td><td>Chacun répond en 1 phrase. Idéal pour le début ou la synthèse.</td></tr>
+      <tr><td><b>Vote / lever de main</b></td><td>"Levez la main si..." → Crée de l'engagement, révèle les niveaux</td></tr>
+      <tr><td><b>Binôme expert</b></td><td>"Tournez-vous vers votre voisin et aidez-le à trouver..." → Apprentissage entre pairs</td></tr>
+      <tr><td><b>Construction collective</b></td><td>"Dites-moi vos idées, je les note au tableau" → Le groupe co-construit le savoir</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Détecter et traiter le décrochage</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin:0.7rem 0">
+    <div class="box-brick">
+      <p style="font-size:9pt;font-weight:700;color:var(--brick);margin-bottom:0.4rem">🔴 Signaux à repérer</p>
+      <ul>
+        <li>Regard dans le vide, tête baissée</li>
+        <li>Téléphone personnel sorti</li>
+        <li>Soupirs, bâillements, agitation</li>
+        <li>Silence d'un habituellement actif</li>
+        <li>Posture fermée, bras croisés</li>
+        <li>Conversations parallèles</li>
+      </ul>
+    </div>
+    <div class="box-forest">
+      <p style="font-size:9pt;font-weight:700;color:var(--forest);margin-bottom:0.4rem">🟢 Réponses immédiates</p>
+      <ul>
+        <li>Changer d'activité maintenant</li>
+        <li>Pause de 2 minutes</li>
+        <li>"Est-ce que c'est clair jusqu'ici ?"</li>
+        <li>Interpeller avec une question valorisante</li>
+        <li>Circuler vers la personne perdue</li>
+        <li>Proposer un exercice pour réimpliquer</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Si quelqu'un décroche discrètement :</span>
+    <div class="phrase-text yes-text">"Pendant que les autres continuent, je vais m'asseoir 2 minutes à côté de vous pour vérifier qu'on est bien ensemble."</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Si tout le groupe perd le fil :</span>
+    <div class="phrase-text yes-text">"Stop — on va faire une petite pause. Levez-vous, étirez-vous 30 secondes. Ensuite on reprend autrement."</div>
+  </div>
+</div>
+
+<!-- FICHE 4 : MON GLOSSAIRE -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 4</span>
+    <div class="fiche-title">Mon glossaire visuel</div>
+    <div class="fiche-sub">Termes techniques → langage accessible · Analogies mémorables · À enrichir en stage</div>
+  </div>
+
+  <div class="box-key">
+    <h4 style="color:var(--forest-border);">Pourquoi ce glossaire est indispensable</h4>
+    <p>Le jury observe si tu utilises du jargon sans l'expliquer. Même les termes que tu considères comme "basiques" (navigateur, identifiant, onglet) sont inconnus du public débutant. Avoir ces traductions en tête est une compétence professionnelle.</p>
+  </div>
+
+  <h3>Mes traductions — à compléter</h3>
+  <div class="vocab-grid">
+    <div class="vocab-item">
+      <span class="vocab-tech">Application</span>
+      <div><span class="vocab-simple">"Un petit programme sur votre téléphone"</span><span class="vocab-analogy">"Comme les outils dans une boîte à outils"</span></div>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Identifiant</span>
+      <div><span class="vocab-simple">"Votre nom d'utilisateur, souvent votre email"</span><span class="vocab-analogy">"Votre nom sur la sonnette de votre maison numérique"</span></div>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Mot de passe</span>
+      <div><span class="vocab-simple">"La clé qui ouvre votre compte"</span><span class="vocab-analogy">"Comme la clé de votre maison — unique et secrète"</span></div>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Navigateur</span>
+      <div><span class="vocab-simple">"La fenêtre dans laquelle vous visitez les sites"</span><span class="vocab-analogy">"Comme votre voiture pour aller sur internet"</span></div>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Télécharger</span>
+      <div><span class="vocab-simple">"Récupérer un document sur votre appareil pour le garder"</span><span class="vocab-analogy">"Comme prendre une photocopie"</span></div>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Compte</span>
+      <div><span class="vocab-simple">"Votre espace personnel sur ce site"</span><span class="vocab-analogy">"Comme votre casier à la piscine"</span></div>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Mettre à jour</span>
+      <div><span class="vocab-simple">"Installer la nouvelle version du programme"</span><span class="vocab-analogy">"Comme repeindre les murs — améliore et protège"</span></div>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-tech">Mémoire pleine</span>
+      <div><span class="vocab-simple">"Il n'y a plus de place sur votre téléphone"</span><span class="vocab-analogy">"Comme un tiroir plein — vider pour mettre autre chose"</span></div>
+    </div>
+  </div>
+
+  <h4>📝 Complète avec des termes que tu as entendus en stage</h4>
+  <div class="vocab-grid">
+    <div class="vocab-item"><span class="vocab-tech">___________</span><div><span class="vocab-simple">________________________________</span><span class="vocab-analogy">Analogie : ____________________________</span></div></div>
+    <div class="vocab-item"><span class="vocab-tech">___________</span><div><span class="vocab-simple">________________________________</span><span class="vocab-analogy">Analogie : ____________________________</span></div></div>
+    <div class="vocab-item"><span class="vocab-tech">___________</span><div><span class="vocab-simple">________________________________</span><span class="vocab-analogy">Analogie : ____________________________</span></div></div>
+    <div class="vocab-item"><span class="vocab-tech">___________</span><div><span class="vocab-simple">________________________________</span><span class="vocab-analogy">Analogie : ____________________________</span></div></div>
+  </div>
+</div>
+
+<!-- FICHE 5 : HÉTÉROGÉNÉITÉ ET ACCESSIBILITÉ -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 5</span>
+    <div class="fiche-title">Hétérogénéité et accessibilité</div>
+    <div class="fiche-sub">Gérer les niveaux différents · Adapter pour le handicap · Paramètrages clés</div>
+  </div>
+
+  <h3>Gérer les niveaux hétérogènes</h3>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Valoriser le plus avancé comme aidant :</span>
+    <div class="phrase-text yes-text">"Jean, vous avez l'air à l'aise ! Est-ce que vous pourriez aider votre voisin à trouver le bon onglet ? Vous expliquez souvent mieux que moi !"</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Exercice à plusieurs vitesses :</span>
+    <div class="phrase-text yes-text">"Ceux qui ont terminé, essayez maintenant de faire la même chose sur le site de la CAF — je reviens vous voir dans 2 minutes."</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-no">✗ À ne jamais faire :</span>
+    <div class="phrase-text no-text">"Attendez, je vais le faire à sa place pour gagner du temps." / "Vous autres qui avez du mal..." — Stigmatise et tue la confiance.</div>
+  </div>
+
+  <h3>Accessibilité — les paramètrages clés à maîtriser</h3>
+  <table class="grid">
+    <thead><tr><th>Handicap</th><th>Paramétrage Windows / Navigateur</th><th>À préparer avant la séance</th></tr></thead>
+    <tbody>
+      <tr><td><b>Déficience visuelle</b></td><td>Ctrl + (zoom navigateur) · Contraste élevé (Paramètres → Accessibilité) · Taille police 16+</td><td>NVDA installé, loupe activée, fond sombre disponible</td></tr>
+      <tr><td><b>Motricité réduite</b></td><td>Ralentir double-clic · Stabilisateur pointeur · Clavier visuel (Win + R → osk)</td><td>Trackball ou joystick disponible si besoin</td></tr>
+      <tr><td><b>Déficience cognitive</b></td><td>Interface épurée, onglets inutiles fermés, fond blanc uni</td><td>Supports FALC avec pictogrammes, une étape à la fois</td></tr>
+      <tr><td><b>Surdité</b></td><td>Sous-titres automatiques activés (YouTube, Teams) · Alertes visuelles</td><td>Consignes écrites en parallèle des consignes orales</td></tr>
+      <tr><td><b>Dyslexie</b></td><td>Police OpenDyslexic (extension navigateur) · Fond beige · Interlignage 1.5</td><td>Extension OpenDyslexic installée, fond alternatif prêt</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box-sky">
+    <p><strong>NVDA (nvda-fr.org)</strong> est un lecteur d'écran gratuit. Télécharge-le et passe 20 minutes à naviguer avec les yeux fermés. C'est la meilleure façon de comprendre ce que vivent les personnes malvoyantes — et de savoir expliquer l'accessibilité numérique.</p>
+  </div>
+</div>
+
+<!-- FICHE 6 : COANIMATION -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 6</span>
+    <div class="fiche-title">La coanimation</div>
+    <div class="fiche-sub">Préparer avec le partenaire · Rôles · Transitions · Erreurs à éviter</div>
+  </div>
+
+  <div class="box-key">
+    <h4 style="color:var(--forest-border);">Ce qu'il faut définir AVANT avec le coanimateur</h4>
+    <ul>
+      <li>Qui présente les objectifs et le déroulé au début ?</li>
+      <li>Qui gère le vidéoprojecteur et le matériel ?</li>
+      <li>Qui circule pendant les exercices, qui reste devant ?</li>
+      <li>Quel signal discret pour se passer la parole ?</li>
+      <li>Que faire si un participant est en grande difficulté ?</li>
+      <li>Que faire si on n'est pas d'accord sur une réponse ? (jamais devant le groupe)</li>
+    </ul>
+  </div>
+
+  <h3>Les 3 erreurs classiques en coanimation</h3>
+  <table class="grid">
+    <thead><tr><th>Erreur</th><th>Conséquence</th><th>Comment l'éviter</th></tr></thead>
+    <tbody>
+      <tr><td><b>Se couper la parole</b></td><td>Le groupe est perdu, perd confiance en l'équipe</td><td>Signal convenu (regard + signe de main) pour la passation</td></tr>
+      <tr><td><b>Se contredire devant le groupe</b></td><td>Perd la crédibilité des deux</td><td>En aparté rapide : "Je reviendrai là-dessus" puis vérifier ensemble</td></tr>
+      <tr><td><b>L'un anime tout, l'autre est fantôme</b></td><td>Autant animer seul — le partenaire est gaspillé</td><td>Rôles clairement définis à l'avance avec équilibre du temps de parole</td></tr>
+    </tbody>
+  </table>
+
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Transition de parole fluide :</span>
+    <div class="phrase-text yes-text">"Je laisse la parole à [Prénom] qui va vous expliquer la prochaine étape." + regard + léger recul du corps. Naturel et professionnel.</div>
+  </div>
+</div>
+
+<!-- FICHE 7 : JURY + ENTRETIEN TECHNIQUE -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 7</span>
+    <div class="fiche-title">Préparer le jury — CP4</div>
+    <div class="fiche-sub">5 critères · Les 10 minutes de préparation · L'entretien technique · Questions types</div>
+  </div>
+
+  <h3>Le déroulement exact de l'épreuve</h3>
+  <div class="checklist">
+    <div class="cl-item"><div class="cl-check"></div><div class="cl-text">Le jury choisit 1 de mes 3 fiches de séance (annoncé à la fin du questionnement)</div></div>
+    <div class="cl-item"><div class="cl-check"></div><div class="cl-text"><strong>10 minutes pour préparer</strong> (en présence du jury — ils observent déjà)</div></div>
+    <div class="cl-item"><div class="cl-check"></div><div class="cl-text"><strong>30 minutes d'animation</strong> — un membre du jury joue le participant, l'autre observe</div></div>
+    <div class="cl-item"><div class="cl-check"></div><div class="cl-text"><strong>15 minutes d'entretien technique</strong> — j'analyse ma prestation, le jury questionne</div></div>
+  </div>
+
+  <h3>Les 5 critères officiels du jury</h3>
+  <table class="auto-eval">
+    <thead><tr><th>Critère de performance</th><th class="check-cell">À travailler</th><th class="check-cell">Acquis</th></tr></thead>
+    <tbody>
+      <tr><td>La préparation de la séance prend en compte le scénario pédagogique</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Le matériel est prêt et l'espace respecte les besoins du public et le handicap</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>La présentation du déroulement, des objectifs et de la progression est claire</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>L'animation prend en compte les choix du scénario pédagogique</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Le langage, les termes et les notions sont accessibles</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+    </tbody>
+  </table>
+
+  <h3>L'entretien technique — comment bien répondre</h3>
+  <div class="box-honey">
+    <p><strong>Le secret :</strong> le jury n'évalue pas si ta séance était parfaite. Il évalue si tu as une <strong>posture réflexive</strong>. Un candidat qui dit "j'ai très bien animé" sans critique est moins bien noté qu'un candidat qui identifie précisément ses difficultés et propose ce qu'il aurait fait autrement.</p>
+  </div>
+
+  <h3>Questions types de l'entretien technique</h3>
+  <div class="journal-entry">
+    <h5>"Analysez votre prestation : qu'est-ce qui a bien fonctionné et pourquoi ?"</h5>
+    <div class="journal-label">2 points forts + justification :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h5>"Qu'auriez-vous fait différemment ? Quels moments étaient difficiles ?"</h5>
+    <div class="journal-label">1–2 points à améliorer + ce que j'aurais fait :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h5>"Comment avez-vous adapté votre animation quand le participant était en difficulté ?"</h5>
+    <div class="journal-label">L'adaptation concrète que j'ai faite :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h5>"Comment auriez-vous adapté cette séance pour un participant malvoyant ?"</h5>
+    <div class="journal-label">Paramètrages + adaptations pédagogiques :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../../index.html">🔙 Retour à l'accueil</a></button>
+</div>
+  <footer>
+  <p style="text-align: center; align-content: center; font-size: 8pt; color: var(--text-mid); margin: 20px 0;">© 2026 - Formation médiateur numérique - Tous droits réservés Dev&Info</p>
+  </footer>
+</body>
+</html>

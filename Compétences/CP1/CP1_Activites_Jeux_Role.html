@@ -28,7 +28,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
 .cover p{font-size:12pt;color:rgba(255,255,255,0.75);font-weight:300;line-height:1.6;max-width:13cm;margin-bottom:3rem}
 .cover-tag{background:rgba(255,255,255,0.2);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block}
 .cover-items{display:flex;flex-direction:column;gap:0.8rem;margin-top:auto}
-.cover-item{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt}
+.cover-item{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt;text-decoration:none;}
 .cover-item strong{color:rgba(255,255,255,0.9)}
 
 /* PAGES */
@@ -101,11 +101,11 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <h1 class="cover-h1"><a href="../../index.html">Formation médiateur numérique</a></h1>
   <div class="cover-tag">Pack Activités · CP1</div>
   <h2>Jeux de rôle <br>&amp; Exercices</h2>
-  <p>8 fiches-profils pour les simulations d'accueil · 12 cas pratiques "dans mon périmètre ?" · Grille d'observation</p>
+  <p>8 fiches-profils pour les simulations d'accueil<br>12 cas pratiques "dans mon périmètre ?"<br>Grille d'observation</p>
   <div class="cover-items">
-    <div class="cover-item"><strong>Activité 1</strong> — "Est-ce dans mon périmètre ?" — 12 cas pratiques — 45 min</div>
-    <div class="cover-item"><strong>Activité 2</strong> — Jeu de rôle : accueil de publics variés — 8 profils — 1h</div>
-    <div class="cover-item"><strong>Activité 3</strong> — Observation des pairs avec grille officielle — 30 min</div>
+    <a href="#cas-pratiques" class="cover-item"><strong>Activité 1</strong> — "Est-ce dans mon périmètre ?" — 12 cas pratiques — 45 min</a>
+    <a href="#jeu-role" class="cover-item"><strong>Activité 2</strong> — Jeu de rôle : accueil de publics variés — 8 profils — 1h</a>
+    <a href="#observation" class="cover-item"><strong>Activité 3</strong> — Observation des pairs avec grille officielle — 30 min</a>
   </div>
 </div>
 
@@ -114,7 +114,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:var(--amber)">1</div>
     <div>
-      <div class="sec-title">Est-ce dans mon périmètre ?</div>
+      <div class="sec-title" id="cas-pratiques">Est-ce dans mon périmètre ?</div>
       <div class="sec-sub">12 cas pratiques · Individuel puis collectif · 45 minutes</div>
     </div>
   </div>
@@ -249,7 +249,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:var(--navy)">2</div>
     <div>
-      <div class="sec-title">Fiches-profils pour le jeu de rôle</div>
+      <div class="sec-title" id="jeu-role">Fiches-profils pour le jeu de rôle</div>
       <div class="sec-sub">Un profil par "public" · Ne pas montrer au "médiateur"</div>
     </div>
   </div>
@@ -364,7 +364,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:var(--teal)">3</div>
     <div>
-      <div class="sec-title">Grille d'observation</div>
+      <div class="sec-title" id="observation">Grille d'observation</div>
       <div class="sec-sub">Pour le rôle d'Observateur pendant le jeu de rôle · Basée sur les critères officiels du jury</div>
     </div>
   </div>

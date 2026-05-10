@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CP4 — Pack Activités — Préparer et Animer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#1B5E3B;--forest-mid:#2E7D52;--forest-light:#E8F5EE;--forest-border:#7EC8A4;
+  --brick:#8B2635;--brick-light:#FDEDEC;--brick-border:#F1948A;
+  --slate:#2C3A47;--slate-mid:#4A6274;--slate-light:#EBF0F4;--slate-border:#A9C2D3;
+  --honey:#9C6F00;--honey-light:#FEF9E7;--honey-border:#F7DC6F;
+  --sky:#1A6698;--sky-light:#EBF5FB;--sky-border:#7FB3D3;
+  --plum:#6C3483;--plum-light:#F5EEF8;--plum-border:#C39BD3;
+  --amber:#C47B1E;--amber-light:#FEF6EC;--amber-mid:#F5C57A;
+  --teal:#0B6E4F;--teal-light:#E3F5EE;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.5cm}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg)}
+
+.cover{background:var(--forest);display:flex;flex-direction:column;padding:8vh 15vw;page-break-after:always;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;bottom:-80px;right:-80px;width:380px;height:380px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.cover-h1{background:var(--brick);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover h2{font-family:'Playfair Display',serif;font-size:44pt;color:white;line-height:1.05;margin:1.5rem 0 1rem}
+.cover p{font-size:11.5pt;color:rgba(255,255,255,0.7);font-weight:300;line-height:1.6;max-width:13cm;margin-bottom:3rem}
+.cover-tag{background:var(--brick);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block}
+.cover-items{display:flex;flex-direction:column;gap:0.8rem;margin-top:auto;}
+.cover-item{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt;text-decoration:none;}
+.cover-item strong{color:rgba(255,255,255,0.9);}
+
+.page{background:white;padding:5vh 5vw;page-break-after:always}
+
+.sec-header{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:2px solid var(--border)}
+.sec-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700;color:white;flex-shrink:0}
+.sec-title{font-family:'Playfair Display',serif;font-size:18pt;color:var(--slate)}
+.sec-sub{font-size:9pt;color:var(--text-mid)}
+
+/* PROFIL CARDS PUBLIC */
+.profils-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0.5rem 0}
+.profil-card{border-radius:12px;padding:1.1rem 1.2rem;border:2px solid}
+.profil-num{font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.4rem;opacity:0.65}
+.profil-name{font-family:'Playfair Display',serif;font-size:14pt;margin-bottom:0.4rem}
+.profil-tag{display:inline-block;font-size:7pt;font-weight:700;padding:2px 9px;border-radius:10px;margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.5px}
+.profil-section{font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-top:0.5rem;margin-bottom:0.2rem;opacity:0.55}
+.profil-card p{font-size:8.5pt;line-height:1.45;margin-bottom:0.2rem}
+
+/* COLOR VARIANTS */
+.p-anxieux{text-align: justify; background:#FEF9E7;border-color:var(--honey-border)} .p-anxieux .profil-name{color:var(--honey)} .p-anxieux .profil-tag{background:var(--honey-light);color:var(--honey)}
+.p-lent{text-align: justify;background:var(--sky-light);border-color:var(--sky-border)} .p-lent .profil-name{color:var(--sky)} .p-lent .profil-tag{background:#D6EAF8;color:var(--sky)}
+.p-avance{text-align: justify;background:var(--forest-light);border-color:var(--forest-border)} .p-avance .profil-name{color:var(--forest)} .p-avance .profil-tag{background:var(--forest-light);color:var(--forest)}
+.p-decourage{text-align: justify;background:var(--brick-light);border-color:var(--brick-border)} .p-decourage .profil-name{color:var(--brick)} .p-decourage .profil-tag{background:var(--brick-light);color:var(--brick)}
+.p-distrait{text-align: justify;background:var(--slate-light);border-color:var(--slate-border)} .p-distrait .profil-name{color:var(--slate-mid)} .p-distrait .profil-tag{background:var(--slate-light);color:var(--slate-mid)}
+.p-malvoyant{text-align: justify;background:var(--plum-light);border-color:var(--plum-border)} .p-malvoyant .profil-name{color:var(--plum)} .p-malvoyant .profil-tag{background:#E8DAEF;color:var(--plum)}
+.p-curieux{text-align: justify;background:var(--teal-light);border-color:#7ECFA4} .p-curieux .profil-name{color:var(--teal)} .p-curieux .profil-tag{background:#D5F5E3;color:var(--teal)}
+.p-jury{text-align: justify;background:#F4F6F8;border-color:#85929E;border-style:dashed} .p-jury .profil-name{color:var(--slate)} .p-jury .profil-tag{background:var(--slate-light);color:var(--slate-mid)}
+
+/* GRILLE OBSERVATION */
+.obs-grid{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.obs-grid th{background:var(--forest);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.obs-grid td{padding:9px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
+.obs-grid tr:nth-child(even) td{background:var(--bg)}
+.score-cell{text-align:center;font-size:8.5pt;width:100px}
+
+/* SITUATIONS */
+.sit-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin:0.5rem 0}
+.sit-card{border:1px solid var(--border);border-radius:8px;padding:0.9rem 1rem;background:white}
+.sit-num{font-size:7.5pt;font-weight:700;color:var(--text-mid);margin-bottom:0.3rem}
+.sit-text{font-size:9pt;line-height:1.45;margin-bottom:0.6rem}
+.sit-question{font-size:8.5pt;font-weight:600;color:var(--forest-mid);font-style:italic;margin-bottom:0.4rem}
+.sit-line{border-bottom:1px solid var(--border);height:18px;margin-bottom:4px}
+
+/* BOXES */
+.box{border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-tip{background:var(--honey-light);border-left:4px solid var(--honey)}
+.box-good{background:var(--forest-light);border-left:4px solid var(--forest)}
+.box h4{font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.4rem}
+.box-tip h4{color:var(--honey)} .box-good h4{color:var(--forest)}
+.box p,.box li{font-size:9.5pt;margin-bottom:3px}
+.box ul{padding-left:1.1rem}
+
+@media print{
+  body{background:white}
+  .page{padding:0}
+  .cover,.obs-grid th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .p-anxieux,.p-lent,.p-avance,.p-decourage,.p-distrait,.p-malvoyant,.p-curieux,.p-jury{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1 class="cover-h1"><a href="../../index.html">Formation médiateur numérique</a></h1>
+  <div class="cover-tag">Pack Activités · CP4</div>
+  <h2>Préparer<br>&amp; animer</h2>
+  <p>8 profils-public pour les simulations<br>8 situations d'animation à analyser<br>Grille d'observation · Fiche de débriefing</p>
+  <div class="cover-items">
+    <a class="cover-item" href="#situations"><strong>Activité 1</strong> — 8 situations d'animation à analyser — 40 min</a>
+    <a class="cover-item" href="#simulations"><strong>Activité 2</strong> — Simulations avec 8 profils-public — 2h</a>
+    <a class="cover-item" href="#observation"><strong>Activité 3</strong> — Grille d'observation officielle (critères jury)</a>
+    <a class="cover-item" href="#debriefing"><strong>Outil</strong> — Fiche de débriefing post-animation (auto-analyse)</a>
+  </div>
+</div>
+
+<!-- ACTIVITÉ 1 : SITUATIONS -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--brick)">1</div>
+    <div>
+      <div class="sec-title" id="situations">Situations d'animation à analyser</div>
+      <div class="sec-sub">8 situations · Identifier le problème et la réponse · 40 minutes</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Mode d'emploi</h4>
+    <ul>
+      <li>Phase 1 (10 min) : analyse individuelle — identifier le problème et proposer une réponse concrète.</li>
+      <li>Phase 2 (10 min) : binômes — comparer, surtout pour les situations ambiguës.</li>
+      <li>Phase 3 (15 min) : tour de table grand groupe.</li>
+      <li>Phase 4 (5 min) : synthèse — quels réflexes automatiques développer ?</li>
+    </ul>
+  </div>
+
+  <p style="font-size:9pt;color:var(--text-mid);margin-bottom:0.6rem">Pour chaque situation, identifie : <strong style="color: var(--brick);">le problème principal</strong> · <strong style="color: var(--amber);">ce que tu fais immédiatement</strong> · <strong style="color: var(--plum);">ce que tu dis exactement</strong></p>
+
+  <div class="sit-grid">
+    <div class="sit-card">
+      <div class="sit-num">Situation 01</div>
+      <p class="sit-text">Tu animes depuis 20 minutes. Tu regardes le groupe et tu vois que 3 personnes sur 6 regardent par la fenêtre ou leur téléphone.</p>
+      <div class="sit-question">Que fais-tu maintenant ?</div>
+      <div class="sit-line"></div><div class="sit-line"></div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 02</div>
+      <p class="sit-text">Tu lances la démonstration en vidéoprojection. La connexion internet tombe en panne. La page ne charge plus. Le groupe te regarde.</p>
+      <div class="sit-question">Que fais-tu ? Que dis-tu exactement ?</div>
+      <div class="sit-line"></div><div class="sit-line"></div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 03</div>
+      <p class="sit-text">Un participant de ton groupe est manifestement beaucoup plus avancé que les autres. Il commence à se montrer impatient et à souffler quand les autres sont lents.</p>
+      <div class="sit-question">Comment gères-tu les deux situations à la fois ?</div>
+      <div class="sit-line"></div><div class="sit-line"></div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 04</div>
+      <p class="sit-text">À mi-séance, une participante te dit : "C'est trop compliqué pour moi, je ne vais jamais y arriver." Elle commence à se lever pour partir.</p>
+      <div class="sit-question">Que lui dis-tu pour la retenir sans la brusquer ?</div>
+      <div class="sit-line"></div><div class="sit-line"></div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 05</div>
+      <p class="sit-text">Tu animes avec un coanimateur. Au milieu de ta phrase, il te coupe et dit quelque chose qui contredit ce que tu viens de dire. Le groupe vous regarde tous les deux.</p>
+      <div class="sit-question">Comment gères-tu ça en direct sans perdre la face ?</div>
+      <div class="sit-line"></div><div class="sit-line"></div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 06</div>
+      <p class="sit-text">Un participant prend longuement la parole et raconte une histoire personnelle qui n'a plus de lien avec le sujet. Les autres commencent à s'impatienter.</p>
+      <div class="sit-question">Comment reprends-tu la main avec bienveillance ?</div>
+      <div class="sit-line"></div><div class="sit-line"></div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 07</div>
+      <p class="sit-text">Tu utilises le terme "navigateur". Un participant te regarde avec un air perdu et dit timidement : "C'est quoi un navigateur ?"</p>
+      <div class="sit-question">Tu expliques comment ? En quelle(s) phrase(s) ?</div>
+      <div class="sit-line"></div><div class="sit-line"></div>
+    </div>
+    <div class="sit-card">
+      <div class="sit-num">Situation 08</div>
+      <p class="sit-text">Il reste 10 minutes de séance. Tu as encore 30 minutes de contenu prévu. Les participants ont l'air fatigués et commencent à ranger leurs affaires.</p>
+      <div class="sit-question">Que sacrifies-tu ? Comment termines-tu de façon satisfaisante ?</div>
+      <div class="sit-line"></div><div class="sit-line"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVITÉ 2 : PROFILS PUBLIC -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--forest)">2</div>
+    <div>
+      <div class="sec-title" id="simulations">Fiches-profils pour simulations</div>
+      <div class="sec-sub">8 profils · Pour les micro-animations · Pour la simulation jury</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Instructions</h4>
+    <ul>
+      <li>Pour les <strong>micro-animations</strong> (S7) : donner 1 profil par "participant" — l'animateur ne voit pas les fiches.</li>
+      <li>Pour la <strong>simulation jury</strong> (S8) : le formateur choisit un profil et joue le "participant du jury" pendant les 30 min.</li>
+      <li>Consigne aux "participants" : jouer le profil sincèrement, sans surjeu. L'idée est de recréer des conditions réalistes.</li>
+      <li>Pour le groupe hétérogène (Activité S4) : utiliser les profils A+B+C+D simultanément.</li>
+    </ul>
+  </div>
+
+  <div class="profils-grid">
+    <div class="profil-card p-anxieux">
+      <div class="profil-num">Profil A · Public</div>
+      <div class="profil-name">L'anxieux(se)</div>
+      <span class="profil-tag">Niveau 0 — Peur de casser</span>
+      <div class="profil-section">Comment jouer</div>
+      <p>Demande confirmation avant chaque clic. "Je clique là ? C'est sûr que ça va rien effacer ?" Regarde le formateur plus que l'écran. Se bloque dès qu'une fenêtre inattendue apparaît. Répète les erreurs plusieurs fois. Mais si on la valorise, elle se détend et progresse bien.</p>
+      <div class="profil-section">Signal de décrochage</div>
+      <p>Arrête de cliquer, regarde ses mains. Commence à dire "je ne comprends pas".</p>
+    </div>
+
+    <div class="profil-card p-lent">
+      <div class="profil-num">Profil B · Public</div>
+      <div class="profil-name">Le/La lent(e) motivé(e)</div>
+      <span class="profil-tag">Niveau 0-1 — Très motivé</span>
+      <div class="profil-section">Comment jouer</div>
+      <p>Très concentré(e), lit tout attentivement avant d'agir. Chaque étape lui prend 2–3x plus de temps qu'au formateur. Pose des questions pertinentes mais en dehors du rythme du groupe. Ne décroche pas — mais risque de freiner le groupe si mal géré.</p>
+      <div class="profil-section">Signal</div>
+      <p>Encore sur l'étape précédente quand les autres sont 3 étapes plus loin.</p>
+    </div>
+
+    <div class="profil-card p-avance">
+      <div class="profil-num">Profil C · Public</div>
+      <div class="profil-name">Le/La avancé(e)</div>
+      <span class="profil-tag">Niveau 3 — S'impatiente</span>
+      <div class="profil-section">Comment jouer</div>
+      <p>Termine tous les exercices en 2 fois moins de temps que les autres. Commence à explorer autre chose sur l'ordinateur pendant que les autres finissent. Peut faire des remarques montrant son impatience ("c'est long" ou répond avant que le formateur finisse sa phrase).</p>
+      <div class="profil-section">Signal</div>
+      <p>Regarde son téléphone pendant que les autres travaillent. Répond aux questions avant que le formateur finisse de les poser.</p>
+    </div>
+
+    <div class="profil-card p-decourage">
+      <div class="profil-num">Profil D · Public</div>
+      <div class="profil-name">Le/La découragé(e)</div>
+      <span class="profil-tag">Mauvaises expériences passées</span>
+      <div class="profil-section">Comment jouer</div>
+      <p>A déjà essayé plusieurs fois sans succès. Dit souvent "j'avais déjà essayé, ça marche jamais pour moi". Ne croit pas en sa capacité à apprendre. Besoin de petits succès rapides pour se relancer. Si on l'oblige à aller vite, se ferme complètement.</p>
+      <div class="profil-section">Signal de réengagement</div>
+      <p>Si on le/la félicite sincèrement pour un petit succès → relèvement immédiat visible.</p>
+    </div>
+
+    <div class="profil-card p-distrait">
+      <div class="profil-num">Profil E · Public</div>
+      <div class="profil-name">Le/La distrait(e)</div>
+      <span class="profil-tag">Présent mais ailleurs</span>
+      <div class="profil-section">Comment jouer</div>
+      <p>Regarde son téléphone toutes les 5 minutes. A du mal à rester sur une tâche plus de 10 minutes. N'est pas hostile — juste éparpillé(e). S'il/elle est directement interpellé(e) avec une question valorisante, répond et se réimplique pendant quelques minutes. Puis repart.</p>
+      <div class="profil-section">Signal</div>
+      <p>Téléphone sorti, regard qui quitte l'écran régulièrement.</p>
+    </div>
+
+    <div class="profil-card p-malvoyant">
+      <div class="profil-num">Profil F · Public</div>
+      <div class="profil-name">La personne malvoyante</div>
+      <span class="profil-tag">Déficience visuelle légère</span>
+      <div class="profil-section">Comment jouer</div>
+      <p>S'approche de l'écran pour lire. Demande "vous pouvez agrandir ?" avant les étapes importantes. Lit plus lentement que les autres. Peut rater des éléments en bas de page ou en petite police. Dit "je vois pas bien le bouton là".</p>
+      <div class="profil-section">Ce que le formateur doit faire</div>
+      <p>Zoom navigateur augmenté, contraste élevé si besoin, décrire verbalement les éléments à l'écran.</p>
+    </div>
+
+    <div class="profil-card p-curieux">
+      <div class="profil-num">Profil G · Public</div>
+      <div class="profil-name">Le/La très curieux(se)</div>
+      <span class="profil-tag">Niveau moyen — Plein de questions</span>
+      <div class="profil-section">Comment jouer</div>
+      <p>Pose des questions intéressantes mais qui font dériver la séance. "Et si je fais ça, que se passe-t-il ?" "Pourquoi ça s'appelle comme ça ?" "Et les données, elles vont où ?" Pas hostile — passionné(e). Si mal géré, peut monopoliser le temps et faire décrocher les autres.</p>
+      <div class="profil-section">Gestion</div>
+      <p>"Excellente question — je la note pour y répondre à la fin si on a le temps / dans une prochaine séance."</p>
+    </div>
+
+    <div class="profil-card p-jury">
+      <div class="profil-num">Profil H · Simulation jury</div>
+      <div class="profil-name">Le "participant du jury"</div>
+      <span class="profil-tag">Usage pour simulation 30 min jury</span>
+      <div class="profil-section">Instructions spéciales (formateur)</div>
+      <p>Ce profil est pour la simulation exacte de l'épreuve jury. Le formateur joue ce rôle. Adapter le niveau de difficulté selon le stagiaire : pour un stagiaire en difficulté → public coopératif. Pour un stagiaire avancé → ajouter 1 ou 2 difficultés.</p>
+      <div class="profil-section">Comportement de base</div>
+      <p>Senior de 68 ans. Niveau débutant. Motivé mais anxieux. Cherche les boutons, ne comprend pas le jargon, a besoin d'encouragements. Se bloque si le formateur va trop vite.</p>
+    </div>
+  </div>
+</div>
+
+<!-- GRILLE OBSERVATION -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--slate-mid)">3</div>
+    <div>
+      <div class="sec-title" id="observation">Grille d'observation officielle — Animation</div>
+      <div class="sec-sub">Basée sur les 5 critères officiels du jury · Pour les micro-animations et la simulation</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin-bottom:1rem">
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Animateur observé :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Sujet de la séance :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Durée observée :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+  </div>
+
+  <table class="obs-grid">
+    <thead>
+      <tr>
+        <th style="width:46%">Ce que j'observe</th>
+        <th class="score-cell">1 — À revoir</th>
+        <th class="score-cell">2 — Correct</th>
+        <th class="score-cell">3 — Excellent</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="5" style="background:var(--forest-light);font-weight:700;font-size:8.5pt;color:var(--forest);padding:6px 12px">CRITÈRE 1 — PRÉPARATION (observée pendant les 10 min avant)</td></tr>
+      <tr><td>L'espace est disposé de façon adaptée au public et à l'objectif</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Le matériel est prêt avant l'arrivée du "public"</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>La connexion / le projecteur est testé(e) avant de commencer</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Un plan B est prévu et visible (ressources locales, 4G…)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--forest-light);font-weight:700;font-size:8.5pt;color:var(--forest);padding:6px 12px">CRITÈRE 2 — PRÉSENTATION DU DÉROULEMENT ET DES OBJECTIFS</td></tr>
+      <tr><td>Les objectifs sont présentés clairement en début de séance</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Le déroulé et la durée sont annoncés</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les règles de vie (questions, téléphone…) sont posées</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>L'accroche crée de l'intérêt et de l'engagement</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--forest-light);font-weight:700;font-size:8.5pt;color:var(--forest);padding:6px 12px">CRITÈRE 3 — L'ANIMATION RESPECTE LE SCÉNARIO</td></tr>
+      <tr><td>Le déroulé prévu est suivi (ou les écarts sont justifiés)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les méthodes pédagogiques de la fiche sont utilisées</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Le rythme alterne exposé et pratique (max 20 min par type)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les participants sont actifs (participation, exercices)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--forest-light);font-weight:700;font-size:8.5pt;color:var(--forest);padding:6px 12px">CRITÈRE 4 — LANGAGE ACCESSIBLE</td></tr>
+      <tr><td>Pas de jargon non expliqué (navigateur, onglet, identifiant…)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les termes techniques sont expliqués avec une analogie ou en langage courant</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Le débit est adapté (suffisamment lent pour un public débutant)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--forest-light);font-weight:700;font-size:8.5pt;color:var(--forest);padding:6px 12px">CRITÈRE 5 — GESTION DU PUBLIC ET ADAPTATIONS</td></tr>
+      <tr><td>Les signaux de décrochage sont repérés et traités</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les difficultés du public sont prises en compte sans stigmatiser</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les réussites sont valorisées explicitement</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les niveaux hétérogènes sont gérés (avancés + en difficulté)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.8rem">
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--forest);margin-bottom:0.4rem">✓ 2 points forts observés :</p>
+      <div style="border:1px solid var(--forest-border);border-radius:8px;padding:0.8rem;background:var(--forest-light);min-height:60px"></div>
+    </div>
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--honey);margin-bottom:0.4rem">→ 1 axe d'amélioration prioritaire :</p>
+      <div style="border:1px solid var(--honey-border);border-radius:8px;padding:0.8rem;background:var(--honey-light);min-height:60px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FICHE DÉBRIEFING POST-ANIMATION -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--honey)">4</div>
+    <div>
+      <div class="sec-title" id="debriefing">Fiche de débriefing post-animation</div>
+      <div class="sec-sub">Auto-analyse · À compléter immédiatement après chaque animation · Base de l'entretien technique jury</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>💡 À utiliser après chaque micro-animation et surtout après la simulation jury</h4>
+    <p>L'entretien technique du jury commence par : "Analysez votre prestation." Cette fiche t'entraîne à faire exactement ça. Plus tu la remplis souvent, plus l'analyse réflexive devient naturelle.</p>
+  </div>
+
+  <div style="border:2px solid var(--forest-border);border-radius:12px;padding:1.4rem;background:var(--forest-light)">
+    <p style="font-size:9pt;font-weight:700;color:var(--forest);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem">Mon analyse de la séance / animation</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:0.8rem">
+      <div><p style="font-size:8pt;font-weight:700;color:var(--text-mid);margin-bottom:3px">Sujet animé :</p><div style="border-bottom:1px solid var(--border);min-height:35px;background:white;border-radius:3px"></div></div>
+      <div><p style="font-size:8pt;font-weight:700;color:var(--text-mid);margin-bottom:3px">Durée / Date :</p><div style="border-bottom:1px solid var(--border);min-height:35px;background:white;border-radius:3px"></div></div>
+    </div>
+
+    <div style="margin-bottom:0.7rem">
+      <p style="font-size:8pt;font-weight:700;color:var(--text-mid);margin-bottom:4px">Comment je me suis senti(e) pendant l'animation ? (honnête — pas de performance)</p>
+      <div style="border:1px solid var(--border);min-height:40px;background:white;border-radius:5px;padding:5px 8px"></div>
+    </div>
+
+    <div style="margin-bottom:0.7rem">
+      <p style="font-size:8pt;font-weight:700;color:var(--forest);margin-bottom:4px">✓ Ce qui a bien fonctionné (au moins 2 points) :</p>
+      <div style="border:1px solid var(--forest-border);min-height:40px;background:white;border-radius:5px;padding:5px 8px"></div>
+    </div>
+
+    <div style="margin-bottom:0.7rem">
+      <p style="font-size:8pt;font-weight:700;color:var(--brick);margin-bottom:4px">✗ Ce qui était difficile (sois précis — pas "c'était pas bien") :</p>
+      <div style="border:1px solid var(--brick-border);min-height:40px;background:white;border-radius:5px;padding:5px 8px"></div>
+    </div>
+
+    <div style="margin-bottom:0.7rem">
+      <p style="font-size:8pt;font-weight:700;color:var(--sky);margin-bottom:4px">→ Ce que j'aurais fait différemment (concret et actionnable) :</p>
+      <div style="border:1px solid var(--sky-border);min-height:40px;background:white;border-radius:5px;padding:5px 8px"></div>
+    </div>
+
+    <div style="margin-bottom:0.7rem">
+      <p style="font-size:8pt;font-weight:700;color:var(--slate-mid);margin-bottom:4px">Mon utilisation du langage : est-ce que j'ai utilisé du jargon sans l'expliquer ? Lequel ?</p>
+      <div style="border:1px solid var(--border);min-height:40px;background:white;border-radius:5px;padding:5px 8px"></div>
+    </div>
+
+    <div>
+      <p style="font-size:8pt;font-weight:700;color:var(--honey);margin-bottom:4px">Ce que j'ai appris sur moi comme animateur(trice) :</p>
+      <div style="border:1px solid var(--honey-border);min-height:40px;background:white;border-radius:5px;padding:5px 8px"></div>
+    </div>
+  </div>
+
+  <div class="box box-good" style="margin-top:0.8rem">
+    <h4>✅ La règle de l'auto-analyse bienveillante</h4>
+    <p>L'analyse de pratique professionnelle n'est pas une punition ni un aveu d'incompétence. C'est un outil de progression. Tout professionnel — même avec 20 ans d'expérience — analyse ses séances et identifie des points à améliorer. C'est ce qui fait la différence entre quelqu'un qui stagne et quelqu'un qui grandit.</p>
+  </div>
+  <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../../index.html">🔙 Retour à l'accueil</a></button>
+</div>
+  <footer>
+  <p style="text-align: center; align-content: center; font-size: 8pt; color: var(--text-mid); margin: 20px 0;">© 2026 - Formation médiateur numérique - Tous droits réservés Dev&Info</p>
+  </footer>
+
+</body>
+</html>
