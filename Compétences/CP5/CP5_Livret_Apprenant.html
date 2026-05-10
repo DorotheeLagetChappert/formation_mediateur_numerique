@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CP5 — Livret Apprenant — Médiateur Numérique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ochre:#7D5A00;--ochre-mid:#A37A00;--ochre-light:#FEF9E7;--ochre-border:#F7DC6F;
+  --rust:#922B21;--rust-light:#FDEDEC;--rust-border:#F1948A;
+  --stone:#3D3D3D;--stone-mid:#5D5D5D;--stone-light:#F2F2F2;--stone-border:#BDBDBD;
+  --sage:#1A5E42;--sage-mid:#2E7D5A;--sage-light:#E8F5EE;--sage-border:#7EC8A4;
+  --sky:#154360;--sky-mid:#1A6698;--sky-light:#EBF5FB;--sky-border:#7FB3D3;
+  --plum:#4A235A;--plum-mid:#6C3483;--plum-light:#F5EEF8;--plum-border:#C39BD3;
+  --amber:#C47B1E;--amber-light:#FEF6EC;--amber-mid:#F5C57A;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.5cm 1.4cm}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg);line-height:1.55}
+
+.cover{background:var(--ochre-mid);display:flex;flex-direction:column;justify-content:flex-end;padding:2.5cm;page-break-after:always;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:rgba(0,0,0,0.1)}
+.cover::after{content:'';position:absolute;bottom:120px;left:30px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.06)}
+.cover-tag{background:var(--stone);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block;margin-bottom:1.5rem}
+.cover-h1{background:var(--stone);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover h2{font-family:'Playfair Display',serif;font-size:36pt;color:white;line-height:1.05;margin-bottom:0.8rem}
+.cover h3{font-size:11.5pt;color:rgba(255,255,255,0.82);font-weight:300;line-height:1.6;max-width:15cm;margin-bottom:2rem}
+.cover-pills{display:flex;flex-wrap:wrap;gap:0.8rem}
+.cover-pill{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:white;padding:7px 16px;border-radius:20px;font-size:9pt}
+
+.page{background:white;padding:5vh 5vw;page-break-after:always}
+.page:last-child{page-break-after:auto}
+
+.fiche-header{margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:3px solid var(--ochre-mid)}
+.fiche-num{font-size:8pt;font-weight:600;color:var(--ochre-mid);text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:0.3rem}
+.fiche-title{font-family:'Playfair Display',serif;font-size:22pt;color:var(--stone)}
+.fiche-sub{font-size:10pt;color:var(--text-mid);font-weight:300;margin-top:0.3rem}
+
+h3{font-family:'Playfair Display',serif;font-size:15pt;color:var(--stone);padding-left:0.8rem;margin:1.3rem 0 0.5rem;border-left:4px solid var(--stone)}
+h4{font-size:10.5pt;color:var(--stone-mid);font-weight:600;margin:0.9rem 0 0.3rem}
+p{font-size:9.5pt;margin-bottom:0.5rem;line-height:1.55;}
+ul,ol{padding-left:1.2rem;margin-bottom:0.6rem}
+li{font-size:9.5pt;margin-bottom:3px;line-height:1.5}
+
+.box-key{background:var(--stone);border-radius:10px;padding:1.1rem 1.4rem;margin:0.8rem 0}
+.box-key h3{color:rgba(255,255,255,0.6);font-size:8.5pt;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.6rem}
+.box-key p,.box-key li{color:white;font-size:9.5pt;margin-bottom:4px;line-height:1.5}
+.box-key ul{padding-left:1.1rem}
+.box-ochre{background:var(--ochre-light);border:1px solid var(--ochre-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-sage{background:var(--sage-light);border:1px solid var(--sage-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-rust{background:var(--rust-light);border:1px solid var(--rust-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-sky{background:var(--sky-light);border:1px solid var(--sky-border);border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+
+/* KOLB MINI */
+.kolb-mini{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0.8rem 0}
+.km-card{border-radius:7px;padding:8px 10px}
+.km-1{background:var(--plum-light);border-left:3px solid var(--plum)} .km-1 .knum{color:var(--plum)}
+.km-2{background:var(--sky-light);border-left:3px solid var(--sky-mid)} .km-2 .knum{color:var(--sky-mid)}
+.km-3{background:var(--ochre-light);border-left:3px solid var(--ochre-mid)} .km-3 .knum{color:var(--ochre-mid)}
+.km-4{background:var(--sage-light);border-left:3px solid var(--sage)} .km-4 .knum{color:var(--sage)}
+.km-card .knum{font-size:8.5pt;font-weight:700;display:block;margin-bottom:2px}
+.km-card .kname{font-weight:700;font-size:9.5pt;display:block;margin-bottom:2px}
+.km-card p{font-size:9pt;color:var(--text-mid);margin:0;line-height:1.3}
+
+/* FOS */
+.fos-mini{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:0.8rem 0}
+.fos-card{border-radius:7px;padding:8px 10px;text-align:center}
+.fos-f{background:#EEF0F8;border:1.5px solid #9BA8D0}
+.fos-o{background:var(--ochre-light);border:1.5px solid var(--ochre-border)}
+.fos-s{background:var(--rust-light);border:1.5px solid var(--rust-border)}
+.fos-card h5{font-size:11pt;font-weight:700;margin-bottom:0.2rem}
+.fos-f h5{color:#2C3150} .fos-o h4{color:var(--ochre-mid)} .fos-s h4{color:var(--rust)}
+.fos-card p{font-size:9pt;color:var(--text-mid);margin:0;line-height:1.3}
+.fos-card .test{font-size:8.5pt;font-style:italic;margin-top:0.3rem;}
+
+/* JOURNAL TEMPLATE */
+.journal-template{border:2px solid var(--ochre-border);border-radius:10px;padding:1.2rem;margin:0.8rem 0;background:var(--ochre-light)}
+.jt-label{font-size:7.5pt;font-weight:700;color:var(--ochre-mid);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:3px}
+.jt-line{border-bottom:1px solid var(--border);height:30px;background:white;border-radius:3px;margin-bottom:5px}
+.jt-box{border:1px solid var(--border);min-height:45px;background:white;border-radius:5px;padding:5px 8px;margin-bottom:6px;font-size:8.5pt;color:var(--text-light)}
+.jt-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+
+/* PHRASES */
+.phrase-block{margin:0.7rem 0}
+.phrase-yes{color:var(--sage);font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:0.2rem}
+.phrase-no{color:var(--rust);font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:0.2rem}
+.phrase-text{padding:0.65rem 1rem;border-radius:6px;font-size:9.5pt;border-left:3px solid}
+.yes-text{background:var(--sage-light);border-color:var(--sage)}
+.no-text{background:var(--rust-light);border-color:var(--rust)}
+
+/* GRILLES */
+.grid{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.grid th{background:var(--stone);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.grid td{padding:8px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
+.grid tr:nth-child(even) td{background:var(--bg)}
+
+/* AUTO-ÉVAL */
+.auto-eval{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.auto-eval th{background:var(--stone);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px}
+.auto-eval td{padding:8px 12px;font-size:9pt;border-bottom:1px solid var(--border)}
+.auto-eval tr:nth-child(even) td{background:var(--stone-light)}
+.check-cell{text-align:center;width:100px}
+
+/* FICHE ANALYSE VIERGE */
+.fa-vierge{border:2px solid var(--stone-border);border-radius:10px;padding:1.2rem;margin:0.8rem 0;background:var(--stone-light)}
+.fa-section{font-size:8.5pt;font-weight:700;color:var(--stone);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;display:block}
+.fa-box{border:1px solid var(--border);min-height:40px;background:white;border-radius:5px;padding:5px 8px;margin-bottom:8px;font-size:8.5pt;color:var(--text-light)}
+
+/* JOURNAL ENTRÉE */
+.journal-entry{border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem;margin:0.8rem 0}
+.journal-entry h4{font-size:9.5pt;font-weight:600;color:var(--ochre-mid);margin-bottom:0.6rem}
+.journal-line{border-bottom:1px dashed var(--border);height:22px;margin-bottom:4px}
+.journal-label{font-size:8pt;color:var(--text-light);margin-bottom:5px}
+
+@media print{
+  body{background:white;font-size:9pt}
+  .page{padding:0}
+  .cover,.box-key,.grid th,.auto-eval th,.km-1,.km-2,.km-3,.km-4,.fos-f,.fos-o,.fos-s{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1 class="cover-h1"><a href="../../index.html">Formation médiateur numérique</a></h1>
+  <div class="cover-tag">Livret Apprenant</div>
+  <h2>CP5 : Évaluer ma pratique professionnelle</h2>
+  <h3>Réflexivité · Journal de bord · Analyse de pratique<br>Entretien technique jury</h3>
+  <div class="cover-pills">
+    <div class="cover-pill">🔄 Cycle de Kolb</div>
+    <div class="cover-pill">📒 6 fiches mémos</div>
+    <div class="cover-pill">✍️ Fiche analyse vierge</div>
+    <div class="cover-pill">🎓 Préparation entretien jury</div>
+  </div>
+</div>
+
+<!-- FICHE 1 : POSTURE RÉFLEXIVE -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 1</span>
+    <div class="fiche-title">La posture réflexive</div>
+    <div class="fiche-sub">Ce que c'est · Ce que ce n'est pas · Le cycle de Kolb</div>
+  </div>
+
+  <div class="box-key">
+    <h4 style="color: var(--amber-mid);">La définition</h4>
+    <p>La posture réflexive, c'est la capacité à regarder sa propre pratique professionnelle <strong>comme si on était un observateur extérieur bienveillant</strong>. Ni complaisance, ni auto-flagellation. Une observation factuelle, curieuse et tournée vers la progression.</p>
+  </div>
+
+  <h3>Ce que c'est — et ce que ce n'est pas</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin:0.7rem 0">
+    <div class="box-sage">
+      <p style="font-size:9pt;font-weight:700;color:var(--sage);margin-bottom:0.4rem">✓ Posture réflexive</p>
+      <ul>
+        <li>Observer les faits sans jugement immédiat</li>
+        <li>Identifier ce qui a fonctionné ET pourquoi</li>
+        <li>Analyser les difficultés et leurs causes</li>
+        <li>Formuler des pistes concrètes et réalistes</li>
+        <li>Partager ses observations avec authenticité</li>
+        <li>Ajuster progressivement sa pratique</li>
+      </ul>
+    </div>
+    <div class="box-rust">
+      <p style="font-size:9pt;font-weight:700;color:var(--rust);margin-bottom:0.4rem">✗ Pas réflexif</p>
+      <ul>
+        <li>"J'ai été nul(le)" — jugement sans analyse</li>
+        <li>"C'était la faute du groupe" — défense</li>
+        <li>"Tout s'est bien passé" — sans nuance</li>
+        <li>Recommencer sans changer quoi que ce soit</li>
+        <li>Ruminer sans chercher de solutions</li>
+        <li>Attendre d'être en difficulté pour analyser</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Le cycle de Kolb — apprendre de l'expérience</h3>
+  <div class="kolb-mini">
+    <div class="km-card km-1">
+      <span class="knum">Phase 1</span>
+      <span class="kname">Expérience concrète</span>
+      <p>Je vis une situation professionnelle (accueil, animation, entretien)</p>
+    </div>
+    <div class="km-card km-2">
+      <span class="knum">Phase 2</span>
+      <span class="kname">Observation réfléchie</span>
+      <p>Je prends du recul et je note ce qui s'est passé — en faits</p>
+    </div>
+    <div class="km-card km-3">
+      <span class="knum">Phase 3</span>
+      <span class="kname">Conceptualisation</span>
+      <p>Je comprends POURQUOI ça s'est passé ainsi et j'en tire une règle</p>
+    </div>
+    <div class="km-card km-4">
+      <span class="knum">Phase 4</span>
+      <span class="kname">Expérimentation</span>
+      <p>J'essaie autrement dans la prochaine situation similaire</p>
+    </div>
+  </div>
+
+  <div class="box-ochre">
+    <p><strong>L'erreur classique :</strong> sauter de la Phase 1 directement à la Phase 4 — "ça s'est mal passé, la prochaine fois je ferai autrement". Sans analyser POURQUOI (phases 2 et 3), on recommence les mêmes erreurs avec plus d'énergie.</p>
+  </div>
+
+  <h4>📝 Mon exercice — Appliquer le cycle de Kolb</h4>
+  <div class="box-sage">
+    <p style="font-size:9.5pt;margin-bottom:0.5rem">Pense à une situation vécue en formation ou en stage. Applique les 4 phases :</p>
+    <ul>
+      <li>Phase 1 — Ce qui s'est passé (faits) : _____________________________________________</li>
+      <li>Phase 2 — Ce que j'ai observé en y réfléchissant : ____________________________________</li>
+      <li>Phase 3 — Pourquoi ça s'est passé ainsi : __________________________________________</li>
+      <li>Phase 4 — Ce que je ferai différemment : __________________________________________</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FICHE 2 : FAITS / OPINIONS / SENTIMENTS -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 2</span>
+    <div class="fiche-title">Faits / Opinions / Sentiments</div>
+    <div class="fiche-sub">Distinguer les 3 · Transformer les opinions en faits · Le test du tiers présent</div>
+  </div>
+
+  <h3>Les 3 catégories</h3>
+  <div class="fos-mini">
+    <div class="fos-card fos-f">
+      <h5>Fait</h5>
+      <p>Observable par un tiers. Vérifiable. Ne peut pas être contesté.</p>
+      <p class="test">Test : "Un tiers présent l'aurait vu aussi ?"</p>
+    </div>
+    <div class="fos-card fos-o">
+      <h5>Opinion</h5>
+      <p>Mon interprétation. Peut être erronée. À étayer par des faits.</p>
+      <p class="test">Signal : "Il me semble que / Je pense que"</p>
+    </div>
+    <div class="fos-card fos-s">
+      <h5>Sentiment</h5>
+      <p>Ce que j'ai ressenti. Valide mais ne décrit pas la réalité.</p>
+      <p class="test">Signal : "Je me sentais / J'étais"</p>
+    </div>
+  </div>
+
+  <h3>Transformer les opinions en faits</h3>
+  <div class="phrase-block">
+    <span class="phrase-no">Opinion : "Le groupe était difficile."</span>
+    <div class="phrase-text no-text">→ Pas analysable. Que signifie "difficile" exactement ?</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">Fait : "3 participants sur 6 ont regardé leur téléphone plus de 3 fois. 2 ont répondu par monosyllabes."</span>
+    <div class="phrase-text yes-text">→ Observable, analysable, permet d'identifier les causes et de chercher des solutions.</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-no">Opinion : "J'ai bien géré la situation."</span>
+    <div class="phrase-text no-text">→ Pas mesurable. Le jury ne peut pas évaluer sur ça.</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">Fait : "Karim disait 'Je n'y arriverai jamais'. Je me suis assis à côté de lui, j'ai repris depuis la dernière étape réussie. Il a terminé l'exercice seul 10 minutes plus tard."</span>
+    <div class="phrase-text yes-text">→ Clair, précis, démontre la compétence et la réflexivité.</div>
+  </div>
+
+  <h4>📝 Mon exercice — Trier et reformuler</h4>
+  <div class="box-ochre">
+    <p style="font-size:9pt;margin-bottom:0.5rem">Pour chaque formulation, écris <span style="color: var(--sage);font-weight: bold;">F (Fait)</span>, <span style="color: var(--amber);font-weight: bold;">O (Opinion)</span> ou <span style="color: var(--plum);font-weight: bold;">S (Sentiment)</span>. Pour les O, reformule en Fait :</p>
+    <ul>
+      <li>"La séance s'est mal passée." → ____________________________________________________________</li>
+      <li>"Paul a quitté la salle à 15h12 sans prévenir." → __________________________________________________</li>
+      <li>"Je me sentais incompétent(e)." → __________________________________________________________</li>
+      <li>"Les participants semblaient ennuyés." → _____________________________________________________</li>
+      <li>"Sur 3 objectifs prévus, 2 ont été atteints." → ___________________________________________________</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FICHE 3 : OUTILS DE SUIVI -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 3</span>
+    <div class="fiche-title">Mes outils de suivi</div>
+    <div class="fiche-sub">Journal de bord · Tableau de bord · Grille d'auto-évaluation</div>
+  </div>
+
+  <h3>Le journal de bord — mon format</h3>
+  <div class="journal-template">
+    <p style="font-size:8.5pt;font-weight:700;color:var(--ochre-mid);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem">Modèle de page de journal de bord</p>
+    <div class="jt-grid">
+      <div>
+        <span class="jt-label">Date + contexte (type de situation)</span>
+        <div class="jt-line"></div>
+      </div>
+      <div>
+        <span class="jt-label">Lieu / Durée</span>
+        <div class="jt-line"></div>
+      </div>
+    </div>
+    <span class="jt-label">Situation (faits uniquement — qui, quoi, comment)</span>
+    <div class="jt-box">Ex : "Mme B., 74 ans, demande aide CAF. Urgence : date limite demain."</div>
+    <span class="jt-label">Ce que j'ai fait (mes actions concrètes)</span>
+    <div class="jt-box">Ex : "Prise en charge immédiate. Aide connexion FranceConnect. Déclaration complétée en 35 min."</div>
+    <span class="jt-label">Résultat observé</span>
+    <div class="jt-box">Ex : "Démarche complétée. Mme B. a dit 'Je reviendrai pour apprendre à faire seule'."</div>
+    <span class="jt-label">Enseignement / Question qui reste ouverte</span>
+    <div class="jt-box">Ex : "J'aurais dû guider verbalement même sous urgence — la prochaine fois je décris chaque étape."</div>
+  </div>
+
+  <h3>Mon tableau de bord d'activité — indicateurs à suivre</h3>
+  <table class="grid">
+    <thead><tr><th>Indicateur</th><th>Comment compter</th><th>Semaine 1</th><th>Semaine 2</th><th>Semaine 3</th></tr></thead>
+    <tbody>
+      <tr><td>Nombre d'accueils individuels</td><td>1 par personne accueillie</td><td></td><td></td><td></td></tr>
+      <tr><td>Nombre de séances collectives animées</td><td>1 par atelier</td><td></td><td></td><td></td></tr>
+      <tr><td>Nombre de participants au total</td><td>Cumul des participants</td><td></td><td></td><td></td></tr>
+      <tr><td>Démarches administratives accompagnées</td><td>1 par personne aidée</td><td></td><td></td><td></td></tr>
+      <tr><td>Orientations vers d'autres structures</td><td>1 par orientation</td><td></td><td></td><td></td></tr>
+      <tr><td>Situations analysées dans le journal</td><td>Nombre d'entrées</td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="box-ochre">
+    <p><strong>Mon engagement :</strong></p>
+    <ul>
+      <li>Je remplirai mon journal de bord _____ fois par semaine en stage.</li>
+      <li>Mon moment choisi : ______________________________________________________ </li>
+      <li>Ma règle si je rate un jour : ___________________________________________________</li>
+    </ul>
+  </div>
+</div>
+
+<!-- FICHE 4 : FICHE D'ANALYSE -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 4</span>
+    <div class="fiche-title">La fiche d'analyse de pratique</div>
+    <div class="fiche-sub">5 sections · La formule des axes d'amélioration · Lien avec le dossier</div>
+  </div>
+
+  <div class="box-key">
+    <h4 style="color: var(--amber-mid);">À quoi ça sert</h4>
+    <p>La fiche d'analyse de pratique transforme une expérience vécue en apprentissage formalisé. C'est aussi la base des analyses du dossier professionnel (Partie 1 : accueil + entretien de diagnostic). Plus tu en rédiges en stage, plus ton dossier sera précis et convaincant.</p>
+  </div>
+
+  <h3>Les 5 sections de la fiche</h3>
+  <table class="grid">
+    <thead><tr><th>Section</th><th>Ce qu'on y met</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Description</b></td><td>Les faits bruts de la situation — sans interprétation</td></tr>
+      <tr><td><b>2. Analyse</b></td><td>Pourquoi j'ai fait ce que j'ai fait ? Ce qui a fonctionné et pourquoi. Ce qui était difficile et les causes probables.</td></tr>
+      <tr><td><b>3. Points de vigilance</b></td><td>Ce que je dois surveiller à l'avenir dans des situations similaires</td></tr>
+      <tr><td><b>4. Axes d'amélioration</b></td><td>Ce que je ferai différemment — formulé de façon positive et concrète</td></tr>
+      <tr><td><b>5. Questions ouvertes</b></td><td>Ce que je ne comprends pas encore ou veux approfondir</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Formuler les axes d'amélioration correctement</h3>
+  <div class="phrase-block">
+    <span class="phrase-no">✗ Vague et négatif :</span>
+    <div class="phrase-text no-text">"Je ferai mieux la prochaine fois." / "Je m'améliorerai sur la communication." → Non mesurable, non actionnable.</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Concret et positif :</span>
+    <div class="phrase-text yes-text">"Je préparerai un chronomètre visible et je m'arrêterai à l'heure annoncée même si l'exercice n'est pas terminé — je ferai la synthèse sur les 2 points les plus importants."</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Autre exemple :</span>
+    <div class="phrase-text yes-text">"Dès que je verrai un participant décrocher, je changerai immédiatement d'activité (question directe ou exercice pratique) — je n'attendrai pas plus de 2 minutes."</div>
+  </div>
+
+  <h3>Modèle de fiche d'analyse vierge</h3>
+  <div class="fa-vierge">
+    <p style="font-size:8.5pt;font-weight:700;color:var(--stone);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.7rem">Fiche d'analyse de pratique — Situation : ___________________________</p>
+    <span class="fa-section">1. Description de la situation (faits uniquement)</span>
+    <div class="fa-box">Qui, quoi, où, quand, comment — sans interprétation</div>
+    <span class="fa-section">2. Analyse de ma pratique</span>
+    <div class="fa-box">Ce qui a fonctionné et pourquoi · Ce qui était difficile et les causes probables</div>
+    <span class="fa-section">3. Points de vigilance à l'avenir</span>
+    <div class="fa-box">Ce que je dois surveiller dans les situations similaires</div>
+    <span class="fa-section">4. Axes d'amélioration (formulés positivement)</span>
+    <div class="fa-box">Ce que je ferai différemment — concret et actionnable</div>
+    <span class="fa-section">5. Questions qui restent ouvertes</span>
+    <div class="fa-box">Ce que je ne sais pas encore · Ce que je veux approfondir</div>
+  </div>
+</div>
+
+<!-- FICHE 5 : ÉCHANGES DE PRATIQUES -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 5</span>
+    <div class="fiche-title">Les échanges de pratiques entre pairs</div>
+    <div class="fiche-sub">Le format · Les règles · Mon rôle comme présentateur et comme pair</div>
+  </div>
+
+  <div class="box-key">
+    <h4 style="color: var(--amber-mid);">C'est quoi un échange de pratiques ?</h4>
+    <p>Des professionnels se réunissent pour partager des situations vécues et recevoir des retours de leurs pairs. Ce n'est pas une formation (pas d'expert qui enseigne) ni une supervision thérapeutique. C'est une <strong>intelligence collective au service de la pratique professionnelle</strong>.</p>
+  </div>
+
+  <h3>Le format en 4 temps</h3>
+  <table class="grid">
+    <thead><tr><th>Étape</th><th>Qui</th><th>Durée</th><th>Ce qui est interdit</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Présentation</b></td><td>Le présentateur</td><td>5 min</td><td>Les interprétations — faits uniquement</td></tr>
+      <tr><td><b>2. Questions de clarification</b></td><td>Le groupe</td><td>5 min</td><td>Les conseils déguisés en questions ("Et si tu avais...")</td></tr>
+      <tr><td><b>3. Observations et pistes</b></td><td>Le groupe</td><td>10 min</td><td>Les jugements de valeur ("tu aurais pu / c'était bien")</td></tr>
+      <tr><td><b>4. Ce que je retiens</b></td><td>Le présentateur</td><td>3 min</td><td>Se défendre — écouter et choisir ce qui résonne</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Les 4 règles d'or</h3>
+  <ul>
+    <li>🔒 <strong>Confidentialité absolue</strong> : ce qui se dit dans le groupe reste dans le groupe</li>
+    <li>❓ <strong>Pas de solutions directes</strong> dans la phase de questions — seulement des questions vraiment ouvertes</li>
+    <li>👁️ <strong>Pas de jugement</strong> : ni "tu as bien fait" ni "tu aurais dû faire autrement"</li>
+    <li>👂 <strong>Le présentateur ne se défend pas</strong> — il écoute et prend des notes</li>
+  </ul>
+
+  <div class="phrase-block">
+    <span class="phrase-no">✗ Question non autorisée (conseil déguisé) :</span>
+    <div class="phrase-text no-text">"Et si tu avais essayé de faire asseoir la personne dès le début, tu penses que ça aurait changé quelque chose ?" → C'est un conseil avec un point d'interrogation.</div>
+  </div>
+  <div class="phrase-block">
+    <span class="phrase-yes">✓ Vraie question de clarification :</span>
+    <div class="phrase-text yes-text">"Quand tu dis que la personne était 'difficile', qu'est-ce que tu as observé concrètement ?" → Force le présentateur à aller vers les faits.</div>
+  </div>
+</div>
+
+<!-- FICHE 6 : JURY -->
+<div class="page">
+  <div class="fiche-header">
+    <span class="fiche-num">Fiche mémo 6</span>
+    <div class="fiche-title">Préparer l'entretien technique du jury</div>
+    <div class="fiche-sub">5 critères · La formule en 4 temps · Questions types · Mes réponses</div>
+  </div>
+
+  <div class="box-key">
+    <h4 style="color: var(--amber-mid);">Ce que le jury évalue vraiment</h4>
+    <p>Lors des 15 minutes d'entretien technique, le jury n'évalue pas si ta séance était parfaite. Il évalue ta <strong>capacité à analyser ta propre pratique avec précision et honnêteté</strong>. Un candidat qui dit "j'ai très bien animé" sans nuance obtient une mauvaise note — même si la séance était correcte. Celui qui identifie précisément ses difficultés et propose des pistes concrètes démontre une maturité professionnelle qui impressionne.</p>
+  </div>
+
+  <h3>Les 5 critères officiels du jury</h3>
+  <table class="auto-eval">
+    <thead><tr><th>Critère de performance</th><th class="check-cell">À travailler</th><th class="check-cell">Acquis</th></tr></thead>
+    <tbody>
+      <tr><td>La posture adoptée est réflexive</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Les activités sont analysées au regard des objectifs fixés</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Les facteurs générant des difficultés sont identifiés</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Les solutions et pistes sont documentées de façon à faire évoluer les pratiques</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+      <tr><td>Les questionnements sont relevés et exploitables</td><td class="check-cell">☐</td><td class="check-cell">☐</td></tr>
+    </tbody>
+  </table>
+
+  <h3>La formule de réponse idéale — 4 temps</h3>
+  <div class="box-sage">
+    <ul>
+      <li><strong>1. Faits :</strong> "Pendant la séance, j'ai observé que..."</li>
+      <li><strong>2. Analyse :</strong> "Je pense que c'est parce que... / J'aurais pu..."</li>
+      <li><strong>3. Enseignement :</strong> "Ce que j'en retire pour la suite, c'est..."</li>
+      <li><strong>4. Question ouverte :</strong> "Ce que je ne sais pas encore parfaitement gérer, c'est..."</li>
+    </ul>
+  </div>
+
+  <h3>Mes réponses aux questions du jury</h3>
+  <div class="journal-entry">
+    <h5>"Analysez votre prestation : qu'est-ce qui a bien fonctionné et pourquoi ?"</h5>
+    <div class="journal-label">2 points forts formulés en faits + analyse du pourquoi :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h5>"Qu'auriez-vous fait différemment ? Quels moments étaient difficiles ?"</h5>
+    <div class="journal-label">1-2 difficultés analysées + axe d'amélioration concret :</div>
+    <div class="journal-line"></div><div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h5>"Comment avez-vous fait évoluer votre pratique au cours de votre stage ?"</h5>
+    <div class="journal-label">Ce qui a changé entre le début et la fin + exemple concret :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <div class="journal-entry">
+    <h5>"Y a-t-il des questions professionnelles que vous n'avez pas encore résolues ?"</h5>
+    <div class="journal-label">1-2 questions ouvertes honnêtes (montre la maturité) :</div>
+    <div class="journal-line"></div><div class="journal-line"></div>
+  </div>
+  <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../../index.html">🔙 Retour à l'accueil</a></button>
+</div>
+  <footer>
+  <p style="text-align: center; align-content: center; font-size: 8pt; color: var(--text-mid); margin: 20px 0;">© 2026 - Formation médiateur numérique - Tous droits réservés Dev&Info</p>
+  </footer>
+</body>
+</html>
