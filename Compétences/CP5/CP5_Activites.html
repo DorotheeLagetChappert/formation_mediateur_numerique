@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CP5 — Pack Activités — Évaluer sa pratique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ochre:#7D5A00;--ochre-mid:#A37A00;--ochre-light:#FEF9E7;--ochre-border:#F7DC6F;
+  --rust:#922B21;--rust-light:#FDEDEC;--rust-border:#F1948A;
+  --stone:#3D3D3D;--stone-mid:#5D5D5D;--stone-light:#F2F2F2;--stone-border:#BDBDBD;
+  --sage:#1A5E42;--sage-mid:#2E7D5A;--sage-light:#E8F5EE;--sage-border:#7EC8A4;
+  --sky:#154360;--sky-mid:#1A6698;--sky-light:#EBF5FB;--sky-border:#7FB3D3;
+  --plum:#4A235A;--plum-mid:#6C3483;--plum-light:#F5EEF8;--plum-border:#C39BD3;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;
+  --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.5cm}
+body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg)}
+
+.cover{background:var(--stone);display:flex;flex-direction:column;padding:8vh 15vw;page-break-after:always;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;bottom:-80px;right:-80px;width:380px;height:380px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.cover-h1{background:var(--ochre-mid);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover h2{font-family:'Playfair Display',serif;font-size:44pt;color:white;line-height:1.05;margin:1.5rem 0 1rem}
+.cover p{font-size:11.5pt;color:rgba(255,255,255,0.68);font-weight:300;line-height:1.6;max-width:13cm;margin-bottom:3rem}
+.cover-tag{background:var(--ochre-mid);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block}
+.cover-items{display:flex;flex-direction:column;gap:0.8rem;margin-top:auto}
+.cover-item{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt;text-decoration:none;}
+.cover-item strong{color:rgba(255,255,255,0.9)}
+
+.page{background:white;padding:5vh 5vw;page-break-after:always}
+
+.sec-header{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:2px solid var(--border)}
+.sec-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700;color:white;flex-shrink:0}
+.sec-title{font-family:'Playfair Display',serif;font-size:18pt;color:var(--stone)}
+.sec-sub{font-size:9pt;color:var(--text-mid)}
+
+/* TRI FOS */
+.fos-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin:0.5rem 0}
+.fos-card{border:1px solid var(--border);border-radius:8px;padding:0.9rem 1rem;background:white}
+.fos-num{font-size:7.5pt;font-weight:700;color:var(--text-mid);margin-bottom:0.3rem}
+.fos-text{font-size:9pt;line-height:1.45;font-style:italic;margin-bottom:0.5rem;color:var(--text)}
+.fos-answer{display:flex;gap:6px}
+.fos-btn{border:1.5px solid var(--border);border-radius:5px;padding:3px 10px;font-size:8.5pt;font-weight:700}
+.btn-f{border-color:#9BA8D0;color:#2C3150;background:#EEF0F8}
+.btn-o{border-color:var(--ochre-border);color:var(--ochre-mid);background:var(--ochre-light)}
+.btn-s{border-color:var(--rust-border);color:var(--rust);background:var(--rust-light)}
+.fos-reform{margin-top:0.4rem}
+.fos-reform-label{font-size:7.5pt;font-weight:700;color:var(--sage);text-transform:uppercase;display:block;margin-bottom:2px}
+.fos-line{border-bottom:1px solid var(--border);height:18px}
+
+/* RÉCITS DE SÉANCE */
+.recit-card{border:2px solid var(--ochre-border);border-radius:10px;padding:1.2rem;margin:0.8rem 0;background:var(--ochre-light)}
+.recit-title{font-family:'Playfair Display',serif;font-size:14pt;color:var(--ochre);margin-bottom:0.8rem}
+.recit-text{font-size:9.5pt;line-height:1.6;color:var(--text);font-style:italic;margin-bottom:0.8rem;padding:0.8rem;background:var(--stone-light);border-radius:6px;border-left:3px solid var(--ochre-mid)}
+.analyse-zones{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-top:0.7rem}
+.az-box{border-radius:7px;padding:0.8rem;border:1px solid var(--border)}
+.az-title{font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;display:block}
+.az-line{border-bottom:1px solid var(--border);height:18px;margin-bottom:3px;background:white;border-radius:3px}
+
+/* GRILLE OBS ENTRETIEN */
+.obs-grid{width:100%;border-collapse:collapse;margin:0.8rem 0}
+.obs-grid th{background:var(--stone);color:white;font-size:8.5pt;font-weight:600;padding:8px 12px;text-align:left}
+.obs-grid td{padding:9px 12px;font-size:9pt;border-bottom:1px solid var(--border);vertical-align:top}
+.obs-grid tr:nth-child(even) td{background:var(--bg)}
+.score-cell{text-align:center;font-size:8.5pt;width:100px}
+
+/* BOXES */
+.box{border-radius:8px;padding:0.9rem 1.1rem;margin:0.7rem 0}
+.box-tip{background:var(--ochre-light);border-left:4px solid var(--ochre-mid)}
+.box-good{background:var(--sage-light);border-left:4px solid var(--sage)}
+.box h4{font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.4rem}
+.box-tip h4{color:var(--ochre)} .box-good h4{color:var(--sage)}
+.box p,.box li{font-size:9.5pt;margin-bottom:3px}
+.box ul{padding-left:1.1rem}
+
+/* DÉBRIEFING ENTRETIEN */
+.debrief-card{border:2px solid var(--stone-border);border-radius:10px;padding:1.2rem;margin:0.7rem 0;background:var(--stone-light)}
+.db-question{font-size:9.5pt;font-weight:600;color:var(--stone);margin-bottom:5px}
+.db-lines{display:flex;flex-direction:column;gap:3px}
+.db-line{border-bottom:1px dashed var(--border);height:22px;background:white;border-radius:3px;padding:0 6px}
+
+@media print{
+  body{background:white}
+  .page{padding:0}
+  .cover,.obs-grid th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .btn-f,.btn-o,.btn-s,.recit-card{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1 class="cover-h1"><a href="../../index.html">Formation médiateur numérique</a></h1>
+  <div class="cover-tag">Pack Activités · CP5</div>
+  <h2>Évaluer<br>sa pratique</h2>
+  <p>15 formulations à trier (Faits/Opinions/Sentiments)<br>3 récits de séance à analyser<br>Grille d'observation · Fiches de débriefing</p>
+  <div class="cover-items">
+    <a class="cover-item" href="#formulations"><strong>Activité 1</strong> — Trier 15 formulations F/O/S + reformuler les opinions — 45 min</a>
+    <a class="cover-item" href="#analyses"><strong>Activité 2</strong> — Analyser 3 récits de séance avec grille structurée — 1h</a>
+    <a class="cover-item" href="#simulations"><strong>Activité 3</strong> — Simulation d'entretien technique + grille d'observation jury — 1h30</a>
+    <a class="cover-item" href="#debriefing"><strong>Outil</strong> — Fiches de débriefing post-animation (à utiliser après CP4)</a>
+  </div>
+</div>
+
+<!-- ACTIVITÉ 1 : TRI FOS -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--ochre-mid)">1</div>
+    <div>
+      <div class="sec-title" id="formulations">Trier et reformuler — Faits / Opinions / Sentiments</div>
+      <div class="sec-sub">15 formulations · Classer puis reformuler les Opinions en Faits · 45 minutes</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Mode d'emploi</h4>
+    <ul>
+      <li>Phase 1 (15 min) : travail individuel — classer chaque formulation en F, O ou S. Pour les O : reformuler en Fait.</li>
+      <li>Phase 2 (10 min) : binômes — comparer les classements et débattre des divergences.</li>
+      <li>Phase 3 (15 min) : tour de table sur les formulations ambiguës.</li>
+      <li>Phase 4 (5 min) : le test du "tiers présent" : si quelqu'un d'autre était là, pourrait-il confirmer ce que je dis ? Si non → Opinion ou Sentiment.</li>
+    </ul>
+  </div>
+
+  <p style="font-size:9pt;color:var(--text-mid);margin-bottom:0.6rem">Pour chaque formulation, coche : <strong style="color:#2C3150">F (Fait)</strong> · <strong style="color:var(--ochre-mid)">O (Opinion)</strong> · <strong style="color:var(--rust)">S (Sentiment)</strong>. Pour les O, reformule en Fait observable.</p>
+
+  <div class="fos-grid">
+    <div class="fos-card">
+      <div class="fos-num">Situation 01</div>
+      <p class="fos-text">"Le groupe était difficile ce matin."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 02</div>
+      <p class="fos-text">"Paul a quitté la salle à 15h12 sans prévenir."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 03</div>
+      <p class="fos-text">"J'ai bien géré la situation avec Karim."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 04</div>
+      <p class="fos-text">"Je me sentais incompétent(e) quand la connexion est tombée."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 05</div>
+      <p class="fos-text">"Sur 3 objectifs prévus, 2 ont été atteints par tous les participants. Le 3e n'a pas été abordé par manque de temps."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 06</div>
+      <p class="fos-text">"Les participants semblaient très motivés."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 07</div>
+      <p class="fos-text">"Ma séance n'a pas marché."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 08</div>
+      <p class="fos-text">"4 participants sur 6 ont réussi à créer leur compte Gmail en autonomie avant la fin de la séance."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 09</div>
+      <p class="fos-text">"La personne ne voulait pas apprendre — elle n'était pas motivée."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 10</div>
+      <p class="fos-text">"La connexion internet a été coupée à 14h23 pendant 12 minutes. J'ai utilisé les captures d'écran téléchargées en local pour continuer."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 11</div>
+      <p class="fos-text">"J'ai trop parlé pendant la séance."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 12</div>
+      <p class="fos-text">"J'étais soulagé(e) quand la séance s'est terminée."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 13</div>
+      <p class="fos-text">"Mme Chen a posé 2 questions pendant la séance et a refait l'exercice 3 fois avant de réussir seule."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 14</div>
+      <p class="fos-text">"L'atelier s'est très bien passé."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+    <div class="fos-card">
+      <div class="fos-num">Situation 15</div>
+      <p class="fos-text">"La séance prévue pour 1h30 a duré 1h55. La partie évaluation finale n'a pas eu lieu."</p>
+      <div class="fos-answer"><div class="fos-btn btn-f">F</div><div class="fos-btn btn-o">O</div><div class="fos-btn btn-s">S</div></div>
+      <div class="fos-reform"><div class="fos-line"></div><div class="fos-line"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVITÉ 2 : RÉCITS -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--stone)">2</div>
+    <div>
+      <div class="sec-title" id="analyses">Analyser 3 récits de séance</div>
+      <div class="sec-sub">Lire · Analyser avec la grille · Formuler des pistes · 1 heure</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Mode d'emploi</h4>
+    <ul>
+      <li>En groupes de 3 : chaque groupe reçoit un récit. 20 min d'analyse collective. Puis présentation de 5 min au grand groupe.</li>
+      <li>L'objectif est de pratiquer l'analyse réflexive sur la pratique de quelqu'un d'autre avant d'analyser la sienne — plus facile pour commencer.</li>
+      <li>Insister : pas de jugement sur "ce qu'aurait dû faire" le médiateur. Identification des faits, analyse des causes, pistes constructives.</li>
+    </ul>
+  </div>
+
+  <div class="recit-card">
+    <div class="recit-title">Récit n°1 — L'atelier qui a débordé</div>
+    <div class="recit-text">
+      "J'animais un atelier sur FranceConnect avec 6 participants. J'avais prévu 1h30. Au bout de 45 minutes, j'avais encore 40 minutes de contenu devant moi. Les participants posaient beaucoup de questions — certaines très précises sur leur situation personnelle. À chaque fois, j'essayais de répondre en détail. Un homme avait un problème avec son ancien numéro de téléphone enregistré sur son compte — j'ai passé 15 minutes avec lui pendant que les autres attendaient. La séance a finalement duré 2h05. Les participants semblaient fatigués à la fin. L'évaluation finale n'a pas eu lieu. Un participant a dit en partant 'c'était intéressant mais un peu long'."
+    </div>
+    <div class="analyse-zones">
+      <div class="az-box" style="background:var(--sage-light);border-color:var(--sage-border)">
+        <span class="az-title" style="color:var(--sage)">✓ Ce qui a fonctionné :</span>
+        <div class="az-line"></div><div class="az-line"></div>
+      </div>
+      <div class="az-box" style="background:var(--rust-light);border-color:var(--rust-border)">
+        <span class="az-title" style="color:var(--rust)">Difficultés + causes probables :</span>
+        <div class="az-line"></div><div class="az-line"></div>
+      </div>
+      <div class="az-box" style="background:var(--sky-light);border-color:var(--sky-border);grid-column:1/-1">
+        <span class="az-title" style="color:var(--sky-mid)">→ Axes d'amélioration (formulés positivement et concrètement) :</span>
+        <div class="az-line"></div><div class="az-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recit-card">
+    <div class="recit-title">Récit n°2 — La personne qui a failli partir</div>
+    <div class="recit-text">
+      "J'animais un accompagnement individuel avec une femme de 68 ans pour l'aider à accéder à son espace Ameli. Dès le début, elle a dit 'je suis nulle avec ça, vous perdez votre temps avec moi'. À mi-séance, elle a commencé à rassembler ses affaires pour partir. J'ai continué à expliquer les étapes depuis ma place pendant qu'elle hésitait. Elle est finalement restée. À la fin, elle avait accédé à son attestation mais je ne sais pas si elle pourrait le refaire seule. Elle n'a pas refait les étapes elle-même — c'est moi qui l'ai guidé de bout en bout depuis mon côté de la table."
+    </div>
+    <div class="analyse-zones">
+      <div class="az-box" style="background:var(--sage-light);border-color:var(--sage-border)">
+        <span class="az-title" style="color:var(--sage)">✓ Ce qui a fonctionné :</span>
+        <div class="az-line"></div><div class="az-line"></div>
+      </div>
+      <div class="az-box" style="background:var(--rust-light);border-color:var(--rust-border)">
+        <span class="az-title" style="color:var(--rust)">Difficultés + causes probables :</span>
+        <div class="az-line"></div><div class="az-line"></div>
+      </div>
+      <div class="az-box" style="background:var(--sky-light);border-color:var(--sky-border);grid-column:1/-1">
+        <span class="az-title" style="color:var(--sky-mid)">→ Axes d'amélioration :</span>
+        <div class="az-line"></div><div class="az-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recit-card">
+    <div class="recit-title">Récit n°3 — L'atelier surprenant</div>
+    <div class="recit-text">
+      "J'animais un atelier 'Reconnaître les fausses informations' avec 8 adolescents de 15 à 17 ans dans une MJC. Au début, l'ambiance était morne — ils avaient l'air de se demander ce qu'ils faisaient là. J'avais préparé un quiz Kahoot sur les fake news avec de vrais exemples récents d'actualité qu'eux connaissaient. Dès que j'ai lancé le quiz, l'ambiance a changé complètement. Ils débattaient entre eux, argumentaient, certains sortaient leur téléphone pour vérifier les informations en direct. La dernière heure a été très vivante. Deux participants ont continué à discuter en dehors après la séance. En revanche, je n'avais pas prévu d'évaluation formelle et je ne sais pas vraiment si les objectifs de la fiche de séance ont été atteints."
+    </div>
+    <div class="analyse-zones">
+      <div class="az-box" style="background:var(--sage-light);border-color:var(--sage-border)">
+        <span class="az-title" style="color:var(--sage)">✓ Ce qui a fonctionné et pourquoi :</span>
+        <div class="az-line"></div><div class="az-line"></div>
+      </div>
+      <div class="az-box" style="background:var(--rust-light);border-color:var(--rust-border)">
+        <span class="az-title" style="color:var(--rust)">Point à améliorer + cause :</span>
+        <div class="az-line"></div><div class="az-line"></div>
+      </div>
+      <div class="az-box" style="background:var(--sky-light);border-color:var(--sky-border);grid-column:1/-1">
+        <span class="az-title" style="color:var(--sky-mid)">→ Ce qu'on peut apprendre de cette séance :</span>
+        <div class="az-line"></div><div class="az-line"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVITÉ 3 : SIMULATION ENTRETIEN TECHNIQUE -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--sage)">3</div>
+    <div>
+      <div class="sec-title" id="simulations">Simulation d'entretien technique</div>
+      <div class="sec-sub">Reproduire les conditions exactes du jury · Grille d'observation · 1h30</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>📋 Mode d'emploi</h4>
+    <ul>
+      <li>Directement à la suite de l'animation — le ressenti est frais.</li>
+      <li>Le formateur joue le rôle du jury — questions structurées selon la grille ci-dessous.</li>
+      <li>Un observateur désigné (stagiaire) remplit la grille pendant l'entretien simulé.</li>
+      <li>Durée exacte : 15 minutes, comme au jury. Chronométrer.</li>
+      <li>Débriefing après : comparer l'auto-analyse du candidat avec les observations de la grille.</li>
+    </ul>
+  </div>
+
+  <div class="box box-good">
+    <h4>✅ Ce qui différencie une bonne réponse d'une mauvaise</h4>
+    <p><strong>Bonne réponse :</strong> "À 14h35, j'ai vu que Mme X. arrêtait de cliquer et regardait par la fenêtre. Je me suis assis à côté d'elle et j'ai repris depuis l'étape précédente. Elle a repris 3 minutes plus tard. Ce que j'aurais dû faire : anticiper en lui proposant un exercice plus simple dès le début."</p>
+    <p style="margin-top:0.4rem"><strong>Mauvaise réponse :</strong> "Globalement ça s'est bien passé. J'ai bien géré les difficultés." → Pas de faits, pas d'analyse, pas d'enseignement.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin-bottom:1rem">
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Candidat observé :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Séance animée :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+    <div><p style="font-size:9pt;font-weight:600;margin-bottom:3px">Date :</p><div style="border-bottom:1px solid var(--border);height:24px"></div></div>
+  </div>
+
+  <table class="obs-grid">
+    <thead>
+      <tr>
+        <th style="width:45%">Ce que j'observe dans la réponse</th>
+        <th class="score-cell">1 — Absent</th>
+        <th class="score-cell">2 — Présent</th>
+        <th class="score-cell">3 — Excellent</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="5" style="background:var(--stone-light);font-weight:700;font-size:8.5pt;color:var(--stone);padding:6px 12px">POSTURE RÉFLEXIVE GÉNÉRALE</td></tr>
+      <tr><td>Le candidat commence par les faits (pas les opinions)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Le candidat identifie à la fois les réussites et les difficultés</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>La posture est honnête et authentique (pas de performance)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--stone-light);font-weight:700;font-size:8.5pt;color:var(--stone);padding:6px 12px">ANALYSE DES ACTIVITÉS (critère 2)</td></tr>
+      <tr><td>Les objectifs de la séance sont rappelés comme référence d'évaluation</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Le niveau d'atteinte de chaque objectif est précisé</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--stone-light);font-weight:700;font-size:8.5pt;color:var(--stone);padding:6px 12px">IDENTIFICATION DES DIFFICULTÉS (critère 3)</td></tr>
+      <tr><td>Les difficultés sont nommées avec précision (pas "c'était difficile")</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les causes probables des difficultés sont analysées</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--stone-light);font-weight:700;font-size:8.5pt;color:var(--stone);padding:6px 12px">SOLUTIONS ET PISTES (critère 4)</td></tr>
+      <tr><td>Les axes d'amélioration sont concrets et actionnables</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Les pistes sont formulées positivement (pas "je ne ferai plus...")</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+
+      <tr><td colspan="5" style="background:var(--stone-light);font-weight:700;font-size:8.5pt;color:var(--stone);padding:6px 12px">QUESTIONS OUVERTES (critère 5)</td></tr>
+      <tr><td>Le candidat exprime au moins une question professionnelle non résolue</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+      <tr><td>Cette question montre une maturité professionnelle (pas une lacune banale)</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td class="score-cell">☐</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.8rem">
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--sage);margin-bottom:0.4rem">✓ 2 points forts de l'entretien observé :</p>
+      <div style="border:1px solid var(--sage-border);border-radius:8px;padding:0.8rem;background:var(--sage-light);min-height:55px"></div>
+    </div>
+    <div>
+      <p style="font-size:9pt;font-weight:700;color:var(--ochre-mid);margin-bottom:0.4rem">→ 1 axe prioritaire à travailler avant le jury :</p>
+      <div style="border:1px solid var(--ochre-border);border-radius:8px;padding:0.8rem;background:var(--ochre-light);min-height:55px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FICHES DÉBRIEFING POST-ANIMATION -->
+<div class="page">
+  <div class="sec-header">
+    <div class="sec-num" style="background:var(--ochre-mid)">4</div>
+    <div>
+      <div class="sec-title" id="debriefing">Fiches de débriefing post-animation</div>
+      <div class="sec-sub">À compléter juste après chaque micro-animation · Entraîne la réflexivité · Base du journal de bord</div>
+    </div>
+  </div>
+
+  <div class="box box-tip">
+    <h4>💡 À utiliser immédiatement après chaque animation</h4>
+    <p>Plus tu attends après une animation, plus les détails s'effacent. Le moment idéal : pendant les 5 minutes de feedback des pairs (remplis ta fiche pendant qu'ils parlent). Les 5 premières et les 5 dernières minutes de la séance sont toujours les plus importantes à analyser.</p>
+  </div>
+
+  <div class="debrief-card">
+    <p style="font-size:9pt;font-weight:700;color:var(--stone);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem">Débriefing n°1 · Sujet animé : _______________________________________________</p>
+    <div class="db-question">1. Comment je me suis senti(e) pendant l'animation ? (honnête — ni performance ni flagellation)</div>
+    <div class="db-lines"><div class="db-line"></div><div class="db-line"></div></div>
+    <div class="db-question" style="margin-top:0.6rem;color:var(--sage)">2. Ce qui a bien fonctionné — en FAITS (au moins 2 points) :</div>
+    <div class="db-lines"><div class="db-line"></div><div class="db-line"></div><div class="db-line"></div></div>
+    <div class="db-question" style="margin-top:0.6rem;color:var(--rust)">3. Ce qui était difficile — en FAITS + causes probables :</div>
+    <div class="db-lines"><div class="db-line"></div><div class="db-line"></div><div class="db-line"></div></div>
+    <div class="db-question" style="margin-top:0.6rem;color:var(--sky-mid)">4. Ce que j'aurais fait différemment — axe d'amélioration concret et positif :</div>
+    <div class="db-lines"><div class="db-line"></div><div class="db-line"></div></div>
+    <div class="db-question" style="margin-top:0.6rem;color:var(--ochre-mid)">5. Ce que j'ai appris sur moi comme médiateur(trice) :</div>
+    <div class="db-lines"><div class="db-line"></div></div>
+  </div>
+
+  <div class="debrief-card" style="margin-top:0.8rem">
+    <p style="font-size:9pt;font-weight:700;color:var(--stone);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem">Débriefing n°2 · Sujet animé : _______________________________________________</p>
+    <div class="db-question">1. Comment je me suis senti(e) ?</div>
+    <div class="db-lines"><div class="db-line"></div></div>
+    <div class="db-question" style="margin-top:0.5rem;color:var(--sage)">2. Ce qui a bien fonctionné (faits) :</div>
+    <div class="db-lines"><div class="db-line"></div><div class="db-line"></div></div>
+    <div class="db-question" style="margin-top:0.5rem;color:var(--rust)">3. Ce qui était difficile + causes :</div>
+    <div class="db-lines"><div class="db-line"></div><div class="db-line"></div></div>
+    <div class="db-question" style="margin-top:0.5rem;color:var(--sky-mid)">4. Axe d'amélioration concret :</div>
+    <div class="db-lines"><div class="db-line"></div><div class="db-line"></div></div>
+    <div class="db-question" style="margin-top:0.5rem;color:var(--ochre-mid)">5. Question ouverte que j'ai sur ma pratique :</div>
+    <div class="db-lines"><div class="db-line"></div></div>
+  </div>
+
+  <div class="box box-good" style="margin-top:0.8rem">
+    <h4>✅ La règle de l'analyse bienveillante</h4>
+    <p>L'analyse de pratique professionnelle n'est ni une punition ni un aveu d'incompétence. C'est un outil de progression. Tout professionnel expérimenté — même avec 20 ans de pratique — analyse ses séances et identifie des points à améliorer. C'est exactement ce qui fait la différence entre quelqu'un qui stagne et quelqu'un qui grandit.</p>
+  </div>
+  <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../../index.html">🔙 Retour à l'accueil</a></button>
+</div>
+  <footer>
+  <p style="text-align: center; align-content: center; font-size: 8pt; color: var(--text-mid); margin: 20px 0;">© 2026 - Formation médiateur numérique - Tous droits réservés Dev&Info</p>
+  </footer>
+</body>
+</html>

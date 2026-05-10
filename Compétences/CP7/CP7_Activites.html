@@ -33,7 +33,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
 .cover p{font-size:11.5pt;color:rgba(255,255,255,0.7);font-weight:300;line-height:1.6;max-width:13cm;margin-bottom:3rem}
 .cover-tag{background:var(--gold);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block}
 .cover-items{display:flex;flex-direction:column;gap:0.8rem;margin-top:auto}
-.cover-item{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt}
+.cover-item{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt;text-decoration:none;}
 .cover-item strong{color:rgba(255,255,255,0.9)}
 
 /* PAGES */
@@ -125,10 +125,10 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <h2>Plateformes<br>administratives</h2>
   <p>8 situations à analyser · 8 fiches-profils pour simulations<br>Grille d'observation · Modèle de fiche FALC à créer</p>
   <div class="cover-items">
-    <div class="cover-item"><strong>Activité 1</strong> — Analyser 8 situations d'accompagnement — 40 min</div>
-    <div class="cover-item"><strong>Activité 2</strong> — Simulation complète dos à dos + jeu de rôle — 8 profils — 2h</div>
-    <div class="cover-item"><strong>Activité 3</strong> — Grille d'observation</div>
-    <div class="cover-item"><strong>Outil</strong> — Modèle de fiche FALC à compléter pour le stage</div>
+    <a href="#cas-pratiques" class="cover-item"><strong>Activité 1</strong> — Analyser 8 situations d'accompagnement — 40 min</a>
+    <a href="#jeu-role" class="cover-item"><strong>Activité 2</strong> — Simulation complète dos à dos + jeu de rôle — 8 profils — 2h</a>
+    <a href="#observation" class="cover-item"><strong>Activité 3</strong> — Grille d'observation</a>
+    <a href="#fiche-falc" class="cover-item"><strong>Outil</strong> — Modèle de fiche FALC à compléter pour le stage</a>
   </div>
 </div>
 
@@ -137,7 +137,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:var(--plum)">1</div>
     <div>
-      <div class="sec-title">Situations à analyser</div>
+      <div class="sec-title" id="cas-pratiques">Situations à analyser</div>
       <div class="sec-sub">8 cas · Identifier frein, urgence, périmètre et 1ère action · 40 minutes</div>
     </div>
   </div>
@@ -251,7 +251,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:var(--navy)">2</div>
     <div>
-      <div class="sec-title">Fiches-profils pour simulation</div>
+      <div class="sec-title" id="jeu-role">Fiches-profils pour simulation</div>
       <div class="sec-sub">Un profil par "public" · Ne pas montrer au "médiateur" · 8 profils</div>
     </div>
   </div>
@@ -372,7 +372,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:#2C3E50">3</div>
     <div>
-      <div class="sec-title">Grille d'observation — Accompagnement administratif</div>
+      <div class="sec-title" id="observation">Grille d'observation — Accompagnement administratif</div>
       <div class="sec-sub">Basée sur les critères officiels du jury · Pour le rôle d'Observateur</div>
     </div>
   </div>
@@ -448,7 +448,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:var(--gold)">4</div>
     <div>
-      <div class="sec-title">Modèle de fiche FALC</div>
+      <div class="sec-title" id="fiche-falc">Modèle de fiche FALC</div>
       <div class="sec-sub">À compléter pour le stage · Un modèle par plateforme / action · Outil de la séquence 3</div>
     </div>
   </div>
