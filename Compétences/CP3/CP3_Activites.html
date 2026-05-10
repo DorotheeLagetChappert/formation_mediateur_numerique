@@ -29,10 +29,10 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
 .cover p{font-size:11.5pt;color:rgba(255,255,255,0.68);font-weight:300;line-height:1.6;max-width:13cm;margin-bottom:3rem}
 .cover-tag{background:var(--rust);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block}
 .cover-items{display:flex;flex-direction:column;gap:0.8rem;margin-top:auto}
-.cover-item{background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt}
+.cover-item{background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt;text-decoration:none;}
 .cover-item strong{color:rgba(255,255,255,0.9)}
 
-.page{background:white;padding:1.4cm;page-break-after:always}
+.page{background:white;padding:5vh 5vw;page-break-after:always}
 
 .sec-header{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:2px solid var(--border)}
 .sec-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14pt;font-weight:700;color:white;flex-shrink:0}
@@ -103,10 +103,10 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <h2>Concevoir<br>&amp; programmer</h2>
   <p>18 cartes de tri : Savoir / Savoir-faire / Savoir-être<br>10 objectifs à reformuler · 6 scénarios à construire<br>Grille de vérification des fiches de séance</p>
   <div class="cover-items">
-    <div class="cover-item"><strong>Activité 1</strong> — Tri S / SF / SE — 18 cartes — 45 min</div>
-    <div class="cover-item"><strong>Activité 2</strong> — Reformuler 10 objectifs ratés — 1h</div>
-    <div class="cover-item"><strong>Activité 3</strong> — Construire 6 mini-scénarios pédagogiques — 1h30</div>
-    <div class="cover-item"><strong>Outil</strong> — Grille de vérification des fiches de séance (relecture croisée)</div>
+    <a class="cover-item" href="#tri"><strong>Activité 1</strong> — Tri S / SF / SE — 18 cartes — 45 min</a>
+    <a class="cover-item" href="#reformulation"><strong>Activité 2</strong> — Reformuler 10 objectifs ratés — 1h</a>
+    <a class="cover-item" href="#scenarios"><strong>Activité 3</strong> — Construire 6 mini-scénarios pédagogiques — 1h30</a>
+    <a class="cover-item" href="#verification"><strong>Outil</strong> — Grille de vérification des fiches de séance (relecture croisée)</a>
   </div>
 </div>
 
@@ -115,7 +115,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:var(--rust)">1</div>
     <div>
-      <div class="sec-title">Tri Savoir / Savoir-faire / Savoir-être</div>
+      <div class="sec-title" id="tri">Tri Savoir / Savoir-faire / Savoir-être</div>
       <div class="sec-sub">18 cartes · Équipes de 3 · 45 minutes · Classer chaque apprentissage dans le bon domaine</div>
     </div>
   </div>
@@ -158,7 +158,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:var(--ink-mid)">2</div>
     <div>
-      <div class="sec-title">Reformuler 10 objectifs ratés</div>
+      <div class="sec-title" id="reformulation">Reformuler 10 objectifs ratés</div>
       <div class="sec-sub">Objectifs mal formulés · Réécrire avec un verbe observable · Préciser le niveau de Bloom · 1 heure</div>
     </div>
   </div>
@@ -262,7 +262,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:var(--sage)">3</div>
     <div>
-      <div class="sec-title">Construire 6 mini-scénarios pédagogiques</div>
+      <div class="sec-title" id="scenarios">Construire 6 mini-scénarios pédagogiques</div>
       <div class="sec-sub">1 situation = 1 scénario à construire · Public + Objectif + Méthode + Évaluation · 1h30</div>
     </div>
   </div>
@@ -360,7 +360,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:var(--gold)">4</div>
     <div>
-      <div class="sec-title">Grille de vérification des fiches de séance</div>
+      <div class="sec-title" id="verification">Grille de vérification des fiches de séance</div>
       <div class="sec-sub">Relecture croisée en binôme · À utiliser avant de remettre les fiches au jury</div>
     </div>
   </div>

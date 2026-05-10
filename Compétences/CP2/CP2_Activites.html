@@ -28,7 +28,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
 .cover p{font-size:12pt;color:rgba(255,255,255,0.7);font-weight:300;line-height:1.6;max-width:13cm;margin-bottom:3rem}
 .cover-tag{background:var(--teal);color:white;font-size:8pt;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block}
 .cover-items{display:flex;flex-direction:column;gap:0.8rem;margin-top:auto}
-.cover-item{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt}
+.cover-item{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt;text-decoration:none;}
 .cover-item strong{color:rgba(255,255,255,0.9)}
 
 .page{background:white;padding:5vh 5vw;page-break-after:always}
@@ -100,9 +100,9 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <h2>Diagnostic<br>&amp; entretien</h2>
   <p>8 situations pour identifier Demande/Besoin/Envie<br>8 fiches-profils pour simulations d'entretien<br>Grille d'observation</p>
   <div class="cover-items">
-    <div class="cover-item"><strong>Activité 1</strong> — Identifier D/B/E dans 8 situations — 40 min</div>
-    <div class="cover-item"><strong>Activité 2</strong> — Simulation d'entretien de diagnostic — 8 profils — 2h</div>
-    <div class="cover-item"><strong>Activité 3</strong> — Grille d'observation</div>
+    <a href="#identifier" class="cover-item"><strong>Activité 1</strong> — Identifier D/B/E dans 8 situations — 40 min</a>
+    <a href="#simulation" class="cover-item"><strong>Activité 2</strong> — Simulation d'entretien de diagnostic — 8 profils — 2h</a>
+    <a href="#observation" class="cover-item"><strong>Activité 3</strong> — Grille d'observation</a>
   </div>
 </div>
 
@@ -111,7 +111,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:var(--teal)">1</div>
     <div>
-      <div class="sec-title">Identifier Demande · Besoin · Envie</div>
+      <div class="sec-title" id="identifier">Identifier Demande · Besoin · Envie</div>
       <div class="sec-sub">8 situations · Individuel puis collectif · 40 minutes</div>
     </div>
   </div>
@@ -210,7 +210,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:var(--navy)">2</div>
     <div>
-      <div class="sec-title">Fiches-profils pour simulation d'entretien</div>
+      <div class="sec-title" id="simulation">Fiches-profils pour simulation d'entretien</div>
       <div class="sec-sub">Un profil par "Public" · Ne pas montrer au "médiateur" · 8 profils</div>
     </div>
   </div>
@@ -345,7 +345,7 @@ body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);backgroun
   <div class="sec-header">
     <div class="sec-num" style="background:#2C3E50">3</div>
     <div>
-      <div class="sec-title">Grille d'observation — Entretien de diagnostic</div>
+      <div class="sec-title" id="observation">Grille d'observation — Entretien de diagnostic</div>
       <div class="sec-sub">Basée sur les critères officiels du jury · Pour le rôle d'Observateur</div>
     </div>
   </div>
