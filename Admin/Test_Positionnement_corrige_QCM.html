@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Test de positionnement initial — Médiateur Numérique</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bleu:#0D2B5E;--bleu-light:#EBF0FA;--bleu-border:#8AAAD5;
+  --vert:#1A5C3A;--vert-light:#E4F5EB;--vert-border:#7EC8A4;
+  --or:#7A5A00;--or-light:#FEF8E6;--or-border:#D4B050;
+  --brique:#8B2635;--brique-light:#FDEDEC;--brique-border:#F1948A;
+  --ardoise:#2C3A47;--ardoise-light:#EBF0F4;--ardoise-border:#A9C2D3;
+  --amber:#C47B1E;--amber-light:#FEF6EC;--amber-border:#F0C080;
+  --gold:#9A7000;--gold-light:#FEF9E7;--gold-border:#F7DC6F;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.3cm}
+body{font-family:'DM Sans',sans-serif;font-size:9.5pt;color:var(--text);background:white;line-height:1.5}
+.page{background:white;padding:5vh 5vw;page-break-after:always}
+.page:last-child{page-break-after:auto}
+
+/* COVER */
+.cover{background:var(--bleu);display:flex;flex-direction:column;padding:8vh 15vw;}
+.cover-h1{background:var(--vert);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover h2{font-family:'Playfair Display',serif;font-size:27pt;color:white;line-height:1.1;margin-bottom:0.7rem}
+.cover h3{font-size:10.5pt;color:rgba(255,255,255,0.7);font-weight:300;line-height:1.6;margin-bottom:1.5rem;max-width:18cm}
+.cover-pills{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem}
+.pill{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:white;padding:4px 11px;border-radius:14px;font-size:8.5pt}
+.cover-info{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.7rem 1rem;color:white;font-size:9.5pt;margin-top:auto}
+.ci-label{font-size:7.5pt;opacity:0.8;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:2px;}
+.ci-line{border-bottom:1px solid rgba(255,255,255,0.25);height:20px}
+.cover-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.5rem;}
+
+/* PAGES */
+.page-header{border-bottom:2px solid var(--bleu);padding-bottom:0.5rem;margin-bottom:0.8rem;display:flex;justify-content:space-between;align-items:flex-end}
+.ph-badge{color:white;font-size:7.5pt;font-weight:600;padding:3px 9px;border-radius:3px;letter-spacing:1px;text-transform:uppercase;display:inline-block}
+.ph-title{font-family:'Playfair Display',serif;font-size:15pt}
+.ph-right{font-size:7.5pt;color:var(--text-light);text-align:right}
+
+h3.section{font-family:'Playfair Display',serif;font-size:12pt;margin:0.8rem 0 0.4rem;padding-left:0.6rem;border-left:3px solid var(--bleu);color:var(--bleu);}
+p{font-size:9pt;margin-bottom:0.3rem;line-height:1.5}
+.box{border-radius:7px;padding:0.6rem 0.8rem;margin:0.4rem 0}
+.box p,.box li{font-size:9pt;margin-bottom:2px}
+.box ul{padding-left:1rem}
+
+/* QCM */
+.qcm-bloc{margin:0.5rem 0;border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
+.qcm-header{padding:6px 10px;font-size:9pt;font-weight:600;background:#fafafa;border-bottom:1px solid var(--border)}
+.qcm-options{display:flex;flex-direction:column;gap:3px;padding:6px 10px}
+.qcm-option{display:flex;align-items:flex-start;gap:7px;font-size:9pt;color:var(--text-mid)}
+.qcm-option .cb{width:14px;height:14px;border:1.5px solid var(--border);border-radius:3px;flex-shrink:0;margin-top:1px}
+.qcm-option .checked{width:14px;height:14px;border:1.5px solid var(--border);border-radius:3px;flex-shrink:0;margin-top:1px;background:var(--amber)}
+.qcm-sectlabel{font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;padding:4px 10px;color:white;margin:0}
+
+/* NIVEAU CELLS */
+.niv-row{display:flex;gap:4px;margin:0.5rem 0}
+.niv-btn{flex:1;text-align:center;padding:6px 4px;border-radius:5px;font-size:8.5pt;font-weight:700;border:1.5px solid}
+.n0{background:var(--brique-light);border-color:var(--brique-border);color:var(--brique)}
+.n1{background:var(--amber-light);border-color:var(--amber-border);color:var(--amber)}
+.n2{background:var(--gold-light);border-color:var(--gold-border);color:var(--gold)}
+.n3{background:var(--vert-light);border-color:var(--vert-border);color:var(--vert)}
+.n4{background:var(--bleu-light);border-color:var(--bleu-border);color:var(--bleu)}
+
+.write-line{border-bottom:1px solid var(--border);height:20px;margin-bottom:4px}
+.write-box{border:1px solid var(--border);border-radius:5px;min-height:100px;padding:4px 7px;background:#fafafa;margin-bottom:4px}
+.write-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* SYNTHÈSE */
+.synth-table{width:100%;border-collapse:collapse;margin:0.4rem 0}
+.synth-table th{background:var(--bleu);color:white;font-size:8pt;padding:5px 8px;text-align:left}
+.synth-table td{padding:6px 8px;font-size:8.5pt;border-bottom:1px solid var(--border);vertical-align:middle}
+.synth-table tr:nth-child(even) td{background:var(--bleu-light)}
+.level-cell{width:90px}
+.level-bar{height:8px;border-radius:4px;background:var(--border);overflow:hidden;margin-top:2px}
+.level-fill{height:100%;border-radius:4px}
+
+@media print{
+  body{background:white}
+  .cover,.qcm-sectlabel,.ph-badge,.synth-table th,.niv-btn,.n0,.n1,.n2,.n3,.n4{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COUVERTURE -->
+<div class="cover">
+  <h1 class="cover-h1"><a href="../Admin/ressources_formateur.html">Formation médiateur numérique</a></h1>
+  <div style="background:var(--vert);color:white;font-size:8pt;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:3px;display:inline-block;margin-bottom:1.5rem">Test de positionnement initial</div>
+  <div style="width:40px;height:3px;background:var(--vert);border-radius:2px;margin-bottom:1.5rem"></div>
+  <h2>Où en suis-je<br>avant de commencer ?</h2>
+
+
+<!-- PAGE 3 : QCM DE CONNAISSANCES -->
+<div class="page">
+  <div class="page-header">
+    <div>
+      <div class="ph-badge" style="background:var(--or)">Partie C</div>
+      <div class="ph-title" style="color:var(--or)">Questions de connaissances — pas de pression !</div>
+    </div>
+    <div class="ph-right">Page 3/5</div>
+  </div>
+
+  <div class="box" style="background:var(--or-light);border:1px solid var(--or-border)"><p><strong>Ces questions permettent d'évaluer tes connaissances de départ.</strong> Si tu ne sais pas, laisse vide — c'est une information utile pour adapter la formation. Il n'y a pas de notation. 1 seule bonne réponse par question sauf indication contraire.</p></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:0.5rem">
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">1. Qu'est-ce que l'illectronisme ?</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Ne pas savoir lire</label>
+        <label class="qcm-option"><div class="checked"></div>Ne pas maîtriser les usages numériques de base</label>
+        <label class="qcm-option"><div class="cb"></div>N'avoir ni ordinateur ni connexion internet</label>
+        <label class="qcm-option"><div class="cb"></div>Avoir peur de l'informatique</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">2. La règle des "mains à soi" signifie :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>On peut aider en prenant le clavier si la personne est d'accord</label>
+        <label class="qcm-option"><div class="cb"></div>Ne pas toucher l'écran pour ne pas l'abîmer</label>
+        <label class="qcm-option"><div class="cb"></div>Laisser la personne faire seule, sans aucune aide</label>
+              <label class="qcm-option"><div class="checked"></div>Jamais utiliser le clavier, la souris ou le téléphone de la personne</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">3. Quelle est la différence entre illettrisme et analphabétisme ?</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Aucune, c'est la même chose</label>
+        <label class="qcm-option"><div class="checked"></div>L'analphabète n'a jamais été scolarisé, l'illettré a été scolarisé en France mais n'a pas consolidé les compétences</label>
+        <label class="qcm-option"><div class="cb"></div>L'illettré ne parle pas français, l'analphabète ne sait pas compter</label>
+        <label class="qcm-option"><div class="cb"></div>Le terme "analphabète" est vieux, "illettré" est moderne</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">4. FranceConnect, c'est :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="checked"></div>Un service qui permet de se connecter à plusieurs services publics avec un compte existant</label>
+        <label class="qcm-option"><div class="cb"></div>Un compte créé sur le site FranceConnect.fr</label>
+        <label class="qcm-option"><div class="cb"></div>La carte d'identité numérique française</label>
+        <label class="qcm-option"><div class="cb"></div>L'application officielle de l'État pour les démarches</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">5. Quel outil propose-t-on à une personne aveugle pour naviguer sur internet ?</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Une loupe d'écran</label>
+        <label class="qcm-option"><div class="cb"></div>Live Caption</label>
+        <label class="qcm-option"><div class="checked"></div>NVDA — un lecteur d'écran qui lit le contenu à voix haute</label>
+        <label class="qcm-option"><div class="cb"></div>OpenDyslexic</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">6. FALC signifie :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Formulaire Allégé de Communication</label>
+        <label class="qcm-option"><div class="checked"></div>Facile À Lire et à Comprendre</label>
+        <label class="qcm-option"><div class="cb"></div>Formation Adaptée aux Langues Courantes</label>
+        <label class="qcm-option"><div class="cb"></div>Fiche d'Accessibilité pour les Langages Complexes</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">7. Si une personne oublie ses identifiants Ameli pendant une séance, le médiateur doit :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Appeler Ameli à sa place pour récupérer les identifiants</label>
+        <label class="qcm-option"><div class="cb"></div>Remettre la démarche à une prochaine fois et terminer la séance</label>
+        <label class="qcm-option"><div class="cb"></div>Utiliser les identifiants d'un autre compte pour montrer le fonctionnement</label>
+        <label class="qcm-option"><div class="checked"></div>L'accompagner dans la procédure de récupération de mot de passe sur le site</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">8. Le RGAA niveau AA concerne :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="checked"></div>L'obligation légale d'accessibilité pour les sites publics en France</label>
+        <label class="qcm-option"><div class="cb"></div>Un niveau optionnel pour les sites souhaitant être exemplaires</label>
+        <label class="qcm-option"><div class="cb"></div>Un certificat délivré aux médiateurs numériques</label>
+        <label class="qcm-option"><div class="cb"></div>Le niveau minimum pour les sites commerciaux</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">9. Lors de l'actualisation mensuelle sur France Travail, si la personne oublie :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Ce n'est pas grave, elle peut le faire le mois suivant</label>
+        <label class="qcm-option"><div class="checked"></div>Elle risque une suspension de ses allocations</label>
+        <label class="qcm-option"><div class="cb"></div>Elle doit appeler son conseiller France Travail</label>
+        <label class="qcm-option"><div class="cb"></div>Elle reçoit un rappel automatique par SMS</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">10. La principale difficulté d'une personne en situation d'illettrisme lors d'un atelier numérique est :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Elle ne peut pas du tout utiliser d'outils numériques</label>
+        <label class="qcm-option"><div class="cb"></div>Elle a besoin d'un traducteur pour comprendre les interfaces</label>
+        <label class="qcm-option"><div class="checked"></div>Elle peut avoir du mal avec les interfaces textuelles mais peut maîtriser certains usages (WhatsApp, YouTube…)</label>
+        <label class="qcm-option"><div class="cb"></div>Elle doit être orientée vers un cours de lecture avant tout atelier numérique</label>
+      </div>
+    </div>
+  </div>
+</div>
+  <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../Admin/ressources_formateur.html">🔙</a></button>
+</div>
+<footer>
+  <p style="text-align: center; align-content: center; font-size: 8pt; color: var(--text-mid); margin: 20px 0;">© 2026 - Formation médiateur numérique - Tous droits réservés Dev&Info</p>
+</footer>
+</body>
+</html>
