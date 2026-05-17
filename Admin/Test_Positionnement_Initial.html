@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Test de positionnement initial — Médiateur Numérique</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bleu:#0D2B5E;--bleu-light:#EBF0FA;--bleu-border:#8AAAD5;
+  --vert:#1A5C3A;--vert-light:#E4F5EB;--vert-border:#7EC8A4;
+  --or:#7A5A00;--or-light:#FEF8E6;--or-border:#D4B050;
+  --brique:#8B2635;--brique-light:#FDEDEC;--brique-border:#F1948A;
+  --ardoise:#2C3A47;--ardoise-light:#EBF0F4;--ardoise-border:#A9C2D3;
+  --amber:#C47B1E;--amber-light:#FEF6EC;--amber-border:#F0C080;
+  --gold:#9A7000;--gold-light:#FEF9E7;--gold-border:#F7DC6F;
+  --text:#1C2833;--text-mid:#566573;--text-light:#AEB6BF;--border:#DDE1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:1.3cm}
+body{font-family:'DM Sans',sans-serif;font-size:9.5pt;color:var(--text);background:white;line-height:1.5}
+.page{background:white;padding:5vh 5vw;page-break-after:always}
+.page:last-child{page-break-after:auto}
+
+/* COVER */
+.cover{background:var(--bleu);display:flex;flex-direction:column;padding:8vh 15vw;}
+.cover-h1{background:var(--vert);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+.cover-h1 a{color:inherit;text-decoration:none}
+.cover h2{font-family:'Playfair Display',serif;font-size:27pt;color:white;line-height:1.1;margin-bottom:0.7rem}
+.cover h3{font-size:10.5pt;color:rgba(255,255,255,0.7);font-weight:300;line-height:1.6;margin-bottom:1.5rem;max-width:18cm}
+.cover-pills{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem}
+.pill{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:white;padding:4px 11px;border-radius:14px;font-size:8.5pt}
+.cover-info{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:0.7rem 1rem;color:white;font-size:9.5pt;margin-top:auto}
+.ci-label{font-size:7.5pt;opacity:0.8;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:2px;}
+.ci-line{border-bottom:1px solid rgba(255,255,255,0.25);height:20px}
+.cover-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.5rem;}
+
+/* PAGES */
+.page-header{border-bottom:2px solid var(--bleu);padding-bottom:0.5rem;margin-bottom:0.8rem;display:flex;justify-content:space-between;align-items:flex-end}
+.ph-badge{color:white;font-size:7.5pt;font-weight:600;padding:3px 9px;border-radius:3px;letter-spacing:1px;text-transform:uppercase;display:inline-block}
+.ph-title{font-family:'Playfair Display',serif;font-size:15pt}
+.ph-right{font-size:7.5pt;color:var(--text-light);text-align:right}
+
+h3.section{font-family:'Playfair Display',serif;font-size:12pt;margin:0.8rem 0 0.4rem;padding-left:0.6rem;border-left:3px solid var(--bleu);color:var(--bleu);}
+p{font-size:9pt;margin-bottom:0.3rem;line-height:1.5}
+.box{border-radius:7px;padding:0.6rem 0.8rem;margin:0.4rem 0}
+.box p,.box li{font-size:9pt;margin-bottom:2px}
+.box ul{padding-left:1rem}
+
+/* QCM */
+.qcm-bloc{margin:0.5rem 0;border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
+.qcm-header{padding:6px 10px;font-size:9pt;font-weight:600;background:#fafafa;border-bottom:1px solid var(--border)}
+.qcm-options{display:flex;flex-direction:column;gap:3px;padding:6px 10px}
+.qcm-option{display:flex;align-items:flex-start;gap:7px;font-size:9pt;color:var(--text-mid)}
+.qcm-option .cb{width:14px;height:14px;border:1.5px solid var(--border);border-radius:3px;flex-shrink:0;margin-top:1px}
+.qcm-sectlabel{font-size:7.5pt;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;padding:4px 10px;color:white;margin:0}
+
+/* NIVEAU CELLS */
+.niv-row{display:flex;gap:4px;margin:0.5rem 0}
+.niv-btn{flex:1;text-align:center;padding:6px 4px;border-radius:5px;font-size:8.5pt;font-weight:700;border:1.5px solid}
+.n0{background:var(--brique-light);border-color:var(--brique-border);color:var(--brique)}
+.n1{background:var(--amber-light);border-color:var(--amber-border);color:var(--amber)}
+.n2{background:var(--gold-light);border-color:var(--gold-border);color:var(--gold)}
+.n3{background:var(--vert-light);border-color:var(--vert-border);color:var(--vert)}
+.n4{background:var(--bleu-light);border-color:var(--bleu-border);color:var(--bleu)}
+
+.write-line{border-bottom:1px solid var(--border);height:20px;margin-bottom:4px}
+.write-box{border:1px solid var(--border);border-radius:5px;min-height:100px;padding:4px 7px;background:#fafafa;margin-bottom:4px}
+.write-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* SYNTHÈSE */
+.synth-table{width:100%;border-collapse:collapse;margin:0.4rem 0}
+.synth-table th{background:var(--bleu);color:white;font-size:8pt;padding:5px 8px;text-align:left}
+.synth-table td{padding:6px 8px;font-size:8.5pt;border-bottom:1px solid var(--border);vertical-align:middle}
+.synth-table tr:nth-child(even) td{background:var(--bleu-light)}
+.level-cell{width:90px}
+.level-bar{height:8px;border-radius:4px;background:var(--border);overflow:hidden;margin-top:2px}
+.level-fill{height:100%;border-radius:4px}
+
+@media print{
+  body{background:white}
+  .cover,.qcm-sectlabel,.ph-badge,.synth-table th,.niv-btn,.n0,.n1,.n2,.n3,.n4{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- COUVERTURE -->
+<div class="cover">
+  <h1 class="cover-h1"><a href="../Admin/ressources_formateur.html">Formation médiateur numérique</a></h1>
+  <div style="background:var(--vert);color:white;font-size:8pt;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:3px;display:inline-block;margin-bottom:1.5rem">Test de positionnement initial</div>
+  <div style="width:40px;height:3px;background:var(--vert);border-radius:2px;margin-bottom:1.5rem"></div>
+  <h2>Où en suis-je<br>avant de commencer ?</h2>
+  <h3>Ce test n'est pas une évaluation. Il aide le formateur à adapter la formation à ton niveau réel de départ.<br> Il n'y a pas de mauvaises réponses.</h3>
+  <div class="cover-pills">
+    <span class="pill">💻 Usages numériques personnels</span>
+    <span class="pill">🤝 Expérience d'accompagnement</span>
+    <span class="pill">📋 Plateformes administratives</span>
+    <span class="pill">🏛️ Connaissance du secteur</span>
+    <span class="pill">🎯 Motivations et projet pro</span>
+  </div>
+  <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.9rem 1.1rem;margin-bottom:1rem">
+    <p style="color:var(--vert-border);font-size:11pt;margin-bottom:4px"><strong>À quoi ça va servir ?</strong></p>
+    <p style="color:rgba(255,255,255,0.8);font-size:10pt">Tes réponses permettent au formateur de savoir dès le départ : ce que tu sais déjà (pour ne pas te répéter les bases), ce qui te sera nouveau (pour adapter le rythme) et comment te préparer au mieux pour le jury.</p>
+  </div>
+  <div class="cover-info">
+    <span class="ci-label">Nom et prénom</span><div class="ci-line"></div>
+  </div>
+  <div class="cover-grid">
+    <div class="cover-info"><span class="ci-label">Formation / parcours antérieur</span><div class="ci-line"></div><div class="ci-line"></div><div class="ci-line"></div><div class="ci-line"></div></div>
+    <div class="cover-info"><span class="ci-label">Expérience professionnelle (secteur)</span><div class="ci-line"></div><div class="ci-line"></div><div class="ci-line"></div><div class="ci-line"></div></div>
+    <div class="cover-info"><span class="ci-label">Date</span><div class="ci-line"></div></div>
+    <div class="cover-info"><span class="ci-label">Durée estimée de remplissage</span><div style="color:rgba(255,255,255,0.7);font-size:9pt;margin-top:4px">~25 minutes · Pas de chronomètre</div></div>
+  </div>
+</div>
+
+
+<!-- PAGE 1 : USAGES NUMÉRIQUES PERSONNELS -->
+<div class="page">
+  <div class="page-header">
+    <div>
+      <div class="ph-badge" style="background:var(--bleu)">Partie A</div>
+      <div class="ph-title" style="color:var(--bleu)">Mes usages numériques personnels</div>
+    </div>
+  </div>
+
+  <div class="box" style="background:var(--bleu-light);border:1px solid var(--bleu-border)"><p>Ces questions portent sur CE QUE TU FAIS toi-même avec le numérique — pas ce que tu ferais pour quelqu'un d'autre. Coche la case qui te ressemble le mieux.</p></div>
+
+  <h3 class="section">A1 — Mon niveau numérique général</h3>
+  <div class="niv-row">
+    <div class="niv-btn n0">0<br><small style="font-size:7pt">Je me débrouille<br>à peine</small></div>
+    <div class="niv-btn n1">1<br><small style="font-size:7pt">Bases maîtrisées<br>naviguer, email</small></div>
+    <div class="niv-btn n2">2<br><small style="font-size:7pt">Autonome sur la<br>plupart des usages</small></div>
+    <div class="niv-btn n3">3<br><small style="font-size:7pt">Très à l'aise · guide<br>parfois mes proches</small></div>
+    <div class="niv-btn n4">4<br><small style="font-size:7pt">Expert · travail<br>numérique quotidien</small></div>
+  </div>
+
+  <h3 class="section">A2 — Ce que je fais régulièrement (cocher tout ce qui s'applique)</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;margin:0.5rem 0">
+    <div class="qcm-bloc">
+      <div class="qcm-sectlabel" style="background:var(--bleu)">Communications et réseaux</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Email (envoyer, recevoir, pièces jointes)</label>
+        <label class="qcm-option"><div class="cb"></div>Réseaux sociaux (Facebook, Instagram, LinkedIn…)</label>
+        <label class="qcm-option"><div class="cb"></div>Messageries instantanées (WhatsApp, Messenger…)</label>
+        <label class="qcm-option"><div class="cb"></div>Vidéoconférence (Teams, Zoom, Meet…)</label>
+      </div>
+    </div>
+    <div class="qcm-bloc">
+      <div class="qcm-sectlabel" style="background:var(--vert)">Démarches et services</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Démarches administratives en ligne (impôts, CAF…)</label>
+        <label class="qcm-option"><div class="cb"></div>Achats en ligne</label>
+        <label class="qcm-option"><div class="cb"></div>Prise de rendez-vous médicaux en ligne</label>
+        <label class="qcm-option"><div class="cb"></div>Télétravail / outils de bureautique</label>
+      </div>
+    </div>
+    <div class="qcm-bloc">
+      <div class="qcm-sectlabel" style="background:var(--or)">Appareils utilisés</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Smartphone (iOS ou Android)</label>
+        <label class="qcm-option"><div class="cb"></div>Ordinateur portable ou fixe</label>
+        <label class="qcm-option"><div class="cb"></div>Tablette</label>
+        <label class="qcm-option"><div class="cb"></div>TV connectée / objet connecté</label>
+      </div>
+    </div>
+    <div class="qcm-bloc">
+      <div class="qcm-sectlabel" style="background:var(--ardoise)">Compétences avancées</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Créer ou gérer un site/blog/page</label>
+        <label class="qcm-option"><div class="cb"></div>Utiliser des outils collaboratifs (Drive, Notion…)</label>
+        <label class="qcm-option"><div class="cb"></div>Montage photo ou vidéo</label>
+        <label class="qcm-option"><div class="cb"></div>Coder / créer des automatisations</label>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section">A3 — Les plateformes administratives que je connais (note de 0 à 4)</h3>
+  <table style="width:100%;border-collapse:collapse;margin:0.4rem 0">
+    <thead><tr><th style="background:var(--bleu);color:white;padding:5px 8px;text-align:left;font-size:8.5pt">Plateforme</th><th style="background:var(--bleu);color:white;padding:5px 8px;text-align:center;font-size:8.5pt;width:30%">Mon niveau de connaissance</th></tr></thead>
+    <tbody>
+      <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-size:9pt">Ameli (Assurance Maladie)</td><td style="padding:5px 8px;border-bottom:1px solid var(--border)"><div class="niv-row" style="gap:3px"><div class="niv-btn n0" style="padding:3px 2px;font-size:8pt">0</div><div class="niv-btn n1" style="padding:3px 2px;font-size:8pt">1</div><div class="niv-btn n2" style="padding:3px 2px;font-size:8pt">2</div><div class="niv-btn n3" style="padding:3px 2px;font-size:8pt">3</div><div class="niv-btn n4" style="padding:3px 2px;font-size:8pt">4</div></div></td></tr>
+      <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-size:9pt;background:#fafafa">CAF (Caisse d'Allocations Familiales)</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);background:#fafafa"><div class="niv-row" style="gap:3px"><div class="niv-btn n0" style="padding:3px 2px;font-size:8pt">0</div><div class="niv-btn n1" style="padding:3px 2px;font-size:8pt">1</div><div class="niv-btn n2" style="padding:3px 2px;font-size:8pt">2</div><div class="niv-btn n3" style="padding:3px 2px;font-size:8pt">3</div><div class="niv-btn n4" style="padding:3px 2px;font-size:8pt">4</div></div></td></tr>
+      <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-size:9pt">France Travail (ex Pôle Emploi)</td><td style="padding:5px 8px;border-bottom:1px solid var(--border)"><div class="niv-row" style="gap:3px"><div class="niv-btn n0" style="padding:3px 2px;font-size:8pt">0</div><div class="niv-btn n1" style="padding:3px 2px;font-size:8pt">1</div><div class="niv-btn n2" style="padding:3px 2px;font-size:8pt">2</div><div class="niv-btn n3" style="padding:3px 2px;font-size:8pt">3</div><div class="niv-btn n4" style="padding:3px 2px;font-size:8pt">4</div></div></td></tr>
+      <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-size:9pt;background:#fafafa">Impôts.gouv.fr (déclaration de revenus)</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);background:#fafafa"><div class="niv-row" style="gap:3px"><div class="niv-btn n0" style="padding:3px 2px;font-size:8pt">0</div><div class="niv-btn n1" style="padding:3px 2px;font-size:8pt">1</div><div class="niv-btn n2" style="padding:3px 2px;font-size:8pt">2</div><div class="niv-btn n3" style="padding:3px 2px;font-size:8pt">3</div><div class="niv-btn n4" style="padding:3px 2px;font-size:8pt">4</div></div></td></tr>
+      <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);font-size:9pt">FranceConnect (identité numérique)</td><td style="padding:5px 8px;border-bottom:1px solid var(--border)"><div class="niv-row" style="gap:3px"><div class="niv-btn n0" style="padding:3px 2px;font-size:8pt">0</div><div class="niv-btn n1" style="padding:3px 2px;font-size:8pt">1</div><div class="niv-btn n2" style="padding:3px 2px;font-size:8pt">2</div><div class="niv-btn n3" style="padding:3px 2px;font-size:8pt">3</div><div class="niv-btn n4" style="padding:3px 2px;font-size:8pt">4</div></div></td></tr>
+      <tr><td style="padding:5px 8px;font-size:9pt;background:#fafafa">Service-public.fr</td><td style="padding:5px 8px;background:#fafafa"><div class="niv-row" style="gap:3px"><div class="niv-btn n0" style="padding:3px 2px;font-size:8pt">0</div><div class="niv-btn n1" style="padding:3px 2px;font-size:8pt">1</div><div class="niv-btn n2" style="padding:3px 2px;font-size:8pt">2</div><div class="niv-btn n3" style="padding:3px 2px;font-size:8pt">3</div><div class="niv-btn n4" style="padding:3px 2px;font-size:8pt">4</div></div></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:8pt;color:var(--text-light);font-style:italic">0 = je ne connais pas · 1 = j'en ai entendu parler · 2 = je l'ai utilisé pour moi · 3 = je pourrais guider quelqu'un · 4 = je la maîtrise très bien</p>
+</div>
+
+<!-- PAGE 2 : EXPÉRIENCE D'ACCOMPAGNEMENT + SECTEUR -->
+<div class="page">
+  <div class="page-header">
+    <div>
+      <div class="ph-badge" style="background:var(--vert)">Partie B</div>
+      <div class="ph-title" style="color:var(--vert)">Mon expérience d'accompagnement et du secteur</div>
+    </div>
+  </div>
+
+  <h3 class="section" style="border-left-color:var(--vert);color:var(--vert)">B1 — Mon expérience d'accompagnement de publics</h3>
+
+  <div class="qcm-bloc">
+    <div class="qcm-sectlabel" style="background:var(--vert)">Ai-je déjà accompagné des personnes dans des usages numériques ?</div>
+    <div class="qcm-options" style="display:grid;grid-template-columns:1fr 1fr">
+      <label class="qcm-option"><div class="cb"></div>Non, jamais</label>
+      <label class="qcm-option"><div class="cb"></div>Ponctuellement (famille, amis)</label>
+      <label class="qcm-option"><div class="cb"></div>Dans un cadre bénévole</label>
+      <label class="qcm-option"><div class="cb"></div>Dans un cadre professionnel (préciser ci-dessous)</label>
+    </div>
+  </div>
+  <p style="font-size:8.5pt;color:var(--text-mid);margin-top:3px">Si expérience professionnelle d'accompagnement — décrire brièvement :</p>
+  <div class="write-box"></div>
+
+  <h3 class="section" style="border-left-color:var(--vert);color:var(--vert)">B2 — Mon expérience avec des publics spécifiques</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;margin:0.4rem 0">
+    <div class="qcm-bloc">
+      <div class="qcm-sectlabel" style="background:var(--vert)">Publics déjà rencontrés (cocher)</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Personnes âgées / seniors</label>
+        <label class="qcm-option"><div class="cb"></div>Personnes en situation de handicap</label>
+        <label class="qcm-option"><div class="cb"></div>Personnes en difficulté de lecture (illettrisme)</label>
+        <label class="qcm-option"><div class="cb"></div>Personnes peu ou pas scolarisées</label>
+        <label class="qcm-option"><div class="cb"></div>Jeunes en décrochage</label>
+        <label class="qcm-option"><div class="cb"></div>Demandeurs d'emploi</label>
+        <label class="qcm-option"><div class="cb"></div>Personnes allophones (autre langue maternelle)</label>
+        <label class="qcm-option"><div class="cb"></div>Personnes en situation de précarité</label>
+      </div>
+    </div>
+    <div class="qcm-bloc">
+      <div class="qcm-sectlabel" style="background:var(--vert)">Contextes d'intervention déjà vécus</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Accompagnement individuel (1 à 1)</label>
+        <label class="qcm-option"><div class="cb"></div>Animation de groupe (atelier, formation)</label>
+        <label class="qcm-option"><div class="cb"></div>Intervention en institution (EHPAD, ESAT, IME…)</label>
+        <label class="qcm-option"><div class="cb"></div>Permanence / accueil libre</label>
+        <label class="qcm-option"><div class="cb"></div>Accompagnement à domicile</label>
+        <label class="qcm-option"><div class="cb"></div>Travail en partenariat avec d'autres structures</label>
+        <label class="qcm-option"><div class="cb"></div>Conduite de projet</label>
+        <label class="qcm-option"><div class="cb"></div>Aucun de ces contextes</label>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section" style="border-left-color:var(--vert);color:var(--vert)">B3 — Connaissance du secteur de la médiation numérique</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;margin:0.4rem 0">
+    <div class="qcm-bloc">
+      <div class="qcm-sectlabel" style="background:var(--vert)">Je connais ces termes (cocher les familiers)</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Illectronisme</label>
+        <label class="qcm-option"><div class="cb"></div>IFN (Indice de Fragilité Numérique)</label>
+        <label class="qcm-option"><div class="cb"></div>DORA (annuaire des structures)</label>
+        <label class="qcm-option"><div class="cb"></div>FALC (Facile À Lire et Comprendre)</label>
+        <label class="qcm-option"><div class="cb"></div>RGAA (accessibilité web)</label>
+        <label class="qcm-option"><div class="cb"></div>Hub territorial numérique</label>
+        <label class="qcm-option"><div class="cb"></div>Pass Numérique / Aidants Connect</label>
+        <label class="qcm-option"><div class="cb"></div>DigComp / PIX (évaluation des compétences)</label>
+      </div>
+    </div>
+    <div class="qcm-bloc">
+      <div class="qcm-sectlabel" style="background:var(--vert)">Ce que je pense savoir sur l'illettrisme</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Je connais la différence entre illettrisme et analphabétisme</label>
+        <label class="qcm-option"><div class="cb"></div>Je sais repérer des signaux discrets d'illettrisme</label>
+        <label class="qcm-option"><div class="cb"></div>Je connais le terme FALC et ses principes</label>
+        <label class="qcm-option"><div class="cb"></div>Je connais des associations qui accompagnent les personnes illettrées</label>
+        <label class="qcm-option"><div class="cb"></div>Je n'ai jamais abordé ce sujet</label>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section" style="border-left-color:var(--vert);color:var(--vert)">B4 — Ce qui me semble déjà acquis vs ce qui m'inquiète</h3>
+  <div class="write-grid">
+    <div>
+      <p style="font-size:8.5pt;font-weight:600;color:var(--vert);margin-bottom:3px">✓ Ce que je pense déjà bien maîtriser :</p>
+      <div class="write-box" style="min-height:150px"></div>
+    </div>
+    <div>
+      <p style="font-size:8.5pt;font-weight:600;color:var(--brique);margin-bottom:3px">? Ce qui m'inquiète ou me semble difficile :</p>
+      <div class="write-box" style="min-height:150px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3 : QCM DE CONNAISSANCES -->
+<div class="page">
+  <div class="page-header">
+    <div>
+      <div class="ph-badge" style="background:var(--or)">Partie C</div>
+      <div class="ph-title" style="color:var(--or)">Questions de connaissances — pas de pression !</div>
+    </div>
+  </div>
+
+  <div class="box" style="background:var(--or-light);border:1px solid var(--or-border)"><p><strong>Ces questions permettent d'évaluer tes connaissances de départ.</strong> Si tu ne sais pas, laisse vide — c'est une information utile pour adapter la formation. Il n'y a pas de notation. 1 seule bonne réponse par question sauf indication contraire.</p></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:0.5rem">
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">1. Qu'est-ce que l'illectronisme ?</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Ne pas savoir lire</label>
+        <label class="qcm-option"><div class="cb"></div>Ne pas maîtriser les usages numériques de base</label>
+        <label class="qcm-option"><div class="cb"></div>N'avoir ni ordinateur ni connexion internet</label>
+        <label class="qcm-option"><div class="cb"></div>Avoir peur de l'informatique</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">2. La règle des "mains à soi" signifie :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>On peut aider en prenant le clavier si la personne est d'accord</label>
+        <label class="qcm-option"><div class="cb"></div>Ne pas toucher l'écran pour ne pas l'abîmer</label>
+        <label class="qcm-option"><div class="cb"></div>Laisser la personne faire seule, sans aucune aide</label>
+        <label class="qcm-option"><div class="cb"></div>Jamais utiliser le clavier, la souris ou le téléphone de la personne</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">3. Quelle est la différence entre illettrisme et analphabétisme ?</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Aucune, c'est la même chose</label>
+        <label class="qcm-option"><div class="cb"></div>L'analphabète n'a jamais été scolarisé, l'illettré a été scolarisé en France mais n'a pas consolidé les compétences</label>
+        <label class="qcm-option"><div class="cb"></div>L'illettré ne parle pas français, l'analphabète ne sait pas compter</label>
+        <label class="qcm-option"><div class="cb"></div>Le terme "analphabète" est vieux, "illettré" est moderne</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">4. FranceConnect, c'est :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Un service qui permet de se connecter à plusieurs services publics avec un compte existant</label>
+        <label class="qcm-option"><div class="cb"></div>Un compte créé sur le site FranceConnect.fr</label>
+        <label class="qcm-option"><div class="cb"></div>La carte d'identité numérique française</label>
+        <label class="qcm-option"><div class="cb"></div>L'application officielle de l'État pour les démarches</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">5. Quel outil propose-t-on à une personne aveugle pour naviguer sur internet ?</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Une loupe d'écran</label>
+        <label class="qcm-option"><div class="cb"></div>Live Caption</label>
+        <label class="qcm-option"><div class="cb"></div>NVDA — un lecteur d'écran qui lit le contenu à voix haute</label>
+        <label class="qcm-option"><div class="cb"></div>OpenDyslexic</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">6. FALC signifie :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Formulaire Allégé de Communication</label>
+        <label class="qcm-option"><div class="cb"></div>Facile À Lire et à Comprendre</label>
+        <label class="qcm-option"><div class="cb"></div>Formation Adaptée aux Langues Courantes</label>
+        <label class="qcm-option"><div class="cb"></div>Fiche d'Accessibilité pour les Langages Complexes</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">7. Si une personne oublie ses identifiants Ameli pendant une séance, le médiateur doit :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Appeler Ameli à sa place pour récupérer les identifiants</label>
+        <label class="qcm-option"><div class="cb"></div>Remettre la démarche à une prochaine fois et terminer la séance</label>
+        <label class="qcm-option"><div class="cb"></div>Utiliser les identifiants d'un autre compte pour montrer le fonctionnement</label>
+                <label class="qcm-option"><div class="cb"></div>L'accompagner dans la procédure de récupération de mot de passe sur le site</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">8. Le RGAA niveau AA concerne :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>L'obligation légale d'accessibilité pour les sites publics en France</label>
+        <label class="qcm-option"><div class="cb"></div>Un niveau optionnel pour les sites souhaitant être exemplaires</label>
+        <label class="qcm-option"><div class="cb"></div>Un certificat délivré aux médiateurs numériques</label>
+        <label class="qcm-option"><div class="cb"></div>Le niveau minimum pour les sites commerciaux</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">9. Lors de l'actualisation mensuelle sur France Travail, si la personne oublie :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Ce n'est pas grave, elle peut le faire le mois suivant</label>
+        <label class="qcm-option"><div class="cb"></div>Elle risque une suspension de ses allocations</label>
+        <label class="qcm-option"><div class="cb"></div>Elle doit appeler son conseiller France Travail</label>
+        <label class="qcm-option"><div class="cb"></div>Elle reçoit un rappel automatique par SMS</label>
+      </div>
+    </div>
+
+    <div class="qcm-bloc">
+      <div class="qcm-header">10. La principale difficulté d'une personne en situation d'illettrisme lors d'un atelier numérique est :</div>
+      <div class="qcm-options">
+        <label class="qcm-option"><div class="cb"></div>Elle ne peut pas du tout utiliser d'outils numériques</label>
+        <label class="qcm-option"><div class="cb"></div>Elle a besoin d'un traducteur pour comprendre les interfaces</label>
+        <label class="qcm-option"><div class="cb"></div>Elle peut avoir du mal avec les interfaces textuelles mais peut maîtriser certains usages (WhatsApp, YouTube…)</label>
+        <label class="qcm-option"><div class="cb"></div>Elle doit être orientée vers un cours de lecture avant tout atelier numérique</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4 : MOTIVATIONS + PROJET PRO -->
+<div class="page">
+  <div class="page-header">
+    <div>
+      <div class="ph-badge" style="background:var(--ardoise)">Partie D</div>
+      <div class="ph-title" style="color:var(--ardoise)">Motivations, représentations et projet professionnel</div>
+    </div>
+  </div>
+
+  <div class="box" style="background:var(--ardoise-light);border:1px solid var(--ardoise-border)"><p>Ces questions n'ont pas de bonnes ou mauvaises réponses. Elles aident à comprendre ce qui t'a amené à cette formation et ce que tu en attends. Réponds librement et honnêtement.</p></div>
+
+  <h3 class="section" style="border-left-color:var(--ardoise);color:var(--ardoise)">D1 — Pourquoi cette formation ?</h3>
+  <div class="qcm-bloc">
+    <div class="qcm-sectlabel" style="background:var(--ardoise)">Ma principale motivation (1 seul choix)</div>
+    <div class="qcm-options" style="display:grid;grid-template-columns:1fr 1fr">
+      <label class="qcm-option"><div class="cb"></div>Envie de travailler dans le secteur social / médiation</label>
+      <label class="qcm-option"><div class="cb"></div>Reconversion professionnelle vers le numérique</label>
+      <label class="qcm-option"><div class="cb"></div>Envie d'aider des personnes en difficulté</label>
+      <label class="qcm-option"><div class="cb"></div>Opportunité professionnelle dans ma structure actuelle</label>
+      <label class="qcm-option"><div class="cb"></div>Valider des compétences que j'ai déjà</label>
+      <label class="qcm-option"><div class="cb"></div>Autre : __________________________________</label>
+    </div>
+  </div>
+  <div class="write-line"></div>
+
+  <h3 class="section" style="border-left-color:var(--ardoise);color:var(--ardoise)">D2 — Mes représentations du métier</h3>
+  <p style="font-size:9pt;color:var(--text-mid);margin-bottom:4px">En une ou deux phrases, qu'est-ce qu'un médiateur numérique selon toi ?</p>
+  <div class="write-box" style="min-height:100px"></div>
+
+  <p style="font-size:9pt;color:var(--text-mid);margin-bottom:4px">À qui imagines-tu devoir expliquer comment faire une démarche en ligne ? Décris le profil de la personne :</p>
+  <div class="write-box" style="min-height:100px"></div>
+
+  <h3 class="section" style="border-left-color:var(--ardoise);color:var(--ardoise)">D3 — Ce que j'attends de cette formation</h3>
+  <div class="write-grid">
+    <div>
+      <p style="font-size:8.5pt;font-weight:600;color:var(--vert);margin-bottom:3px">Ce que j'espère apprendre / développer :</p>
+      <div class="write-box" style="min-height:150px"></div>
+    </div>
+    <div>
+      <p style="font-size:8.5pt;font-weight:600;color:var(--brique);margin-bottom:3px">Ce qui m'inquiète dans ce titre :</p>
+      <div class="write-box" style="min-height:150px"></div>
+    </div>
+  </div>
+
+  <h3 class="section" style="border-left-color:var(--ardoise);color:var(--ardoise)">D4 — Mon projet professionnel après le titre</h3>
+  <div class="qcm-bloc">
+    <div class="qcm-sectlabel" style="background:var(--ardoise)">Où je me vois travailler après la formation ?</div>
+    <div class="qcm-options" style="display:grid;grid-template-columns:1fr 1fr">
+      <label class="qcm-option"><div class="cb"></div>Structure sociale (CCAS, centre social, mairie…)</label>
+      <label class="qcm-option"><div class="cb"></div>Association d'insertion / aide sociale</label>
+      <label class="qcm-option"><div class="cb"></div>Médiathèque / espace culturel</label>
+      <label class="qcm-option"><div class="cb"></div>Structure médico-sociale (ESAT, IME, EHPAD…)</label>
+      <label class="qcm-option"><div class="cb"></div>Poste créé dans ma structure actuelle</label>
+      <label class="qcm-option"><div class="cb"></div>Je ne sais pas encore</label>
+    </div>
+  </div>
+
+  <p style="font-size:9pt;color:var(--text-mid);margin:0.5rem 0 3px">Une chose que tu aimerais que ton formateur sache à ton sujet (personnalité, contraintes, ressources…) :</p>
+  <div class="write-box" style="min-height:100px"></div>
+</div>
+
+<!-- PAGE 5 : SYNTHÈSE FORMATEUR -->
+<div class="page">
+  <div class="page-header">
+    <div>
+      <div class="ph-badge" style="background:var(--brique)">Synthèse formateur</div>
+      <div class="ph-title" style="color:var(--brique)">Analyse du positionnement — Document formateur</div>
+    </div>
+  </div>
+
+  <div class="box" style="background:var(--brique-light);border:1px solid var(--brique-border)"><p><strong>À compléter par le formateur après analyse des réponses du stagiaire.</strong> Cette fiche de synthèse permet d'adapter le parcours de formation individuel. 1 fiche par stagiaire.</p></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:0.6rem">
+    <div><p style="font-size:8pt;font-weight:600;margin-bottom:2px">Stagiaire :</p><div class="write-line"></div></div>
+    <div><p style="font-size:8pt;font-weight:600;margin-bottom:2px">Date d'analyse :</p><div class="write-line"></div></div>
+  </div>
+
+  <h3 class="section" style="border-left-color:var(--brique);color:var(--brique)">Profil de positionnement par domaine</h3>
+  <table class="synth-table">
+    <thead><tr><th>Domaine</th><th>Niveau initial estimé</th><th>Barre visuelle</th><th>Priorité formation</th></tr></thead>
+    <tbody>
+      <tr><td>Compétences numériques personnelles</td>
+        <td><div class="niv-row" style="gap:2px"><div class="niv-btn n0" style="padding:2px;font-size:7pt">0</div><div class="niv-btn n1" style="padding:2px;font-size:7pt">1</div><div class="niv-btn n2" style="padding:2px;font-size:7pt">2</div><div class="niv-btn n3" style="padding:2px;font-size:7pt">3</div><div class="niv-btn n4" style="padding:2px;font-size:7pt">4</div></div></td>
+        <td class="level-cell"><div class="level-bar"><div class="level-fill" style="width:40%;background:var(--bleu)"></div></div></td>
+        <td>☐ Haute &nbsp; ☐ Moy. &nbsp; ☐ Faible</td></tr>
+      <tr><td>Connaissance des plateformes (CP7)</td>
+        <td><div class="niv-row" style="gap:2px"><div class="niv-btn n0" style="padding:2px;font-size:7pt">0</div><div class="niv-btn n1" style="padding:2px;font-size:7pt">1</div><div class="niv-btn n2" style="padding:2px;font-size:7pt">2</div><div class="niv-btn n3" style="padding:2px;font-size:7pt">3</div><div class="niv-btn n4" style="padding:2px;font-size:7pt">4</div></div></td>
+        <td class="level-cell"><div class="level-bar"><div class="level-fill" style="width:40%;background:var(--bleu)"></div></div></td>
+        <td>☐ Haute &nbsp; ☐ Moy. &nbsp; ☐ Faible</td></tr>
+      <tr><td>Expérience d'accompagnement</td>
+        <td><div class="niv-row" style="gap:2px"><div class="niv-btn n0" style="padding:2px;font-size:7pt">0</div><div class="niv-btn n1" style="padding:2px;font-size:7pt">1</div><div class="niv-btn n2" style="padding:2px;font-size:7pt">2</div><div class="niv-btn n3" style="padding:2px;font-size:7pt">3</div><div class="niv-btn n4" style="padding:2px;font-size:7pt">4</div></div></td>
+        <td class="level-cell"><div class="level-bar"><div class="level-fill" style="width:40%;background:var(--vert)"></div></div></td>
+        <td>☐ Haute &nbsp; ☐ Moy. &nbsp; ☐ Faible</td></tr>
+      <tr><td>Connaissance du secteur / vocabulaire</td>
+        <td><div class="niv-row" style="gap:2px"><div class="niv-btn n0" style="padding:2px;font-size:7pt">0</div><div class="niv-btn n1" style="padding:2px;font-size:7pt">1</div><div class="niv-btn n2" style="padding:2px;font-size:7pt">2</div><div class="niv-btn n3" style="padding:2px;font-size:7pt">3</div><div class="niv-btn n4" style="padding:2px;font-size:7pt">4</div></div></td>
+        <td class="level-cell"><div class="level-bar"><div class="level-fill" style="width:40%;background:var(--or)"></div></div></td>
+        <td>☐ Haute &nbsp; ☐ Moy. &nbsp; ☐ Faible</td></tr>
+      <tr><td>Connaissances théoriques (QCM)</td>
+        <td style="font-size:9pt">__ / 10 bonnes réponses</td>
+        <td class="level-cell"><div class="level-bar"><div class="level-fill" style="width:40%;background:var(--ardoise)"></div></div></td>
+        <td>☐ Haute &nbsp; ☐ Moy. &nbsp; ☐ Faible</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section" style="border-left-color:var(--brique);color:var(--brique)">Points forts à valoriser · Points à renforcer en priorité</h3>
+  <div class="write-grid">
+    <div>
+      <p style="font-size:8.5pt;font-weight:600;color:var(--vert);margin-bottom:3px">Points forts identifiés :</p>
+      <div class="write-box" style="min-height:100px"></div>
+    </div>
+    <div>
+      <p style="font-size:8.5pt;font-weight:600;color:var(--brique);margin-bottom:3px">Points à renforcer en priorité :</p>
+      <div class="write-box" style="min-height:100px"></div>
+    </div>
+  </div>
+
+  <h3 class="section" style="border-left-color:var(--brique);color:var(--brique)">Adaptations pédagogiques prévues pour ce stagiaire</h3>
+  <div class="write-box" style="min-height:100px"></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.6rem;margin-top:0.6rem">
+    <div style="border:1px solid var(--border);border-radius:6px;padding:0.6rem">
+      <p style="font-size:8pt;font-weight:600;color:var(--ardoise);margin-bottom:3px">Profil global</p>
+      <div style="font-size:8.5pt">
+        ☐ Débutant complet<br>☐ Partiellement expérimenté<br>☐ Expérimenté sur certains volets<br>☐ Profil avancé
+      </div>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:6px;padding:0.6rem">
+      <p style="font-size:8pt;font-weight:600;color:var(--ardoise);margin-bottom:3px">Risque identifié</p>
+      <div style="font-size:8.5pt">
+        ☐ Surcharge cognitive<br>☐ Manque de pratique numérique<br>☐ Difficulté posture relationnelle<br>☐ Aucun risque identifié
+      </div>
+    </div>
+    <div style="border:1px solid var(--border);border-radius:6px;padding:0.6rem">
+      <p style="font-size:8pt;font-weight:600;color:var(--ardoise);margin-bottom:3px">Signature formateur</p>
+      <div style="border-bottom:1px solid var(--border);height:30px;margin-bottom:4px"></div>
+      <p style="font-size:7.5pt;color:var(--text-light)">Date : _______________</p>
+    </div>
+  </div>
+  <button style="background-color:white; color:#6C3483; margin-top:10px; padding: 2px; border:1px solid #6C3483; font-size: 16px;"><a style="color:inherit;text-decoration:none" href="../Admin/ressources_formateur.html">🔙</a></button>
+</div>
+<footer>
+  <p style="text-align: center; align-content: center; font-size: 8pt; color: var(--text-mid); margin: 20px 0;">© 2026 - Formation médiateur numérique - Tous droits réservés Dev&Info</p>
+</footer>
+</body>
+</html>

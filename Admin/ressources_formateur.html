@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation médiateur numérique</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+    :root{
+    --navy:#1B3A6B;--navy-light:#EBF2FB;
+    --amber:#D4812B;--amber-light:#FEF6EC;
+    --green:#1A7A4A;--green-light:#E8F8F0;
+    --red:#C0392B;--red-light:#FDEDEC;
+    --purple:#6C3483;--purple-light:#F5EEF8;
+    --teal:#0E6655;--teal-light:#E8F8F5;
+    --text:#1C2833;--text-mid:#566573;
+    --bg:#F4F6F8;--white:#FFFFFF;--border:#DDE1E7;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    @page{size:A4;margin:1.5cm}
+    body{font-family:'DM Sans',sans-serif;font-size:10pt;color:var(--text);background:var(--bg)}
+
+    /* COVER */
+    .cover{background:var(--purple);display:flex;flex-direction:column;padding:8vh 15vw;page-break-after:always}
+    .block_form {background:#7d319b;border-radius:8px;padding:2rem;box-shadow:0 4px 8px rgba(0,0,0,0.1);}
+    .cover h2{font-family:'Playfair Display',serif;font-size:16pt;background-color:var(--purple-light); color:var(--purple); line-height:1.05;margin:1.5rem auto;border-radius:4px; padding: 0.5rem 1rem;}
+    .cover h3{font-family:'Playfair Display',serif;font-size:14pt;color:rgba(255,255,255,0.9);margin:1rem 0}
+    .cover p{font-size:12pt;color:rgba(255,255,255,0.75);font-weight:300;line-height:1.6;max-width:13cm;margin-bottom:3rem}
+    .cover-tag{background:rgba(255,255,255,0.2);color:white;font-size:26px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:3px;display:inline-block; text-align: center;}
+    .cover-tag a{color:inherit;text-decoration:none}
+    .cover-items{display:flex;flex-direction:column;gap:0.8rem;margin-top:10px}
+    .cover-item{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.8rem 1.2rem;color:white;font-size:10pt}
+    .cover-item strong{color:rgba(255,255,255,0.9)}
+    .cover-item a{color:inherit;text-decoration:none}
+    .cover-block{margin:0 2rem;}
+    .inactive{opacity:0.5;pointer-events:none}
+
+
+    @media print{
+    body{background:white}
+    .page{padding:0;box-shadow:none}
+    .cover,.obs-grid th,.p-senior,.p-anxieux,.p-agressif,.p-presse,.p-detresse,.p-allophone,.p-jeune,.p-hors{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    }
+    </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1 class="cover-tag"><a href="../index.html">Espace formateur</a></h1>
+  <img src="../Images/home_banner_formateur.png" alt="médiation numérique" style="width:100%;max-width:14cm;margin:1.5rem 0;border-radius:8px; align-self: center;">
+  <div class="block_form">
+    <h2>✨ Formation Médiateur numérique</h2>
+    <div class="cover-block">
+      <h3>📝 Connaitre le niveau des apprenants</h3>
+      <div class="cover-items">
+        <div class="cover-item"><a href="./Test_Positionnement_Initial.html">📚 <strong>Test de positionnement</strong></a></div>
+        <div class="cover-item"><a href="./Test_Positionnement_corrige_QCM.html">📚 <strong>Test de positionnement - QCM corrigé</strong></a></div>
+      </div>
+    </div>
+    <div class="cover-block inactive">
+      <h3>Le stage</h3>
+      <div class="cover-items inactive">
+        <div class="cover-item inactive"><a href="">📚 <strong>Fiche de liaison tuteur</strong></a></div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <p style="text-align: center; align-content: center; font-size: 8pt; color: var(--text-mid); margin: 20px 0;">© 2026 - Formation médiateur numérique - Tous droits réservés Dev&Info</p>
+</footer>
+</body>
+</html>
